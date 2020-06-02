@@ -3,6 +3,7 @@ package com.example.searchCarservice.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Getter
@@ -38,4 +39,6 @@ public class Car {
     private double fuelTankCapacity;
     private String cityLocation;
 
+    @OneToMany(mappedBy = "car", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<CarRentalDate> dateList;
 }
