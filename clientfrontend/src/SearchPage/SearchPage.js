@@ -9,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
+import axios from '../axios-objects';
 
 class SearchPage extends React.PureComponent {
     
@@ -19,15 +20,19 @@ class SearchPage extends React.PureComponent {
             price: {
                 value: [0, 1000]
             },
-            stable: {
-                cars: [],
-                brandCars: [],
-                modelCars: [],
-                fuelTypeCars: [],
-                transmissionCars: [],
-                classCarCars: [],
-                priceCars: [],
-                mileageCars: []
+            car: {
+                brand: '',
+                model: '',
+                fuelType: '',
+                transmission: '',
+                classCar: '',
+                mileage: '',
+                plannedMileage: '',
+                CDW: false,
+                capacitySeatsForKids: '',
+                cityLocation: '',
+                startDate: null,
+                endDate: null
             },
             search: {
                 cars: [],
@@ -41,6 +46,14 @@ class SearchPage extends React.PureComponent {
     }
 
     componentDidMount = () => {
+        //grad i vreme iz pocetne pretrage
+        const car = updateObject(this.state.car, {
+            cityLocation: this.props.location.state.cityLocation,
+            startDate: this.props.location.state.startDate,
+            endDate: this.props.location.state.endDate
+        });
+        this.setState({car});
+
         //niz svih auta koje smo dobili pocetnom pretragom
         const carArray = [...this.props.location.state.cars];
 
@@ -88,163 +101,20 @@ class SearchPage extends React.PureComponent {
             classCar: classCarArray
         })
         this.setState({search});
-
-        let stable = updateObject(this.state.stable, {
-            cars: carArray,
-            brandCars: carArray,
-            modelCars: carArray,
-            fuelTypeCars: carArray,
-            transmissionCars: carArray,
-            classCarCars: carArray,
-            priceCars: carArray,
-            mileageCars: carArray
-        });
-        this.setState({stable});
     }
 
     selectHandler = (event, type) => {
-        let cars = [...this.state.stable.cars];
-        let brandCars = [...this.state.stable.brandCars];
-        let modelCars = [...this.state.stable.modelCars];
-        let fuelTypeCars = [...this.state.stable.fuelTypeCars];
-        let transmissionCars = [...this.state.stable.transmissionCars];
-        let classCarCars = [...this.state.stable.classCarCars];
-        let priceCars = [...this.state.stable.priceCars];
-        let mileageCars = [...this.state.stable.mileageCars];
-
-        if(type === 'brand') {
-            brandCars = [];
-            if(event.target.value !== "") {
-                for(let i=0; i<cars.length; i++) {
-                    if(cars[i].brand === event.target.value) {
-                        brandCars.push(cars[i]);
-                    }
-                }
-                let stable = updateObject(this.state.stable, {
-                    brandCars: brandCars
-                });
-                this.setState({stable});
-            } else {
-                brandCars = [...this.state.stable.cars];
-                let stable = updateObject(this.state.stable, {
-                    brandCars: brandCars
-                });
-                this.setState({stable});
-            }
-        } else if(type === 'model') {
-            modelCars = [];
-            if(event.target.value !== "") {
-                for(let i=0; i<cars.length; i++) {
-                    if(cars[i].model === event.target.value) {
-                        modelCars.push(cars[i]);
-                    }
-                }
-                let stable = updateObject(this.state.stable, {
-                    modelCars: modelCars
-                });
-                this.setState({stable});
-            }
-            else {
-                modelCars = [...this.state.stable.cars];
-                let stable = updateObject(this.state.stable, {
-                    modelCars: modelCars
-                });
-                this.setState({stable});
-            }
-        } else if(type === 'fuelType') {
-            fuelTypeCars = [];
-            if(event.target.value !== "") {
-                for(let i=0; i<cars.length; i++) {
-                    if(cars[i].fuelType === event.target.value) {
-                        fuelTypeCars.push(cars[i]);
-                    }
-                }
-                let stable = updateObject(this.state.stable, {
-                    fuelTypeCars: fuelTypeCars
-                });
-                this.setState({stable});
-            }
-            else {
-                fuelTypeCars = [...this.state.stable.cars];
-                let stable = updateObject(this.state.stable, {
-                    fuelTypeCars: fuelTypeCars
-                });
-                this.setState({stable});
-            }
-        } else if(type === 'transmission') {
-            transmissionCars = [];
-            if(event.target.value !== "") {
-                for(let i=0; i<cars.length; i++) {
-                    if(cars[i].transmission === event.target.value) {
-                        transmissionCars.push(cars[i]);
-                    }
-                }
-                let stable = updateObject(this.state.stable, {
-                    transmissionCars: transmissionCars
-                });
-                this.setState({stable});
-            }
-            else {
-                transmissionCars = [...this.state.stable.cars];
-                let stable = updateObject(this.state.stable, {
-                    transmissionCars: transmissionCars
-                });
-                this.setState({stable});
-            }
-        } else if(type === 'classCar') {
-            classCarCars = [];
-            if(event.target.value !== "") {
-                for(let i=0; i<cars.length; i++) {
-                    if(cars[i].classCar === event.target.value) {
-                        classCarCars.push(cars[i]);
-                    }
-                }
-                let stable = updateObject(this.state.stable, {
-                    classCarCars: classCarCars
-                });
-                this.setState({stable});
-            }
-            else {
-                classCarCars = [...this.state.stable.cars];
-                let stable = updateObject(this.state.stable, {
-                    classCarCars: classCarCars
-                });
-                this.setState({stable});
-            }
-        } else if(type === 'mileage') {
-            mileageCars = [];
-            if(event.target.value !== "") {
-                for(let i=0; i<cars.length; i++) {
-                    if(cars[i].mileage <= event.target.value) {
-                        mileageCars.push(cars[i]);
-                    }
-                }
-                let stable = updateObject(this.state.stable, {
-                    mileageCars: mileageCars
-                });
-                this.setState({stable});
-            }
-            else {
-                mileageCars = [...this.state.stable.cars];
-                let stable = updateObject(this.state.stable, {
-                    mileageCars: mileageCars
-                });
-                this.setState({stable});
-            }
-        }
-
-        let filterCars = [];
-        for(let i=0; i<brandCars.length; i++) {
-            if(modelCars.includes(brandCars[i]) && fuelTypeCars.includes(brandCars[i]) && transmissionCars.includes(brandCars[i])
-                && classCarCars.includes(brandCars[i]) && priceCars.includes(brandCars[i]) && mileageCars.includes(brandCars[i])) {
-                    filterCars.push(brandCars[i]);
-                }
-        }
-
-        let search = updateObject(this.state.search, {
-            cars: filterCars
+        let car = updateObject(this.state.car, {
+            [type]: event.target.value
         });
-        this.setState({search});
+        this.setState({car});
+    }
+
+    checkboxHandler = (event, type) => {
+        let car = updateObject(this.state.car, {
+            [type]: event.target.checked
+        });
+        this.setState({car});
     }
 
     valuetext = (value) => {
@@ -256,19 +126,6 @@ class SearchPage extends React.PureComponent {
             value: newValue
         });
         this.setState({price});
-
-        let priceCars = [...this.state.stable.cars];
-        let filterCars = [];
-        for(let i=0; i<priceCars.length; i++) {
-            if(priceCars[i].price >= newValue[0] && priceCars[i].price <= newValue[1]) {
-                filterCars.push(priceCars[i]);
-            }
-        }
-        let stable = updateObject(this.state.stable, {
-            priceCars: filterCars
-        });
-        this.setState({stable});
-        this.selectHandler();
     }
 
     rangeSliderRender = () => {
@@ -291,12 +148,31 @@ class SearchPage extends React.PureComponent {
         );
     }
 
+    filterHandler = async (event) => {
+        event.preventDefault();
+        
+        const {brand, model, fuelType, transmission, classCar, mileage,
+            plannedMileage, CDW, capacitySeatsForKids, cityLocation, startDate, endDate} = this.state.car;
+        const price = this.state.price.value;
+        const data = {brand, model, fuelType, transmission, classCar, price, mileage,
+            plannedMileage, CDW, capacitySeatsForKids, cityLocation, startDate, endDate};
+
+        const response = await axios.post('/search-car-service/filterCars', data);
+        if (response) {
+            const filterCars = response.data;
+            let search = updateObject(this.state.search, {
+                cars: filterCars
+            });
+            this.setState({search});
+        }
+    }
+
     render() {
         return (
             <div>
                 <HamburgerMenu />
                 <header id="showcase">
-                    <div className="containerSearch showcase-containerSearch" style={{overflowY:'scroll'}}>
+                    <div className="containerSearch showcase-containerSearch" style={{overflowY:'scroll', maxWidth:'90%'}}>
                         <div className="filterDiv">
                             <p>Filter your search</p>
                             <FormControl className="select-brand">
@@ -416,7 +292,54 @@ class SearchPage extends React.PureComponent {
                                 <FormHelperText>Filter by mileage</FormHelperText>
                             </FormControl>
 
+                            <FormControl className="select-brand">
+                                <InputLabel id="demo-simple-select-helper-label">Distance to travel</InputLabel>
+                                <Select
+                                labelId="demo-simple-select-helper-label"
+                                id="demo-simple-select-helper"
+                                onChange={(event) => this.selectHandler(event, 'plannedMileage')}
+                                >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                <MenuItem value="2000">2000km</MenuItem>
+                                <MenuItem value="4000">4000km</MenuItem>
+                                <MenuItem value="6000">6000km</MenuItem>
+                                <MenuItem value="8000">8000km</MenuItem>
+                                <MenuItem value="10000">10000km</MenuItem>
+                                <MenuItem value="15000">15000km</MenuItem>
+                                <MenuItem value="20000">20000km</MenuItem>
+                                <MenuItem value="30000">30000km</MenuItem>
+                                </Select>
+                                <FormHelperText>Filter by mileage</FormHelperText>
+                            </FormControl>
+
+                            <FormControl className="select-brand">
+                                <InputLabel id="demo-simple-select-helper-label">Seats for kids</InputLabel>
+                                <Select
+                                labelId="demo-simple-select-helper-label"
+                                id="demo-simple-select-helper"
+                                onChange={(event) => this.selectHandler(event, 'capacitySeatsForKids')}
+                                >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                <MenuItem value="0">0</MenuItem>
+                                <MenuItem value="1">1</MenuItem>
+                                <MenuItem value="2">2</MenuItem>
+                                <MenuItem value="3">3</MenuItem>
+                                </Select>
+                                <FormHelperText>Filter by number</FormHelperText>
+                            </FormControl>
+                            
+                            <label style={{color:'rgba(0, 0, 0, 0.54)', margin:'1rem 1rem'}}>Collision Damage Waiver</label>
+                            <input type="checkbox" style={{marginRight:'1rem', marginBottom:'1rem'}} 
+                                onClick={(event) => this.checkboxHandler(event, 'CDW')} />
+
                             {this.rangeSliderRender()}
+
+                            <a className="btn" href="/" style={{width:'150px', textAlign:'center', float:'right',margin:'1rem 4rem'}}
+                            onClick={(event) => this.filterHandler(event)}>Filter</a>
                         </div>
                         
                         {this.state.search.cars.map((car, i) => {
