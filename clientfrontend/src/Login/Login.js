@@ -77,7 +77,7 @@ class Login extends React.PureComponent {
             const data = {email, password};
 
             try {
-                const response = await axios.post('/login', data);
+                const response = await axios.post('/authentication-service/login', data);
                 if (response) {
                     const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
                     sessionStorage.setItem('token', response.data.accessToken);

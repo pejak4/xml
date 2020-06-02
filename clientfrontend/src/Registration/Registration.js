@@ -47,7 +47,7 @@ class Registration extends React.PureComponent {
                 let email = this.validateEmail(event.target.value);
                 if (email) {
                     const data = {email: event.target.value};
-                    const response = await axios.post('/email-check', data, {
+                    const response = await axios.post('/authentication-service/email-check', data, {
                         headers: {
                             'Content-Type': 'application/json'
                         }
@@ -95,7 +95,7 @@ class Registration extends React.PureComponent {
             const data = {firstName, lastName, email, password};
 
             try {
-                const response = await axios.post('/registration', data);
+                const response = await axios.post('/authentication-service/registration', data);
                 if (response) {
                     this.props.history.push('/login');
                 }
