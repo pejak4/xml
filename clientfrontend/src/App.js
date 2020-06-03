@@ -4,6 +4,7 @@ import HomePage from './HomePage/HomePage';
 import Login from './Login/Login';
 import Registration from './Registration/Registration';
 import SearchPage from './SearchPage/SearchPage';
+import Cart from './Cart/Cart';
 
 class App extends React.PureComponent {
   render() {
@@ -15,6 +16,7 @@ class App extends React.PureComponent {
             <Route path="/login" component={Login} />
             <Route path="/registration" component={Registration} />
             <Route path="/search" component={SearchPage} />
+            <Route path="/cart" component={Cart} />
           </Switch>
         </BrowserRouter>
       </div>

@@ -57,7 +57,7 @@ class HomePage extends React.PureComponent {
         const {startCity, endCity, startDate, endDate} = this.state.search;
         const data = {startCity, endCity, startDate, endDate};
         
-        const response = await axios.post('/searchCars', data);
+        const response = await axios.post('/search-car-sevice/login', data);
         if (response)
             this.setState({cars: response.data, redirect: true});
     }
@@ -66,7 +66,7 @@ class HomePage extends React.PureComponent {
         if (this.state.redirect)
             return <Redirect to={{pathname: "/search", state: {cars: this.state.cars}}}/>
     }
-
+   
     render() {
         return (
             <div>

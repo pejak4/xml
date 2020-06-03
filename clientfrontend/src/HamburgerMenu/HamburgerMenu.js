@@ -21,6 +21,7 @@ class HamburgerMenu extends React.PureComponent {
                                 <li><a href="/">Home</a></li>
                                 {sessionStorage.getItem('token') === null ? <li><a href="/login">Login/Registration</a></li> : null}
                                 {sessionStorage.getItem('token') !== null ? <li><a href="/" onClick={() => this.logoutHandler()}>Logout</a></li> : null}
+                                <li><a href="/cart">Cart</a></li>
                             </ul>
                         </div>
                     </div>
