@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="e9444df5-0903-444a-acb2-b5acc1bd2fe9" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="25e00632-9d8a-4e29-8666-fdd70602ea84" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../clientfrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../clientfrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/HamburgerMenu/HamburgerMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/HamburgerMenu/HamburgerMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/SearchPage/SearchPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/SearchPage/SearchPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../advertisement-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../advertisement-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../advertisement-service/src/main/java/com/example/advertisementservice/controller/AdvertisementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../advertisement-service/src/main/java/com/example/advertisementservice/controller/AdvertisementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../advertisement-service/src/main/java/com/example/advertisementservice/model/Advertisement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../advertisement-service/src/main/java/com/example/advertisementservice/model/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../advertisement-service/src/main/java/com/example/advertisementservice/model/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -235,18 +235,18 @@ class SearchPage extends React.PureComponent {
                             <FormControl className="select-brand">
                                 <InputLabel id="demo-simple-select-helper-label">Transmission</InputLabel>
                                 <Select
-                                labelId="demo-simple-select-helper-label"
-                                id="demo-simple-select-helper"
-                                onChange={(event) => this.selectHandler(event, 'transmission')}
-                                >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                {this.state.search.transmission.map((transmission, i) => {
-                                    return (
-                                        <MenuItem key={i} value={transmission}>{transmission}</MenuItem>
-                                    );
-                                })}
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    onChange={(event) => this.selectHandler(event, 'transmission')}
+                                    >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    {this.state.search.transmission.map((transmission, i) => {
+                                        return (
+                                            <MenuItem key={i} value={transmission}>{transmission}</MenuItem>
+                                        );
+                                    })}
                                 </Select>
                                 <FormHelperText>Filter by transmission</FormHelperText>
                             </FormControl>

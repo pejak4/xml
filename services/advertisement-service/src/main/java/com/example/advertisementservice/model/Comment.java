@@ -20,8 +20,7 @@ public class Comment {
     private boolean approved = false;
     private String reply;
 
-    @ManyToOne
-    @JoinColumn(name = "advertisement_id")
-    private Advertisement advertisement;
+
+
 
 }
