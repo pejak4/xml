@@ -4,6 +4,8 @@ import HomePage from './HomePage/HomePage';
 import Login from './Login/Login';
 import Registration from './Registration/Registration';
 import SearchPage from './SearchPage/SearchPage';
+import Advertisement from './Advertisement/Advertisement';
+import Codebook from './Codebook/Codebook';
 
 class App extends React.PureComponent {
   render() {
@@ -15,6 +17,8 @@ class App extends React.PureComponent {
             <Route path="/login" component={Login} />
             <Route path="/registration" component={Registration} />
             <Route path="/search" component={SearchPage} />
+            <Route path="/addAdvertisement" component={Advertisement} />
+            <Route parh="/codebook" component={Codebook} />
           </Switch>
         </BrowserRouter>
       </div>
