@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarService {
@@ -32,5 +33,9 @@ public class CarService {
                                                 city_location, start_date, end_date);
 
         return this.carRepository.findAllById(carsId);
+    }
+
+    public Optional<Car> findOneCar(Long id) {
+        return this.carRepository.findById(id);
     }
 }

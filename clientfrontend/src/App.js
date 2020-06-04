@@ -7,6 +7,7 @@ import SearchPage from './SearchPage/SearchPage';
 import Advertisement from './Advertisement/Advertisement';
 import Codebook from './Codebook/Codebook';
 import StateUser from './StateUser/StateUser';
+import SingleCarPage from './SingleCarPage/SingleCarpage';
 
 class App extends React.PureComponent {
   render() {
@@ -21,6 +22,7 @@ class App extends React.PureComponent {
             <Route path="/addAdvertisement" component={Advertisement} />
             <Route path="/codebook" component={Codebook} />
             <Route path="/setStateUser" component={StateUser} />
+            <Route path="/singleCarPage/:carId" component={SingleCarPage} />
           </Switch>
         </BrowserRouter>
       </div>
