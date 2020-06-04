@@ -42,13 +42,13 @@ class Codebook extends React.PureComponent {
         const data = {id};
 
         if(type==='brand'){
-            await axios.post('/codebook-service/deleteBrand', data);
+            await axios.put('/codebook-service/deleteBrand', data);
         } else if (type==='model'){
-            await axios.post('/codebook-service/deleteModel', data);
+            await axios.put('/codebook-service/deleteModel', data);
         } else if(type==='transmission'){
-            await axios.post('/codebook-service/deleteTransmission', data);
+            await axios.put('/codebook-service/deleteTransmission', data);
         } else if(type==='fuelType') {
-            await axios.post('/codebook-service/deleteFuelType', data);
+            await axios.put('/codebook-service/deleteFuelType', data);
         }
 
         window.location.reload(false);
