@@ -11,8 +11,8 @@ class Navbar01 extends React.PureComponent {
                 </h1>
 
                 <ul>
-                    <li><a onClick={(event) => {this.props.renderHandler('Jedan')}}>Active users</a></li>
-                    <li><a onClick={(event) => {this.props.renderHandler('Dva')}}>Blocked users {this.props.type} </a></li>
+                    <li><button onClick={(event) => {this.props.renderHandler('Jedan')}}>Active users</button></li>
+                    <li><button onClick={(event) => {this.props.renderHandler('Dva')}}>Blocked users {this.props.type} </button></li>
                 </ul>
             </nav>
         );
