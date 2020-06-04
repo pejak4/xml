@@ -12,10 +12,10 @@
     border-radius: 5px;
 }
 
-.containerSearch > div .select-brand {
+/* .containerSearch > div .select-brand {
     float: left;
     margin-left: 20px !important;
-}
+} */
 
 ::-webkit-scrollbar {
     width: 0px;  /* Remove scrollbar space */
@@ -151,4 +151,12 @@
     align-items: center;
     text-align: center;
     font-size: 3rem !important;
+}
+
+.wrapper-search {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr) !important;
+    grid-auto-rows:minmax(50px, 90px) !important; 
+    grid-gap:1em;
+    padding: 1em;
 }
