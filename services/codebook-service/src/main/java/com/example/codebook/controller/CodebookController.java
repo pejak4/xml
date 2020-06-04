@@ -53,28 +53,28 @@ public class CodebookController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(path = "/deleteBrand")
+    @PutMapping(path = "/deleteBrand")
     public ResponseEntity<?> deleteBrand(@RequestBody CodebookDTO brand) {
         this.brandService.deleteBrand(Long.parseLong(brand.getId()));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(path = "/deleteModel")
+    @PutMapping(path = "/deleteModel")
     public ResponseEntity<?> deleteModel(@RequestBody CodebookDTO model) {
         this.modelService.deleteModel(Long.parseLong(model.getId()));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(path = "/deleteTransmission")
+    @PutMapping(path = "/deleteTransmission")
     public ResponseEntity<?> deleteTransmission(@RequestBody CodebookDTO transmission) {
         this.transmissionService.deleteTransmission(Long.parseLong(transmission.getId()));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(path = "/deleteFuelType")
+    @PutMapping(path = "/deleteFuelType")
     public ResponseEntity<?> deleteFuelType(@RequestBody CodebookDTO fuelType) {
         this.fuelTypeService.deleteFuelType(Long.parseLong(fuelType.getId()));
         return new ResponseEntity<>(HttpStatus.OK);
