@@ -11,10 +11,10 @@ class Navbar extends React.PureComponent {
                 </h1>
 
                 <ul>
-                    <li><a onClick={(event) => {this.props.renderHandler('pet')}}>Create new {this.props.type} </a></li>
-                    <li><a onClick={(event) => {this.props.renderHandler('jedan')}}>Brand</a></li>
-                    <li><a onClick={(event) => {this.props.renderHandler('tri')}}>Fuel type</a></li>
-                    <li><a onClick={(event) => {this.props.renderHandler('cetiri')}}>Transmission</a></li>
+                    <li><button onClick={(event) => {this.props.renderHandler('pet')}}>Create new {this.props.type} </button></li>
+                    <li><button onClick={(event) => {this.props.renderHandler('jedan')}}>Brand</button></li>
+                    <li><button onClick={(event) => {this.props.renderHandler('tri')}}>Fuel type</button></li>
+                    <li><button onClick={(event) => {this.props.renderHandler('cetiri')}}>Transmission</button></li>
                 </ul>
             </nav>
         );

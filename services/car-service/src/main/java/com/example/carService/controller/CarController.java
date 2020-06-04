@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -38,7 +37,6 @@ public class CarController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PreAuthorize("hasAuthority('USER')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/addAdvertisement")
     public ResponseEntity<?> addAdvertisement(@RequestBody AdvertisementDTO car) {
         return new ResponseEntity<>(this.advertisementService.save(car), HttpStatus.OK);

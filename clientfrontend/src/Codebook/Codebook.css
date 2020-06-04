@@ -3,11 +3,10 @@
     transition: 0.3s;
     width: 40%;
     position: relative;
-    top: 20%;
+    margin-top: 100px;
     left: 20%;
     transition-duration: 0.4s;
     cursor: pointer;
-    margin: 1rem 1rem;
   }
   
   .card:hover {
@@ -24,7 +23,7 @@
   }
 
   .but:hover {
-    background-color: rgb(214, 184, 10);
+    background-color: var(--third-color);
     color: rgb(241, 241, 241);  
     transition-duration: 0.4s;
     cursor: pointer;

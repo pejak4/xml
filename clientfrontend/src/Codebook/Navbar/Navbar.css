@@ -1,7 +1,7 @@
 .navbar {
     display: flex;
     position: absolute;
-    background: #090342;
+    background: var(--overlay-color);
     top: 0;
     left: 0;
     right: 0;
@@ -23,16 +23,18 @@
     list-style: none;
 }
 
-.navbar ul a {
+.navbar ul button {
     text-decoration: none;
+    background: var(--secondary-color);
     color: #fff;
     margin: 0 1rem;
     padding: 0.75rem;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.navbar ul a:hover {
-    background: #e0bf00;
-    border-radius: 5px;
+.navbar ul button:hover {
+    background: var(--third-color);
 }
 
 .logo {

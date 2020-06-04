@@ -16,33 +16,18 @@ class StateUser extends React.Component {
     }
 
     componentDidMount = async() => {
-        var enabled = true;
+        let enabled = true;
         const data1 = {enabled};
         const response1= await axios.post('/authentication-service/getAllUsersByEnabled', data1);
         if(response1) {
             this.setState({activeUsers: response1.data});
         }
 
-        var enabled = false;
+        enabled = false;
         const data2 = {enabled};
         const response2 = await axios.post('/authentication-service/getAllUsersByEnabled', data2)
         if(response2) {
             this.setState({blockUsers: response2.data});
-        }
-    }
-
-    renderBlockedUsers() {
-        if(this.state.renderNumber === 5) {
-            console.log('a')
-            return(
-                <div className="card centered" style={{ justifyContent: 'center', alignItems: 'center'}}>
-                    <div className="containerr">
-                        <h4><b>Create new {this.state.type}</b></h4> 
-                        <input type='text' onChange={(event) => this.inputHandler(event)}></input>
-                    </div>
-                    <button className="but" onClick={(event) => {this.createNew()}}>Create</button>
-                </div> 
-            );
         }
     }
 
@@ -91,7 +76,7 @@ class StateUser extends React.Component {
         if(this.state.renderNumber === 2) {
             return this.state.blockUsers.map((user, i) => {
                 return(
-                    <div className="card" ket={i}>
+                    <div className="card" key={i}>
                         <img src={blockImg} alt='User' style={{width:"100%"}} />
                         <div className='containerr'>
                             <h4><b>Blocked user: ID {user.id}</b></h4>
@@ -121,7 +106,7 @@ class StateUser extends React.Component {
                 <HamburgerMenu />
                 <header id="showcase">
                     <div className="containerSearch showcase-containerSearch">
-                        <div className="a" style={{ justifyContent: 'center', alignItems: 'center', overflow:'hidden', overflow:'scroll'}}>
+                        <div className="a" style={{ justifyContent: 'center', alignItems: 'center', overflow:'scroll'}}>
                             {this.renderActiveUsers()}
                             {this.renderBlockedUsers()}
                         </div>
