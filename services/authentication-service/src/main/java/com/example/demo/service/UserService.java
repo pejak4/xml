@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.UserLoginDTO;
-import com.example.demo.dto.UserRegistrationDTO;
+import com.example.demo.dto.*;
 import com.example.demo.model.*;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.security.TokenUtils;
@@ -13,7 +12,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.example.demo.dto.UserTokenState;
 
 import java.util.List;
 
@@ -97,5 +95,30 @@ public class UserService {
             return false;
         else
             return true;
+    }
+
+    public Boolean setStateUser(UserSetStateDTO userId) {
+        Users u = this.userRepository.findOneById(Long.parseLong(userId.getId()));
+
+        if(u.getEnabled() == true) {
+            u.setEnabled(false);
+        } else {
+            u.setEnabled(true);
+        }
+
+        this.userRepository.save(u);
+
+        return true;
+    }
+
+    public Boolean deleteUser(UserDeleteDTO userId) {
+        this.userRepository.deleteRequest(Long.parseLong(userId.getId()));
+
+        return true;
+    }
+
+    public List<Users> findAllByEnabled(Boolean enabled) {
+        List<Users> users = this.userRepository.findAllByEnabled(enabled);
+        return users;
     }
 }

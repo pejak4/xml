@@ -16,7 +16,7 @@ public class KtbackendApplication {
 	}
 
 	@Bean
-	public WebClient.Builder getWebclientBuilder() {
+	public WebClient.Builder getWebClientBuilder() {
 		return WebClient.builder();
 	}
 
