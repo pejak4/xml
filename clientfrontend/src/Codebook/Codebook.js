@@ -5,9 +5,6 @@ import './Codebook.css';
 import carImg from '../img/car.jpg';
 import axios from '../axios-objects';
 
-
-
-
 class Codebook extends React.PureComponent {
 
     state = {
@@ -15,9 +12,7 @@ class Codebook extends React.PureComponent {
         type: 'brand',
         brandId: '',
         inputData: '',
-
         brands: [],
-        // models: [],
         transmissions: [],
         fuelTypes: [],
     }
@@ -27,12 +22,6 @@ class Codebook extends React.PureComponent {
         if(response){
             this.setState({brands: response.data})
         }
-
-        // const response1 = await axios.get('/codebook-service/getAllModels');
-        // if(response1){
-        //     console.log(response1);
-        //     this.setState({models: response1.data})
-        // }
 
         const response2 = await axios.get('/codebook-service/getAllTransmissions');
         if(response2){
@@ -50,35 +39,22 @@ class Codebook extends React.PureComponent {
     }
 
     clickDelete = async(type, id) => {
+        const data = {id};
+
         if(type==='brand'){
-            const data = {id}
-            const response = await axios.post('/codebook-service/deleteBrand', data);
-            if(response){
-                // console.log(response);
-        }
+            await axios.post('/codebook-service/deleteBrand', data);
         } else if (type==='model'){
-            const data = {id}
-            const response = await axios.post('/codebook-service/deleteModel', data);
-            if(response){
-                // console.log(response);
-            }
+            await axios.post('/codebook-service/deleteModel', data);
         } else if(type==='transmission'){
-            const data = {id}
-            const response = await axios.post('/codebook-service/deleteTransmission', data);
-            if(response){
-                // console.log(response);
-            }
+            await axios.post('/codebook-service/deleteTransmission', data);
         } else if(type==='fuelType') {
-            const data = {id}
-            const response = await axios.post('/codebook-service/deleteFuelType', data);
-            if(response){
-                // console.log(response);
-            }
+            await axios.post('/codebook-service/deleteFuelType', data);
         }
+
         window.location.reload(false);
     }
 
-    renderHandler = (type) =>{
+    renderHandler = (type) => {
         if(type === 'jedan') {
             this.setState({renderNumber: 1, type:'brand'});
         }
@@ -166,35 +142,22 @@ class Codebook extends React.PureComponent {
 
     createNew = async(data) => {
         if(this.state.type === 'brand') {
-            var id = this.state.inputData;
+            let id = this.state.inputData;
             const data = {id};
-            const response = await axios.post('/codebook-service/createNewBrand', data);
-            if(response){
-                // console.log(response);
-            }
-        }else if(this.state.type === 'model') {
-            var model = this.state.inputData;
-            var brandId = this.state.brandId;
+            await axios.post('/codebook-service/createNewBrand', data);
+        } else if(this.state.type === 'model') {
+            let model = this.state.inputData;
+            let brandId = this.state.brandId;
             const data = {model, brandId};            
-            const response = await axios.post('/codebook-service/createNewModel', data);
-            if(response){
-                // console.log(response);
-            }
-        }else if(this.state.type === 'fuel type') {
-            var id = this.state.inputData;
+            await axios.post('/codebook-service/createNewModel', data);
+        } else if(this.state.type === 'fuel type') {
+            let id = this.state.inputData;
             const data = {id};
-            console.log(data);
-            const response = await axios.post('/codebook-service/createNewFuelType', data);
-            if(response){
-                // console.log(response);
-            }
-        }else if(this.state.type === 'transmission') {
-            var id = this.state.inputData;
+            await axios.post('/codebook-service/createNewFuelType', data);
+        } else if(this.state.type === 'transmission') {
+            let id = this.state.inputData;
             const data = {id};
-            const response = await axios.post('/codebook-service/createNewTransmission', data);
-            if(response){
-                // console.log(response);
-            }
+            await axios.post('/codebook-service/createNewTransmission', data);
         }
         window.location.reload(false);
     }
@@ -205,7 +168,6 @@ class Codebook extends React.PureComponent {
 
     renderCreateNew() {
         if(this.state.renderNumber === 5) {
-            console.log('a')
             return(
                 <div className="card centered" style={{ justifyContent: 'center', alignItems: 'center'}}>
                     <div className="containerr">
@@ -225,7 +187,7 @@ class Codebook extends React.PureComponent {
                 <HamburgerMenu />
                 <header id="showcase">
                     <div className="containerSearch showcase-containerSearch">
-                        <div className="a" style={{ justifyContent: 'center', alignItems: 'center', overflow:'hidden', overflow:'scroll'}}>
+                        <div className="a" style={{ justifyContent: 'center', alignItems: 'center', overflow:'scroll'}}>
                             {this.renderBrand()}
                             {this.renderModel()}
                             {this.renderTransmission()}
@@ -235,7 +197,6 @@ class Codebook extends React.PureComponent {
                         </div>
                     </div>
             </header>
-
             </div>
         );
     }

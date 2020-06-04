@@ -38,10 +38,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-
-
-
-
     public Users register(UserRegistrationDTO userRegisterDTO) {
         Users u = this.userService.findOneByEmail(userRegisterDTO.getEmail());
         if (u != null)
