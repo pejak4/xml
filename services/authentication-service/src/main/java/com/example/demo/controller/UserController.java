@@ -33,4 +33,22 @@ public class UserController {
         return new ResponseEntity<>(this.userService.CheckEmail(user.getEmail()), HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path= "/setStateUser")
+    public ResponseEntity<?> setStateUser(@RequestBody UserSetStateDTO userId) {
+        return new ResponseEntity<>(this.userService.setStateUser(userId), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path= "/getAllUsersByEnabled")
+    public ResponseEntity<?> getAllUsersByEnabled(@RequestBody UserEnabledDTO enabled) {
+        return new ResponseEntity<>(this.userService.findAllByEnabled(enabled.getEnabled()), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path= "/deleteUser")
+    public ResponseEntity<?> deleteUser(@RequestBody UserDeleteDTO userId) {
+        return new ResponseEntity<>(this.userService.deleteUser(userId), HttpStatus.OK);
+    }
+
 }

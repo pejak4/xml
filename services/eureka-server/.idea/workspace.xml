@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+    <list default="true" id="25e00632-9d8a-4e29-8666-fdd70602ea84" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/Advertisement/Advertisement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/Advertisement/Advertisement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/HamburgerMenu/HamburgerMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/HamburgerMenu/HamburgerMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/KtbackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/KtbackendApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/model/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/model/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/resources/data-postgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/resources/data-postgres.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
     <list default="true" id="e9444df5-0903-444a-acb2-b5acc1bd2fe9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>

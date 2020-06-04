@@ -6,6 +6,7 @@ import Registration from './Registration/Registration';
 import SearchPage from './SearchPage/SearchPage';
 import Advertisement from './Advertisement/Advertisement';
 import Codebook from './Codebook/Codebook';
+import StateUser from './StateUser/StateUser';
 
 class App extends React.PureComponent {
   render() {
@@ -18,7 +19,8 @@ class App extends React.PureComponent {
             <Route path="/registration" component={Registration} />
             <Route path="/search" component={SearchPage} />
             <Route path="/addAdvertisement" component={Advertisement} />
-            <Route parh="/codebook" component={Codebook} />
+            <Route path="/codebook" component={Codebook} />
+            <Route path="/setStateUser" component={StateUser} />
           </Switch>
         </BrowserRouter>
       </div>
