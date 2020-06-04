@@ -8,12 +8,10 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 
-
 class Advertisement extends React.PureComponent {
 
     state = {
             renderNumber: 1,
-
             brandCars: '',
             modelCars: '',
             fuelTypeCars: '',
@@ -48,7 +46,6 @@ class Advertisement extends React.PureComponent {
 
         const response1 = await axios.get('/codebook-service/getAllModels');
         if(response1){
-            console.log(response1);
             this.setState({models: response1.data})
         }
 
@@ -64,21 +61,15 @@ class Advertisement extends React.PureComponent {
     }
 
     selectHandler = (event, type) => {
-        console.log(event.target.value);
-        console.log(type);
-
         if(type === 'brand') {
             for(let i=0; i<this.state.brands.length; i++) {
-                console.log(this.state.brands[i]);
                 if(this.state.brands[i].brand === event.target.value) {
                     this.setState({models: this.state.brands[i].modelList})
                 }
             }
         }
 
-
         if(type === 'brand') {
-            console.log(event.target.value)
            this.setState({brandCars: event.target.value})
         } else if(type === 'model') {
             this.setState({modelCars: event.target.value})
@@ -121,7 +112,6 @@ class Advertisement extends React.PureComponent {
 
     addHandler = async (event) => {
         event.preventDefault();
-        console.log(this.state);
 
         let brandCars = this.state.brandCars;
         let modelCars = this.state.modelCars;
@@ -145,18 +135,23 @@ class Advertisement extends React.PureComponent {
 
         const data = {brandCars, modelCars, fuelTypeCars, transmissionCars, classCarCars, mileageCars, doors, seats, seatsForKids, price, 
             cubicCapacity, horsePower, fullTankCapacity, cdw, gps, usb, description, cityLocation, plannedMilage};
+        const token = sessionStorage.getItem('token');
 
-        const response = await axios.post('/advertisement-service/addAdvertisement', data);
+        const response = await axios.post('/car-service/addAdvertisement', data, {
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            }
+        });
 
         if(response){
-            console.log(response);
+            window.location.href("/");
         }
     }
 
     render01() {
         if(this.state.renderNumber === 1){
         return(
-            <div>
+            <div className="wrapper">
                 <FormControl className="select-brand">
                     <InputLabel id="demo-simple-select-helper-label">Brand</InputLabel>
                     <Select
@@ -196,7 +191,7 @@ class Advertisement extends React.PureComponent {
                     })}
                     
                     </Select>
-                    <FormHelperText>Model of carrrrrrr</FormHelperText>
+                    <FormHelperText>Model of car</FormHelperText>
                 </FormControl>
 
                 <FormControl className="select-brand">
@@ -291,14 +286,18 @@ class Advertisement extends React.PureComponent {
                     onChange={(event) => this.selectHandler(event, 'plannedMilage')}
                     >
                     <MenuItem value="">
-                        <em>None</em>
+                        <em>Unlimited</em>
                     </MenuItem>
-                    <MenuItem value="20000">200km</MenuItem>
-                    <MenuItem value="40000">400km</MenuItem>
-                    <MenuItem value="60000">600km</MenuItem>
-                    
+                    <MenuItem value="2000">2000km</MenuItem>
+                    <MenuItem value="4000">4000km</MenuItem>
+                    <MenuItem value="6000">6000km</MenuItem>
+                    <MenuItem value="8000">8000km</MenuItem>
+                    <MenuItem value="10000">10000km</MenuItem>
+                    <MenuItem value="15000">15000km</MenuItem>
+                    <MenuItem value="20000">20000km</MenuItem>
+                    <MenuItem value="30000">30000km</MenuItem>
                     </Select>
-                    <FormHelperText>Planned mileage with car</FormHelperText>
+                    <FormHelperText>Available distance to travel</FormHelperText>
                 </FormControl>
 
                 <FormControl className="select-brand">
@@ -359,7 +358,7 @@ class Advertisement extends React.PureComponent {
     render02() {
         if(this.state.renderNumber === 2){
             return(   
-                <div>
+                <div className="wrapper">
                     <FormControl className="select-brand">
                         <InputLabel id="demo-simple-select-helper-label">Doors</InputLabel>
                         <Select
@@ -461,10 +460,11 @@ class Advertisement extends React.PureComponent {
                         <FormHelperText>Horse power of car</FormHelperText>
                     </FormControl>
 
-                    <form>
-                        <textarea value={this.state.description} className="textarea" onChange={(event) => this.selectHandler(event, 'description')}>Descripton...</textarea>
+                    <form style={{gridColumn:'1/4'}}>
+                        <textarea value={this.state.description} className="textarea" 
+                        onChange={(event) => this.selectHandler(event, 'description')} >Descripton...</textarea>
                     </form>
-                }
+                {/* } */}
                 </div>
         );
         }
@@ -473,28 +473,27 @@ class Advertisement extends React.PureComponent {
     render03() {
         if(this.state.renderNumber === 3){
             return(
-                <div>
+                <div className="wrapper">
                     <FormControl className="select-brand">
                         <label style={{color:'rgba(0, 0, 0, 0.54)', margin:'1rem 1rem'}}>Collision Damage Waiver</label>
-                        <input type="checkbox" style={{marginRight:'1rem', marginBottom:'1rem'}} 
+                        <input type="checkbox" style={{alignSelf:'center'}} 
                             onChange={(event) => this.selectHandler(event, 'cdw')} 
                             checked={this.state.cdw}/>
                     </FormControl>
 
                     <FormControl className="select-brand">
                         <label style={{color:'rgba(0, 0, 0, 0.54)', margin:'1rem 1rem'}}>GPS</label>
-                        <input type="checkbox" style={{marginRight:'1rem', marginBottom:'1rem'}} 
+                        <input type="checkbox" style={{alignSelf:'center'}} 
                             onChange={(event) => this.selectHandler(event, 'gps')} 
                             checked={this.state.gps}/>
                     </FormControl>
 
                     <FormControl className="select-brand">
                         <label style={{color:'rgba(0, 0, 0, 0.54)', margin:'1rem 1rem'}}>USB</label>
-                        <input type="checkbox" style={{marginRight:'1rem', marginBottom:'1rem'}} 
+                        <input type="checkbox" style={{alignSelf:'center'}} 
                             onChange={(event) => this.selectHandler(event, 'usb')} 
                             checked={this.state.usb}/>
                     </FormControl>
-
                 </div>
             );
         }
@@ -502,7 +501,6 @@ class Advertisement extends React.PureComponent {
 
     render() {
         return (
-            
             <div>
                 <HamburgerMenu />
                 <header id="showcase">
@@ -510,16 +508,17 @@ class Advertisement extends React.PureComponent {
                         <div className="filterDiv">
                             <p>Add new advertisement <br/>Step {this.state.renderNumber}</p>
                             <hr/>
-                            <div>
+                            <div style={{marginLeft: '0px'}}>
                                 {this.render01()}
                                 {this.render02()}
                                 {this.render03()}
                             </div>
                         </div>
-                        {this.state.renderNumber < 3 ? <button className="button1 button11" onClick={(event)=>{ this.setState({renderNumber: this.state.renderNumber+1});}}>Next</button> : <button disabled='true' style={{cursor: 'not-allowed', opacity: 0.6}} className="button1 button11" onClick={(event)=>{ this.setState({renderNumber: this.state.renderNumber+1});}}>Next</button>}
-                        {this.state.renderNumber > 1 ? <button className="button2 button22" onClick={(event) => {this.setState({renderNumber: this.state.renderNumber-1})}}>Back</button> : <button disabled='true' style={{cursor: 'not-allowed', opacity: 0.6}} className="button2 button22" onClick={(event) => {this.setState({renderNumber: this.state.renderNumber-1})}}>Back</button>}
+                        <div>
+                            {this.state.renderNumber > 1 ? <button className="button" onClick={(event) => {this.setState({renderNumber: this.state.renderNumber-1})}}>Back</button> : <button disabled='true' style={{cursor: 'not-allowed', opacity: 0.6}} className="button" onClick={(event) => {this.setState({renderNumber: this.state.renderNumber-1})}}>Back</button>}
+                            {this.state.renderNumber < 3 ? <button className="button" onClick={(event)=>{ this.setState({renderNumber: this.state.renderNumber+1});}}>Next</button> : <button disabled='true' style={{cursor: 'not-allowed', opacity: 0.6}} className="button" onClick={(event)=>{ this.setState({renderNumber: this.state.renderNumber+1});}}>Next</button>}
+                        </div>
                         {this.state.renderNumber === 3 ? <button className="button" onClick = {(event) => this.addHandler(event)}>Finish</button> : null}
-
                     </div>
                 </header>
             </div>

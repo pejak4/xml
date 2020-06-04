@@ -130,7 +130,7 @@ class SearchPage extends React.PureComponent {
 
     rangeSliderRender = () => {
         return(
-            <div style={{width:'200px', display:'inline-block', marginLeft:'20px', marginRight:'70px', marginTop:'-9px'}}>
+            <div style={{width:'91%', display:'inline-block', marginLeft:'20px', marginRight:'70px', marginTop:'-15px'}}>
                 <Typography id="range-slider" gutterBottom style={{color:'#333'}}>
                     Price range
                 </Typography>
@@ -157,7 +157,7 @@ class SearchPage extends React.PureComponent {
         const data = {brand, model, fuelType, transmission, classCar, price, mileage,
             plannedMileage, CDW, capacitySeatsForKids, cityLocation, startDate, endDate};
 
-        const response = await axios.post('/search-car-service/filterCars', data);
+        const response = await axios.post('/car-service/filterCars', data);
         if (response) {
             const filterCars = response.data;
             let search = updateObject(this.state.search, {
@@ -175,171 +175,174 @@ class SearchPage extends React.PureComponent {
                     <div className="containerSearch showcase-containerSearch" style={{overflowY:'scroll', maxWidth:'90%'}}>
                         <div className="filterDiv">
                             <p>Filter your search</p>
-                            <FormControl className="select-brand">
-                                <InputLabel id="demo-simple-select-helper-label">Brand</InputLabel>
-                                <Select
-                                labelId="demo-simple-select-helper-label"
-                                id="demo-simple-select-helper"
-                                onChange={(event) => this.selectHandler(event, 'brand')}
-                                >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                {this.state.search.brand.map((brand, i) => {
-                                    return (
-                                        <MenuItem key={i} value={brand}>{brand}</MenuItem>
-                                    );
-                                })}
-                                </Select>
-                                <FormHelperText>Filter by brand</FormHelperText>
-                            </FormControl>
-
-                            <FormControl className="select-brand">
-                                <InputLabel id="demo-simple-select-helper-label">Model</InputLabel>
-                                <Select
-                                labelId="demo-simple-select-helper-label"
-                                id="demo-simple-select-helper"
-                                onChange={(event) => this.selectHandler(event, 'model')}
-                                >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                {this.state.search.model.map((model, i) => {
-                                    return (
-                                        <MenuItem key={i} value={model}>{model}</MenuItem>
-                                    );
-                                })}
-                                </Select>
-                                <FormHelperText>Filter by model</FormHelperText>
-                            </FormControl>
-
-                            <FormControl className="select-brand">
-                                <InputLabel id="demo-simple-select-helper-label">Fuel Type</InputLabel>
-                                <Select
-                                labelId="demo-simple-select-helper-label"
-                                id="demo-simple-select-helper"
-                                onChange={(event) => this.selectHandler(event, 'fuelType')}
-                                >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                {this.state.search.fuelType.map((fuelType, i) => {
-                                    return (
-                                        <MenuItem key={i} value={fuelType}>{fuelType}</MenuItem>
-                                    );
-                                })}
-                                </Select>
-                                <FormHelperText>Filter by fuel type</FormHelperText>
-                            </FormControl>
-
-                            <FormControl className="select-brand">
-                                <InputLabel id="demo-simple-select-helper-label">Transmission</InputLabel>
-                                <Select
+                            <div className="wrapper-search" style={{marginLeft:'0px'}}>
+                                <FormControl className="select-brand">
+                                    <InputLabel id="demo-simple-select-helper-label">Brand</InputLabel>
+                                    <Select
                                     labelId="demo-simple-select-helper-label"
                                     id="demo-simple-select-helper"
-                                    onChange={(event) => this.selectHandler(event, 'transmission')}
+                                    onChange={(event) => this.selectHandler(event, 'brand')}
                                     >
                                     <MenuItem value="">
                                         <em>None</em>
                                     </MenuItem>
-                                    {this.state.search.transmission.map((transmission, i) => {
+                                    {this.state.search.brand.map((brand, i) => {
                                         return (
-                                            <MenuItem key={i} value={transmission}>{transmission}</MenuItem>
+                                            <MenuItem key={i} value={brand}>{brand}</MenuItem>
                                         );
                                     })}
-                                </Select>
-                                <FormHelperText>Filter by transmission</FormHelperText>
-                            </FormControl>
+                                    </Select>
+                                    <FormHelperText>Filter by brand</FormHelperText>
+                                </FormControl>
 
-                            <FormControl className="select-brand">
-                                <InputLabel id="demo-simple-select-helper-label">Class car</InputLabel>
-                                <Select
-                                labelId="demo-simple-select-helper-label"
-                                id="demo-simple-select-helper"
-                                onChange={(event) => this.selectHandler(event, 'classCar')}
-                                >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                {this.state.search.classCar.map((classCar, i) => {
-                                    return (
-                                        <MenuItem key={i} value={classCar}>{classCar}</MenuItem>
-                                    );
-                                })}
-                                </Select>
-                                <FormHelperText>Filter by class car</FormHelperText>
-                            </FormControl>
+                                <FormControl className="select-brand">
+                                    <InputLabel id="demo-simple-select-helper-label">Model</InputLabel>
+                                    <Select
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    onChange={(event) => this.selectHandler(event, 'model')}
+                                    >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    {this.state.search.model.map((model, i) => {
+                                        return (
+                                            <MenuItem key={i} value={model}>{model}</MenuItem>
+                                        );
+                                    })}
+                                    </Select>
+                                    <FormHelperText>Filter by model</FormHelperText>
+                                </FormControl>
 
-                            <FormControl className="select-brand">
-                                <InputLabel id="demo-simple-select-helper-label">Max mileage</InputLabel>
-                                <Select
-                                labelId="demo-simple-select-helper-label"
-                                id="demo-simple-select-helper"
-                                onChange={(event) => this.selectHandler(event, 'mileage')}
-                                >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                <MenuItem value="20000">20000km</MenuItem>
-                                <MenuItem value="40000">40000km</MenuItem>
-                                <MenuItem value="60000">60000km</MenuItem>
-                                <MenuItem value="80000">80000km</MenuItem>
-                                <MenuItem value="100000">100000km</MenuItem>
-                                <MenuItem value="150000">150000km</MenuItem>
-                                <MenuItem value="200000">200000km</MenuItem>
-                                <MenuItem value="300000">300000km</MenuItem>
-                                </Select>
-                                <FormHelperText>Filter by mileage</FormHelperText>
-                            </FormControl>
+                                <FormControl className="select-brand">
+                                    <InputLabel id="demo-simple-select-helper-label">Fuel Type</InputLabel>
+                                    <Select
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    onChange={(event) => this.selectHandler(event, 'fuelType')}
+                                    >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    {this.state.search.fuelType.map((fuelType, i) => {
+                                        return (
+                                            <MenuItem key={i} value={fuelType}>{fuelType}</MenuItem>
+                                        );
+                                    })}
+                                    </Select>
+                                    <FormHelperText>Filter by fuel type</FormHelperText>
+                                </FormControl>
 
-                            <FormControl className="select-brand">
-                                <InputLabel id="demo-simple-select-helper-label">Distance to travel</InputLabel>
-                                <Select
-                                labelId="demo-simple-select-helper-label"
-                                id="demo-simple-select-helper"
-                                onChange={(event) => this.selectHandler(event, 'plannedMileage')}
-                                >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                <MenuItem value="2000">2000km</MenuItem>
-                                <MenuItem value="4000">4000km</MenuItem>
-                                <MenuItem value="6000">6000km</MenuItem>
-                                <MenuItem value="8000">8000km</MenuItem>
-                                <MenuItem value="10000">10000km</MenuItem>
-                                <MenuItem value="15000">15000km</MenuItem>
-                                <MenuItem value="20000">20000km</MenuItem>
-                                <MenuItem value="30000">30000km</MenuItem>
-                                </Select>
-                                <FormHelperText>Filter by mileage</FormHelperText>
-                            </FormControl>
+                                <FormControl className="select-brand">
+                                    <InputLabel id="demo-simple-select-helper-label">Transmission</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-helper-label"
+                                        id="demo-simple-select-helper"
+                                        onChange={(event) => this.selectHandler(event, 'transmission')}
+                                        >
+                                        <MenuItem value="">
+                                            <em>None</em>
+                                        </MenuItem>
+                                        {this.state.search.transmission.map((transmission, i) => {
+                                            return (
+                                                <MenuItem key={i} value={transmission}>{transmission}</MenuItem>
+                                            );
+                                        })}
+                                    </Select>
+                                    <FormHelperText>Filter by type</FormHelperText>
+                                </FormControl>
 
-                            <FormControl className="select-brand">
-                                <InputLabel id="demo-simple-select-helper-label">Seats for kids</InputLabel>
-                                <Select
-                                labelId="demo-simple-select-helper-label"
-                                id="demo-simple-select-helper"
-                                onChange={(event) => this.selectHandler(event, 'capacitySeatsForKids')}
-                                >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                <MenuItem value="0">0</MenuItem>
-                                <MenuItem value="1">1</MenuItem>
-                                <MenuItem value="2">2</MenuItem>
-                                <MenuItem value="3">3</MenuItem>
-                                </Select>
-                                <FormHelperText>Filter by number</FormHelperText>
-                            </FormControl>
-                            
-                            <label style={{color:'rgba(0, 0, 0, 0.54)', margin:'1rem 1rem'}}>Collision Damage Waiver</label>
-                            <input type="checkbox" style={{marginRight:'1rem', marginBottom:'1rem'}} 
-                                onClick={(event) => this.checkboxHandler(event, 'CDW')} />
+                                <FormControl className="select-brand">
+                                    <InputLabel id="demo-simple-select-helper-label">Class car</InputLabel>
+                                    <Select
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    onChange={(event) => this.selectHandler(event, 'classCar')}
+                                    >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    {this.state.search.classCar.map((classCar, i) => {
+                                        return (
+                                            <MenuItem key={i} value={classCar}>{classCar}</MenuItem>
+                                        );
+                                    })}
+                                    </Select>
+                                    <FormHelperText>Filter by class</FormHelperText>
+                                </FormControl>
 
-                            {this.rangeSliderRender()}
+                                <FormControl className="select-brand">
+                                    <InputLabel id="demo-simple-select-helper-label">Max mileage</InputLabel>
+                                    <Select
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    onChange={(event) => this.selectHandler(event, 'mileage')}
+                                    >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value="20000">20000km</MenuItem>
+                                    <MenuItem value="40000">40000km</MenuItem>
+                                    <MenuItem value="60000">60000km</MenuItem>
+                                    <MenuItem value="80000">80000km</MenuItem>
+                                    <MenuItem value="100000">100000km</MenuItem>
+                                    <MenuItem value="150000">150000km</MenuItem>
+                                    <MenuItem value="200000">200000km</MenuItem>
+                                    <MenuItem value="300000">300000km</MenuItem>
+                                    </Select>
+                                    <FormHelperText>Filter by mileage</FormHelperText>
+                                </FormControl>
 
-                            <a className="btn" href="/" style={{width:'150px', textAlign:'center', float:'right',margin:'1rem 4rem'}}
-                            onClick={(event) => this.filterHandler(event)}>Filter</a>
+                                <FormControl className="select-brand">
+                                    <InputLabel id="demo-simple-select-helper-label">Distance to travel</InputLabel>
+                                    <Select
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    onChange={(event) => this.selectHandler(event, 'plannedMileage')}
+                                    >
+                                    <MenuItem value="">
+                                        <em>Unlimited</em>
+                                    </MenuItem>
+                                    <MenuItem value="2000">2000km</MenuItem>
+                                    <MenuItem value="4000">4000km</MenuItem>
+                                    <MenuItem value="6000">6000km</MenuItem>
+                                    <MenuItem value="8000">8000km</MenuItem>
+                                    <MenuItem value="10000">10000km</MenuItem>
+                                    <MenuItem value="15000">15000km</MenuItem>
+                                    <MenuItem value="20000">20000km</MenuItem>
+                                    <MenuItem value="30000">30000km</MenuItem>
+                                    </Select>
+                                    <FormHelperText>Filter by mileage</FormHelperText>
+                                </FormControl>
+
+                                <FormControl className="select-brand">
+                                    <InputLabel id="demo-simple-select-helper-label">Seats for kids</InputLabel>
+                                    <Select
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    onChange={(event) => this.selectHandler(event, 'capacitySeatsForKids')}
+                                    >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value="0">0</MenuItem>
+                                    <MenuItem value="1">1</MenuItem>
+                                    <MenuItem value="2">2</MenuItem>
+                                    <MenuItem value="3">3</MenuItem>
+                                    </Select>
+                                    <FormHelperText>Filter by number</FormHelperText>
+                                </FormControl>
+                                
+                                <div style={{alignSelf:'center', marginBottom:'0px'}}>
+                                    <label style={{color:'rgba(0, 0, 0, 0.54)', margin:'1rem 1rem'}}>Collision Damage Waiver</label>
+                                    <input type="checkbox" style={{alignSelf:'center'}} 
+                                        onClick={(event) => this.checkboxHandler(event, 'CDW')} />
+                                </div>
+
+                                {this.rangeSliderRender()}
+                            </div>
+                            <a style={{width:'150px', textAlign:'center', float:'right',margin:'0 4rem 10px 0'}}
+                                 className="btn" href="/" onClick={(event) => this.filterHandler(event)}>Filter</a>
                         </div>
                         
                         {this.state.search.cars.map((car, i) => {
