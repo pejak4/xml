@@ -3,27 +3,29 @@ import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
 import axios from '../axios-objects';
 import './RentalRequest.css';
 
-
 class RentalRequest extends React.Component {
 
-    state = {
-        rentalRequests: [],
-        renderDetail: false,
-        curretnRentalRequest: [],
-        carsLogedUser: [],
-        
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            rentalRequests: [],
+            renderDetail: false,
+            curretnRentalRequest: [],
+            carsLogedUser: []
+        }
     }
 
     componentDidMount = async() => {
-        var userId;
-        var userEmail = sessionStorage.getItem('userEmail');
+        let userId;
+        let userEmail = sessionStorage.getItem('userEmail');
         const data00 = {userEmail};
-        const response00 = await axios.post('/authentication-service/getLogedUser', data00);
+        const response00 = await axios.post('/authentication-service/getLoggedUser', data00);
         if(response00) {
             userId = response00.data.id;
         }
 
-        var allRentalRequestsLogedUser = [] ;
+        let allRentalRequestsLogedUser = [] ;
         const data01 = {userId}; //Vratice auto koji sadrzi id ulogovanog korisnika.
         //A Car u sebi sadrzi listu zahteva za auto koji je stavio ulogovani korisnik
         //Zbor svih zahteva je su zahtevi ka ulogovanom korisniku
@@ -35,9 +37,7 @@ class RentalRequest extends React.Component {
                 }
             }
             this.setState({carsLogedUser: response.data, rentalRequests: allRentalRequestsLogedUser});
-        }
-
-       
+        }       
     }
 
     renderRentalRequest() {
@@ -85,7 +85,6 @@ class RentalRequest extends React.Component {
             </div>
         );
     }
-
 }
 
 export default RentalRequest;

@@ -36,6 +36,12 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/blockedUser")
+    public ResponseEntity<?> blockedUser(@RequestBody UserCheckEmailDTO user){
+        return new ResponseEntity<>(this.userService.CheckBlock(user.getEmail()), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path= "/setStateUser")
     public ResponseEntity<?> setStateUser(@RequestBody UserSetStateDTO userId) {
         return new ResponseEntity<>(this.userService.setStateUser(userId), HttpStatus.OK);
@@ -54,8 +60,15 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path= "/getLogedUser")
-    public ResponseEntity<?> getLogedUserId(@RequestBody UserEmailDTO email) {
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path= "/getLoggedUser")
+    public ResponseEntity<?> getLoggedUserId(@RequestBody UserEmailDTO email) {
         return new ResponseEntity<>(this.userService.findOneByEmail(email.getUserEmail()), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping(path = "/incrementAddNumber")
+    public ResponseEntity<?> incrementAddNumber(@RequestBody UserEmailDTO email) {
+        this.userService.incrementAddNumber(email.getUserEmail());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

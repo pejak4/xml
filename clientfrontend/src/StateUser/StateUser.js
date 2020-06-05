@@ -35,10 +35,7 @@ class StateUser extends React.Component {
         var id = userId;
         const data = {id};
         
-        const response = await axios.post('/authentication-service/setStateUser', data);
-        if(response) {
-            console.log(response.data);
-        }
+        await axios.post('/authentication-service/setStateUser', data);
 
         window.location.reload();
     }
@@ -47,10 +44,7 @@ class StateUser extends React.Component {
         var id = userId;
         const data = {id};
         
-        const response = await axios.post('/authentication-service/deleteUser', data);
-        if(response) {
-            console.log(response.data);
-        }
+        await axios.post('/authentication-service/deleteUser', data);
         window.location.reload();
     }
 

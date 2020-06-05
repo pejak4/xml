@@ -7,6 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+import Popup from "reactjs-popup";
 
 class Advertisement extends React.PureComponent {
 
@@ -28,14 +29,14 @@ class Advertisement extends React.PureComponent {
             cdw: '',
             gps: '',
             usb: '',
-            description: 'Description..',
+            description: '',
             cityLocation: '',
             plannedMilage: '',
-
             brands: [],
             models: [],
             fuelTypes: [],
             transmissions: [],
+            userAddNumber: null
     }
 
     componentDidMount = async() => {
@@ -57,6 +58,13 @@ class Advertisement extends React.PureComponent {
         const response3 = await axios.get('/codebook-service/getAllFuelTypes');
         if(response3){
             this.setState({fuelTypes: response3.data})
+        }
+
+        let userEmail = sessionStorage.getItem('userEmail');
+        const data = {userEmail};
+        const response4 = await axios.post('/authentication-service/getLoggedUser', data);
+        if(response4) {
+            this.setState({userAddNumber: response4.data.addNumber});
         }
     }
 
@@ -112,47 +120,52 @@ class Advertisement extends React.PureComponent {
 
     addHandler = async (event) => {
         event.preventDefault();
+        if(this.state.userAddNumber < 3) {
+            let brandCars = this.state.brandCars;
+            let modelCars = this.state.modelCars;
+            let fuelTypeCars = this.state.fuelTypeCars;
+            let transmissionCars = this.state.transmissionCars;
+            let classCarCars = this.state.classCarCars;
+            let mileageCars = this.state.mileageCars;
+            let doors = this.state.doors;
+            let seats = this.state.seats;
+            let seatsForKids = this.state.seatsForKids;
+            let price = this.state.price;
+            let cubicCapacity = this.state.cubicCapacity;
+            let horsePower = this.state.horsePower;
+            let fullTankCapacity = this.state.fullTankCapacity;
+            let cdw = this.state.cdw;
+            let gps = this.state.gps;
+            let usb = this.state.usb;
+            let description = this.state.description;
+            let cityLocation = this.state.cityLocation;
+            let plannedMilage = this.state.plannedMilage;
+            let userId;
+            let userEmail = sessionStorage.getItem('userEmail');
 
-        let brandCars = this.state.brandCars;
-        let modelCars = this.state.modelCars;
-        let fuelTypeCars = this.state.fuelTypeCars;
-        let transmissionCars = this.state.transmissionCars;
-        let classCarCars = this.state.classCarCars;
-        let mileageCars = this.state.mileageCars;
-        let doors = this.state.doors;
-        let seats = this.state.seats;
-        let seatsForKids = this.state.seatsForKids;
-        let price = this.state.price;
-        let cubicCapacity = this.state.cubicCapacity;
-        let horsePower = this.state.horsePower;
-        let fullTankCapacity = this.state.fullTankCapacity;
-        let cdw = this.state.cdw;
-        let gps = this.state.gps;
-        let usb = this.state.usb;
-        let description = this.state.description;
-        let cityLocation = this.state.cityLocation;
-        let plannedMilage = this.state.plannedMilage;
-        let userId;
-
-        var userEmail = sessionStorage.getItem('userEmail');
-        const data1 = {userEmail};
-        const response00 = await axios.post('/authentication-service/getLogedUser', data1);
-        if(response00) {
-            userId = response00.data.id;
-        }
-
-        const data = {brandCars, modelCars, fuelTypeCars, transmissionCars, classCarCars, mileageCars, doors, seats, seatsForKids, price, 
-            cubicCapacity, horsePower, fullTankCapacity, cdw, gps, usb, description, cityLocation, plannedMilage, userId};
-        const token = sessionStorage.getItem('token');
-
-        const response = await axios.post('/car-service/addAdvertisement', data, {
-            headers: {
-                'Authorization' : 'Bearer ' + token
+            const data1 = {userEmail};
+            const response00 = await axios.post('/authentication-service/getLoggedUser', data1);
+            if(response00) {
+                userId = response00.data.id;
             }
-        });
 
-        if(response){
-            window.location.reload();
+            const data = {brandCars, modelCars, fuelTypeCars, transmissionCars, classCarCars, mileageCars, doors, seats, seatsForKids, price, 
+                cubicCapacity, horsePower, fullTankCapacity, cdw, gps, usb, description, cityLocation, plannedMilage, userId};
+            const token = sessionStorage.getItem('token');
+
+            const response = await axios.post('/car-service/addAdvertisement', data, {
+                headers: {
+                    'Authorization' : 'Bearer ' + token
+                }
+            });
+
+            const dataUserUpdate = {userEmail};
+            if(response){
+                const responseUserUpdate = await axios.put('/authentication-service/incrementAddNumber', dataUserUpdate);
+                if (responseUserUpdate) {
+                    window.location.reload();
+                }
+            }
         }
     }
 
@@ -354,7 +367,6 @@ class Advertisement extends React.PureComponent {
                         <MenuItem value='90'>90</MenuItem>
                         <MenuItem value='95'>95</MenuItem>
                         
-                        
                         </Select>
                         <FormHelperText>Fuel tank capacity</FormHelperText>
                     </FormControl>
@@ -426,7 +438,7 @@ class Advertisement extends React.PureComponent {
                         id="demo-simple-select-helper"
                         onChange={(event) => this.selectHandler(event, 'seatsForKids')}
                         >
-                        <MenuItem value="">
+                        <MenuItem value="0">
                             <em>None</em>
                         </MenuItem>
                         <MenuItem value='1'>1</MenuItem>
@@ -469,10 +481,9 @@ class Advertisement extends React.PureComponent {
                     </FormControl>
 
                     <form style={{gridColumn:'1/4'}}>
-                        <textarea value={this.state.description} className="textarea" 
-                        onChange={(event) => this.selectHandler(event, 'description')} >Descripton...</textarea>
+                        <textarea value={this.state.description} className="textarea" placeholder="Description ..."
+                        onChange={(event) => this.selectHandler(event, 'description')} ></textarea>
                     </form>
-                {/* } */}
                 </div>
         );
         }
@@ -523,10 +534,16 @@ class Advertisement extends React.PureComponent {
                             </div>
                         </div>
                         <div>
-                            {this.state.renderNumber > 1 ? <button className="button" onClick={(event) => {this.setState({renderNumber: this.state.renderNumber-1})}}>Back</button> : <button disabled='true' style={{cursor: 'not-allowed', opacity: 0.6}} className="button" onClick={(event) => {this.setState({renderNumber: this.state.renderNumber-1})}}>Back</button>}
-                            {this.state.renderNumber < 3 ? <button className="button" onClick={(event)=>{ this.setState({renderNumber: this.state.renderNumber+1});}}>Next</button> : <button disabled='true' style={{cursor: 'not-allowed', opacity: 0.6}} className="button" onClick={(event)=>{ this.setState({renderNumber: this.state.renderNumber+1});}}>Next</button>}
+                            {this.state.renderNumber > 1 ? <button className="button" onClick={(event) => {this.setState({renderNumber: this.state.renderNumber-1})}}>Back</button> : <button disabled={true} style={{cursor: 'not-allowed', opacity: 0.6}} className="button" onClick={(event) => {this.setState({renderNumber: this.state.renderNumber-1})}}>Back</button>}
+                            {this.state.renderNumber < 3 ? <button className="button" onClick={(event)=>{ this.setState({renderNumber: this.state.renderNumber+1});}}>Next</button> : <button disabled={true} style={{cursor: 'not-allowed', opacity: 0.6}} className="button" onClick={(event)=>{ this.setState({renderNumber: this.state.renderNumber+1});}}>Next</button>}
                         </div>
-                        {this.state.renderNumber === 3 ? <button className="button" onClick = {(event) => this.addHandler(event)}>Finish</button> : null}
+
+                        {this.state.userAddNumber < 3 ? 
+                            (this.state.renderNumber === 3 ? <button className="button" onClick = {(event) => this.addHandler(event)}>Finish</button> : null) 
+                            : (this.state.renderNumber === 3 ? <Popup trigger={<button className="button" onClick = {(event) => this.addHandler(event)}>Finish</button>} position="top center">
+                                <div style={{background:'red', marginLeft:'0px'}}>You can't add more then 3 advertisement!</div>
+                            </Popup> : null)}
+                        {/* {this.state.renderNumber === 3 ? <button className="button" onClick = {(event) => this.addHandler(event)}>Finish</button> : null} */}
                     </div>
                 </header>
             </div>
