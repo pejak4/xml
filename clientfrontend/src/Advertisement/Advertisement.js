@@ -132,9 +132,17 @@ class Advertisement extends React.PureComponent {
         let description = this.state.description;
         let cityLocation = this.state.cityLocation;
         let plannedMilage = this.state.plannedMilage;
+        let userId;
+
+        var userEmail = sessionStorage.getItem('userEmail');
+        const data1 = {userEmail};
+        const response00 = await axios.post('/authentication-service/getLogedUser', data1);
+        if(response00) {
+            userId = response00.data.id;
+        }
 
         const data = {brandCars, modelCars, fuelTypeCars, transmissionCars, classCarCars, mileageCars, doors, seats, seatsForKids, price, 
-            cubicCapacity, horsePower, fullTankCapacity, cdw, gps, usb, description, cityLocation, plannedMilage};
+            cubicCapacity, horsePower, fullTankCapacity, cdw, gps, usb, description, cityLocation, plannedMilage, userId};
         const token = sessionStorage.getItem('token');
 
         const response = await axios.post('/car-service/addAdvertisement', data, {
@@ -144,7 +152,7 @@ class Advertisement extends React.PureComponent {
         });
 
         if(response){
-            window.location.href("/");
+            window.location.reload();
         }
     }
 

@@ -30,4 +30,5 @@ public class AdvertisementDTO {
     private String description;
     private String cityLocation;
     private String plannedMilage;
+    private String userId;
 }

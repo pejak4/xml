@@ -1,12 +1,14 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.*;
+import com.example.demo.model.Users;
 import com.example.demo.service.*;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -51,4 +53,9 @@ public class UserController {
         return new ResponseEntity<>(this.userService.deleteUser(userId), HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path= "/getLogedUser")
+    public ResponseEntity<?> getLogedUserId(@RequestBody UserEmailDTO email) {
+        return new ResponseEntity<>(this.userService.findOneByEmail(email.getUserEmail()), HttpStatus.OK);
+    }
 }

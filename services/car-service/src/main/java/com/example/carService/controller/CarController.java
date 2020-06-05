@@ -1,10 +1,9 @@
 package com.example.carService.controller;
 
-import com.example.carService.dto.AdvertisementDTO;
-import com.example.carService.dto.CarFilterDTO;
-import com.example.carService.dto.CarSearchDTO;
+import com.example.carService.dto.*;
 import com.example.carService.service.AdvertisementService;
 import com.example.carService.service.CarService;
+import com.example.carService.service.RentalRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +18,9 @@ public class CarController {
 
     @Autowired
     private AdvertisementService advertisementService;
+
+    @Autowired
+    private RentalRequestService rentalRequestService;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, path = "/searchCars")
@@ -41,4 +43,23 @@ public class CarController {
     public ResponseEntity<?> addAdvertisement(@RequestBody AdvertisementDTO car) {
         return new ResponseEntity<>(this.advertisementService.save(car), HttpStatus.OK);
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/addRentalRequest")
+    public ResponseEntity<?> addRentalRequest(@RequestBody RentalRequestDTO rentalRequest) {
+        return new ResponseEntity<>(this.rentalRequestService.saveRentalRequest(rentalRequest), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getRentalRequestByUserIdAndCar")
+    public ResponseEntity<?> getRentalRequestById(@RequestBody RentalRequestIdAndCarDTO data) {
+        return new ResponseEntity<>(this.rentalRequestService.findOneByUserIdAndCar(data), HttpStatus.OK);
+    }
+    
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getCarsLogedUser")
+    public ResponseEntity<?> getCarsLogedUser(@RequestBody UserIdDTO id) {
+        return new ResponseEntity<>(this.carService.findAllByUserId(id.getUserId()), HttpStatus.OK);
+    }
+
 }
