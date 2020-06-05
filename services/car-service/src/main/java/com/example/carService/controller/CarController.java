@@ -1,9 +1,11 @@
 package com.example.carService.controller;
 
 import com.example.carService.dto.*;
+import com.example.carService.model.CarRentalRequest;
 import com.example.carService.service.AdvertisementService;
 import com.example.carService.service.CarService;
 import com.example.carService.service.RentalRequestService;
+import com.example.carService.service.RentalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,6 +23,9 @@ public class CarController {
 
     @Autowired
     private RentalRequestService rentalRequestService;
+
+    @Autowired
+    private RentalService rentalService;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, path = "/searchCars")
@@ -61,11 +66,28 @@ public class CarController {
     public ResponseEntity<?> getRentalRequestById(@RequestBody RentalRequestIdAndCarDTO data) {
         return new ResponseEntity<>(this.rentalRequestService.findOneByUserIdAndCar(data), HttpStatus.OK);
     }
-    
+
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getCarsLogedUser")
     public ResponseEntity<?> getCarsLogedUser(@RequestBody UserIdDTO id) {
         return new ResponseEntity<>(this.carService.findAllByUserId(id.getUserId()), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/acceptRentalRequest")
+    public ResponseEntity<?> acceptRentalRequest(@RequestBody RentalRequestAcceptDeclineDTO r) {
+        CarRentalRequest crr = this.rentalRequestService.findOneById(Long.parseLong(r.getRentalRequestId()));
+        this.rentalService.addRental(crr);
+        this.rentalRequestService.deleteRentalRequest(Long.parseLong(r.getRentalRequestId()));
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/declineRentalRequest")
+    public ResponseEntity<?> declineRentalRequest(@RequestBody RentalRequestAcceptDeclineDTO r) {
+
+        this.rentalRequestService.deleteRentalRequest(Long.parseLong(r.getRentalRequestId()));
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

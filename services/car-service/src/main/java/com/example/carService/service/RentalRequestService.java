@@ -32,4 +32,7 @@ public class RentalRequestService {
         Long car_id = Long.parseLong(data.getCarId());
         return this.rentalRequestRepository.findOneByUserIdAndRentalRequestCarId(user_id, car_id);
     }
+
+    public CarRentalRequest findOneById(Long id) {return this.rentalRequestRepository.findOneById(id);}
+    public void deleteRentalRequest(Long id) {this.rentalRequestRepository.deleteRentalRequest(id);}
 }

@@ -31,6 +31,7 @@ class RentalRequest extends React.Component {
         //Zbor svih zahteva je su zahtevi ka ulogovanom korisniku
         const response = await axios.post('/car-service/getCarsLogedUser', data01);
         if(response) {
+            console.log(response.data);
             if(response.data !== "") {
                 for(let i=0; i<response.data.length; i++) {
                     allRentalRequestsLogedUser = allRentalRequestsLogedUser.concat(response.data[i].rentalRequestsList);
@@ -53,6 +54,34 @@ class RentalRequest extends React.Component {
             });
         }
     }
+
+    acceptHandler = async() => {
+        console.log(this.state.curretnRentalRequest);
+
+        let rentalRequestId = this.state.curretnRentalRequest.id;
+
+        const data = {rentalRequestId};
+
+        const response = await axios.post('/car-service/acceptRentalRequest', data);
+        if(response) {
+            console.log(response.data);
+        }
+        window.location.reload();
+    }
+
+    declineHandler = async() => {
+        console.log(this.state.curretnRentalRequest);
+
+        let rentalRequestId = this.state.curretnRentalRequest.id;
+
+        const data = {rentalRequestId};
+
+        const response = await axios.post('/car-service/declineRentalRequest', data);
+        if(response) {
+            console.log(response.data);
+        }
+        window.location.reload();
+    }
     
     renderRentalRequestDetail() {
         if(this.state.renderDetail)
@@ -66,6 +95,8 @@ class RentalRequest extends React.Component {
                             <h5><b>End date: {this.state.curretnRentalRequest.endDate}</b></h5>
                         </div>
                         <button onClick={(event) => {this.setState({renderDetail: false})}}>Back</button>
+                        <button onClick={(event) => {this.acceptHandler()}}>Accept</button>
+                        <button onClick={(event) => {this.declineHandler()}}>Decline</button>
                     </div>
             );
         }

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25e00632-9d8a-4e29-8666-fdd70602ea84" name="Default Changelist" comment="">
+
       <change beforePath="$PROJECT_DIR$/../../clientfrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../clientfrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/Advertisement/Advertisement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/Advertisement/Advertisement.js" afterDir="false" />
@@ -472,6 +473,13 @@
       <change beforePath="$PROJECT_DIR$/../codebook/target/classes/data-postgres.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../codebook/target/test-classes/com/example/codebook/CodebookApplicationTests.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/RentalRequest/RentalRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/RentalRequest/RentalRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/controller/CarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/controller/CarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/repository/CarRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/repository/CarRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/repository/RentalRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/repository/RentalRequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/service/RentalRequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/service/RentalRequestService.java" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
