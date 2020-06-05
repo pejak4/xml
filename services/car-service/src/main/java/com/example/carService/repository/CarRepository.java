@@ -2,8 +2,11 @@ package com.example.carService.repository;
 
 import com.example.carService.model.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -44,4 +47,6 @@ public interface CarRepository extends JpaRepository<Car, Long> {
                             @Param("CDW") Boolean CDW, @Param("capacity_seats_for_kids") Integer capacity_seats_for_kids,
                              @Param("city_location") String city_location, @Param("start_date") Timestamp start_date,
                              @Param("end_date") Timestamp end_date);
+
+
 }
