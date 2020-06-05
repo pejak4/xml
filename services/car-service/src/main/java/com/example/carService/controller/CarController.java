@@ -41,7 +41,13 @@ public class CarController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/addAdvertisement")
     public ResponseEntity<?> addAdvertisement(@RequestBody AdvertisementDTO car) {
-        return new ResponseEntity<>(this.advertisementService.save(car), HttpStatus.OK);
+        return new ResponseEntity<>(this.advertisementService.save(car), HttpStatus.CREATED);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getSingleCar")
+    public ResponseEntity<?> getSingleCar(@RequestParam Long id) {
+        return new ResponseEntity<>(this.carService.findOneCar(id), HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")

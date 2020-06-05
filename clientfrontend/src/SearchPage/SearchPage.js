@@ -10,6 +10,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import axios from '../axios-objects';
+import {Link} from 'react-router-dom';
 
 class SearchPage extends React.PureComponent {
     
@@ -433,7 +434,7 @@ class SearchPage extends React.PureComponent {
 
                                             <div className="details-rent">
                                                 <div>
-                                                    <a href="/">More details </a>
+                                                    <Link to={{pathname:"/singleCarPage/"+car.id}} target="_blank" > More details </Link>
                                                 </div>
                                                 <div>
                                                     <a className="btn" style={{width:'150px', textAlign:'center'}}
