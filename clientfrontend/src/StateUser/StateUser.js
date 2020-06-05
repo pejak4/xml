@@ -111,7 +111,7 @@ class StateUser extends React.Component {
                             {this.renderBlockedUsers()}
                         </div>
                     </div>
-            </header>
+                </header>
 
             </div>
         );

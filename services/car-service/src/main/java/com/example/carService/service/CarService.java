@@ -35,6 +35,8 @@ public class CarService {
         return this.carRepository.findAllById(carsId);
     }
 
+    public List<Car> findAll() { return this.carRepository.findAll();}
+    public List<Car> findAllByUserId(String user_id) {return this.carRepository.findAllByUserId(user_id);}
     public Optional<Car> findOneCar(Long id) {
         return this.carRepository.findById(id);
     }

@@ -9,11 +9,14 @@ import java.util.List;
 
 public interface CarRepository extends JpaRepository<Car, Long> {
 
-    @Query(nativeQuery = true, value = "select c.id, c.doors, c.description, c.image, c.brand, c.model, c.fuel_type, " +
+    List<Car> findAll();
+    List<Car> findAllByUserId(String user_id);
+
+    @Query(nativeQuery = true, value = "select c.user_id, c.id, c.doors, c.description, c.image, c.brand, c.model, c.fuel_type, " +
             "c.transmission, c.class_car, c.price, c.mileage, c.planned_mileage, c.cdw, c.capacity_seats, " +
             "c.capacity_seats_for_kids, c.cubic_capacity, c.horse_power, c.usb, c.gps, c.fuel_tank_capacity, " +
             "c.city_location from car_rental_date crd left join car c on c.id = crd.car_id where c.city_location=:city_location " +
-            "and (crd.start_date>:end_date or crd.end_date<:start_date) union (select cc.id, cc.doors, cc.description, " +
+            "and (crd.start_date>:end_date or crd.end_date<:start_date) union (select cc.user_id, cc.id, cc.doors, cc.description, " +
             "cc.image, cc.brand, cc.model, cc.fuel_type, cc.transmission, cc.class_car, cc.price, cc.mileage, " +
             "cc.planned_mileage, cc.cdw, cc.capacity_seats, cc.capacity_seats_for_kids, cc.cubic_capacity, " +
             "cc.horse_power, cc.usb, cc.gps, cc.fuel_tank_capacity, cc.city_location from car cc left join car_rental_date dd " +

@@ -168,6 +168,50 @@ class SearchPage extends React.PureComponent {
         }
     }
 
+    rentCarHandler = async (event, car) =>{
+        event.preventDefault();
+
+        let userId;
+
+        var userEmail = sessionStorage.getItem('userEmail');
+        const data0 = {userEmail};
+        const response00 = await axios.post('/authentication-service/getLogedUser', data0);
+        if(response00) {
+            console.log(response00.data);
+            userId = response00.data.id;
+        }
+        console.log(userId);
+
+        var carId = car.id; //Proveravamo da li je ovaj korisnik vec poslao zahev za ovaj auto
+        const data1 = {userId, carId};
+        const response1 = await axios.post('/car-service/getRentalRequestByUserIdAndCar', data1);
+        var rentalRequestExists = false;
+        if(response1) {
+            console.log(response1);
+            if(response1.data !== "") {
+                rentalRequestExists = true;
+            }        
+        }
+
+
+
+        var startData = this.state.car.startDate;
+        var endData = this.state.car.endDate;
+        var car = car;
+
+        const data = {car, startData, endData, userId};
+
+        if(rentalRequestExists === true) {
+            alert('Rental request exists.');
+        } else {
+            const response = await axios.post('/car-service/addRentalRequest', data);
+            if(response){
+                console.log(response.data);
+            }
+        }
+
+    }
+
     render() {
         return (
             <div>
@@ -393,7 +437,10 @@ class SearchPage extends React.PureComponent {
                                                     <Link to={{pathname:"/singleCarPage/"+car.id}} target="_blank" > More details </Link>
                                                 </div>
                                                 <div>
-                                                    <a className="btn" href="/" style={{width:'150px', textAlign:'center'}}>Rent</a>
+                                                    <a className="btn" style={{width:'150px', textAlign:'center'}}
+                                                    onClick={(event) => {this.rentCarHandler(event, car)}}>
+                                                        Rent
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>

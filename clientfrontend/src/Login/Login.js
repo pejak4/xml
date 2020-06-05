@@ -84,6 +84,7 @@ class Login extends React.PureComponent {
                     const jwtToken = jwt_decode(response.data.accessToken);
                     sessionStorage.setItem('role', jwtToken.role);
                     sessionStorage.setItem('expirationDate', expirationDate);
+                    sessionStorage.setItem('userEmail', jwtToken.sub);
                     this.props.history.push('/');
                 }
             } catch(err) {
