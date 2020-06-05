@@ -22,7 +22,8 @@
     "react-scripts": "3.4.1",
     "react-widgets": "^4.5.0",
     "react-widgets-globalize": "^5.0.13",
-    "react-widgets-moment": "^4.0.20"
+    "react-widgets-moment": "^4.0.20",
+    "reactjs-popup": "^1.5.0"
   },
   "scripts": {
     "start": "react-scripts start",

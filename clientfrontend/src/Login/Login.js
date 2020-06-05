@@ -4,6 +4,7 @@ import axios from '../axios-objects';
 import {updateObject} from '../utility';
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
 import jwt_decode from 'jwt-decode';
+import Popup from "reactjs-popup";
 
 class Login extends React.PureComponent {
     constructor(props) {
@@ -16,7 +17,8 @@ class Login extends React.PureComponent {
             },
             validation: {
                 email: true,
-                password: true
+                password: true,
+                blocked: false
             }
         }
     }
@@ -27,7 +29,7 @@ class Login extends React.PureComponent {
         return expression.test(String(email).toLowerCase())
     }
 
-    inputChangeHandler = (event, type) => {
+    inputChangeHandler = async (event, type) => {
         let login = updateObject(this.state.login, {
             [type]: event.target.value
         });
@@ -43,10 +45,27 @@ class Login extends React.PureComponent {
             if (type === 'email') {
                 let email = this.validateEmail(event.target.value);
                 if (email) {
+                    const data = {email: event.target.value};
+                    const response = await axios.post('/authentication-service/blockedUser', data, {
+                        headers: {
+                            'Content-Type' : 'application/json'
+                        }
+                    });
                     let validation = updateObject(this.state.validation, {
                         [type]: true
                     });
                     this.setState({validation});
+                    if (response.data) {
+                        let validation = updateObject(this.state.validation, {
+                            blocked: false
+                        });
+                        this.setState({validation});
+                    } else {
+                        let validation = updateObject(this.state.validation, {
+                            blocked: true
+                        });
+                        this.setState({validation});
+                    }
                 } else {
                     let validation = updateObject(this.state.validation, {
                         [type]: false
@@ -66,6 +85,16 @@ class Login extends React.PureComponent {
                     this.setState({validation});
                 }
             }
+        }
+    }
+
+    popupRender = () => {
+        if(this.state.validation.blocked) {
+            return (
+                <Popup trigger={<button> Sign in</button>} position="center">
+                    <div>Your account has been blocked! Please contact us for more information.</div>
+                </Popup>
+            );
         }
     }
 
@@ -116,8 +145,14 @@ class Login extends React.PureComponent {
                         onChange={(event) => this.inputChangeHandler(event, 'password')}/>}
                         {this.state.validation.password ? <p className="text-valid">Valid password.</p>
                         : <p className="text-invalid">Password must be minimum length of 6.</p>}
-                        <a href="/" className="btn"
-                        onClick={(event) => this.loginHandler(event)}>Sign in</a>
+                        
+                        {this.state.validation.blocked ? <Popup trigger={<button className="btn" style={{cursor:'pointer',height:'50px',width:'85px', fontSize:'15px'}}
+                        onClick={(event) => this.loginHandler(event)}>
+                        Sign in</button>} position="top center">
+                            <div style={{background:'red', marginLeft:'0px'}}>Your account has been blocked! Please contact us for more information.</div>
+                        </Popup> : <button href="/" className="btn" style={{cursor:'pointer',height:'50px',width:'85px', fontSize:'15px'}}
+                        onClick={(event) => this.loginHandler(event)}>Sign in</button>}
+                        
                         <p>Don't have an account? Sign up <a href="/registration" className="click-here">here.</a></p>
                     </div>
                 </header>

@@ -24,14 +24,13 @@ public class Users implements UserDetails {
     private String firstName;
     private String lastName;
     private String email;
-
     private Boolean enabled;
-
     @JsonIgnore
     private String password;
     @Enumerated(EnumType.STRING)
     private UserRole role;
     private Date lastPasswordResetDate;
+    private int addNumber = 0;
     private boolean firstTimeLogged = true;
     @Transient
     private List<GrantedAuthority> authorities;

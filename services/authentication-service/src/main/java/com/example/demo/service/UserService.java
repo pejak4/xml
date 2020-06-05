@@ -84,6 +84,13 @@ public class UserService {
         return this.userRepository.save(u);
     }
 
+    public void incrementAddNumber(String email) {
+        Users user = this.userRepository.findOneByEmail(email);
+        Integer number = user.getAddNumber() + 1;
+        user.setAddNumber(number);
+        this.userRepository.save(user);
+    }
+
     public boolean CheckEmail(String email) {
         Users u = this.findOneByEmail(email);
 
@@ -91,6 +98,18 @@ public class UserService {
             return false;
         else
             return true;
+    }
+
+    public boolean CheckBlock(String email) {
+        Users u = this.findOneByEmail(email);
+
+        if (u != null) {
+            if (u.isEnabled())
+                return true;
+            else
+                return false;
+        }
+        return true;
     }
 
     public Boolean setStateUser(UserSetStateDTO userId) {
