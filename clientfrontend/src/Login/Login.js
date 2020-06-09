@@ -88,16 +88,6 @@ class Login extends React.PureComponent {
         }
     }
 
-    popupRender = () => {
-        if(this.state.validation.blocked) {
-            return (
-                <Popup trigger={<button> Sign in</button>} position="center">
-                    <div>Your account has been blocked! Please contact us for more information.</div>
-                </Popup>
-            );
-        }
-    }
-
     loginHandler = async (event) => {
         event.preventDefault();
         if (this.state.login.email !== '' && this.state.login.password !== '' && this.state.validation.email

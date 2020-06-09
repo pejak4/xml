@@ -3,7 +3,7 @@ import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
 import axios from '../axios-objects';
 import './RentalRequest.css';
 
-class RentalRequest extends React.Component {
+class RentalRequest extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -11,8 +11,9 @@ class RentalRequest extends React.Component {
         this.state = {
             rentalRequests: [],
             renderDetail: false,
-            curretnRentalRequest: [],
-            carsLogedUser: []
+            currentRentalRequest: [],
+            carsLogedUser: [],
+            user: null
         }
     }
 
@@ -31,7 +32,6 @@ class RentalRequest extends React.Component {
         //Zbor svih zahteva je su zahtevi ka ulogovanom korisniku
         const response = await axios.post('/car-service/getCarsLogedUser', data01);
         if(response) {
-            console.log(response.data);
             if(response.data !== "") {
                 for(let i=0; i<response.data.length; i++) {
                     allRentalRequestsLogedUser = allRentalRequestsLogedUser.concat(response.data[i].rentalRequestsList);
@@ -41,11 +41,24 @@ class RentalRequest extends React.Component {
         }       
     }
 
-    renderRentalRequest() {
+    getUserById = async (id) => {
+        const response = await axios.get('/authentication-service/getUserById', {
+            params: {
+                id: id
+            }
+        });
+        if(response) {
+            this.setState({user: response.data});
+        }
+    }
+
+    renderRentalRequest = () => {
         if(!this.state.renderDetail) {
             return this.state.rentalRequests.map((rentalRequest, i) => {
                 return(
-                    <div className="card" key={i} id={i} onClick={(event) => {this.setState({renderDetail: true, curretnRentalRequest: rentalRequest})}}>
+                    <div className="card" key={i} id={i} onClick={(event) => {
+                        this.getUserById(rentalRequest.userId);
+                        this.setState({renderDetail: true, currentRentalRequest: rentalRequest})}}>
                         <div className='containerr'>
                             <h4><b>Rental request: ID {rentalRequest.id}</b></h4>
                         </div>
@@ -56,50 +69,41 @@ class RentalRequest extends React.Component {
     }
 
     acceptHandler = async() => {
-        console.log(this.state.curretnRentalRequest);
-
-        let rentalRequestId = this.state.curretnRentalRequest.id;
+        let rentalRequestId = this.state.currentRentalRequest.id;
 
         const data = {rentalRequestId};
 
-        const response = await axios.post('/car-service/acceptRentalRequest', data);
-        if(response) {
-            console.log(response.data);
-        }
+        await axios.post('/car-service/acceptRentalRequest', data);
         window.location.reload();
     }
 
     declineHandler = async() => {
-        console.log(this.state.curretnRentalRequest);
-
-        let rentalRequestId = this.state.curretnRentalRequest.id;
+        let rentalRequestId = this.state.currentRentalRequest.id;
 
         const data = {rentalRequestId};
 
-        const response = await axios.post('/car-service/declineRentalRequest', data);
-        if(response) {
-            console.log(response.data);
-        }
+        await axios.post('/car-service/declineRentalRequest', data);
         window.location.reload();
     }
     
     renderRentalRequestDetail() {
-        if(this.state.renderDetail)
+        if(this.state.renderDetail) {
             return(
-                    <div className="card">
-                        <div className='containerr'>
-                            <h4><b>Rental request: {this.state.curretnRentalRequest.id}</b></h4>
-                            <br/><hr/>
-                            <h5><b>User: ID {this.state.curretnRentalRequest.userId}</b></h5>
-                            <h5><b>Start date: {this.state.curretnRentalRequest.startDate}</b></h5>
-                            <h5><b>End date: {this.state.curretnRentalRequest.endDate}</b></h5>
-                        </div>
-                        <button onClick={(event) => {this.setState({renderDetail: false})}}>Back</button>
-                        <button onClick={(event) => {this.acceptHandler()}}>Accept</button>
-                        <button onClick={(event) => {this.declineHandler()}}>Decline</button>
+                <div className="card">
+                    <div className='containerr'>
+                        <h4><b>Rental request: </b></h4>
+                        <br/><hr/>
+                        {this.state.user !== null ? <h5><b>User: {this.state.user.firstName} {this.state.user.lastName}</b></h5> : null}
+                        <h5><b>Start date: {this.state.currentRentalRequest.startDate.split("T")[0]} {this.state.currentRentalRequest.startDate.split("T")[1].split(".")[0]}</b></h5>
+                        <h5><b>End date: {this.state.currentRentalRequest.endDate.split("T")[0]} {this.state.currentRentalRequest.endDate.split("T")[1].split(".")[0]}</b></h5>
                     </div>
+                    <button className="btn" onClick={(event) => {this.setState({renderDetail: false})}}>Back</button>
+                    <button className="btn" style={{margin:'0 1rem'}} onClick={(event) => {this.acceptHandler()}}>Accept</button>
+                    <button className="btn" onClick={(event) => {this.declineHandler()}}>Decline</button>
+                </div>
             );
         }
+    }
 
     render() {
         return (

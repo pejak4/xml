@@ -76,9 +76,13 @@ public class UserService {
         return this.userRepository.findOneByEmail(email);
     }
 
+    public Users findOneById(Long id) {
+        return this.userRepository.findOneById(id);
+    }
+
     public Users save(UserRegistrationDTO user) {
         Users u = Users.builder().role(UserRole.valueOf("USER"))
-                .firstName(user.getFirstName()).lastName(user.getLastName()).email(user.getEmail())
+                .firstName(user.getFirstName()).lastName(user.getLastName()).email(user.getEmail()).enabled(true)
                 .password(passwordEncoder.encode(user.getPassword())).build();
 
         return this.userRepository.save(u);
