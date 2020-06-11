@@ -42,7 +42,11 @@ class SearchPage extends React.PureComponent {
                 fuelType: [],
                 transmission: [],
                 classCar: []
-            }
+            },
+            startDateString: '',
+            endDateString: '',
+
+            listCarForCart: [],
         }
     }
 
@@ -102,6 +106,21 @@ class SearchPage extends React.PureComponent {
             classCar: classCarArray
         })
         this.setState({search});
+
+
+        //Sredjivanje datuma za korpu
+        let startDateOk = this.props.location.state.startDate.toString();
+        let startDateSplit = startDateOk.split(' ');
+        startDateOk = startDateSplit[1] + '-' + startDateSplit[2] + '-' + startDateSplit[3];
+
+        let endDateOk = this.props.location.state.endDate.toString();
+        let endDateSplit = endDateOk.split(' ');
+        endDateOk = endDateSplit[1] + '-' + endDateSplit[2] + '-' + endDateSplit[3];
+        
+        this.setState({
+            startDateString: startDateOk,
+            endDateString: endDateOk
+        })
     }
 
     selectHandler = (event, type) => {
@@ -189,22 +208,89 @@ class SearchPage extends React.PureComponent {
             }        
         }
 
+
+        let startDate = this.state.car.startDate;
+        let endDate = this.state.car.endDate;
+
+        console.log(carId);
+        carId = car.id;
+        
+        const data2 = {startDate, endDate, carId};
+        const response2 = await axios.post('/car-service/checkOccupancy', data2);
+        if(response2) {
+            if(response2.data.length != 0)
+                rentalRequestExists = true;       
+        }
+
         let startData = this.state.car.startDate;
         let endData = this.state.car.endDate;
-        let carData = car;
 
-        const data = {carData, startData, endData, userId};
+        const data = {carId, startData, endData, userId};
 
         if(rentalRequestExists === true) {
-            alert('Rental request exists.');
+            alert('Rental request exists or car is busy in this time.');
         } else {
             await axios.post('/car-service/addRentalRequest', data);
         }
     }
 
+    addToCartHandler = async (event, car) => {
+        event.preventDefault();
+
+        let cars = [...this.state.listCarForCart];
+
+        let existCar = false;
+
+        if(cars.length <= 3) {
+            cars.push(car);
+            for(let i=0; i<this.state.listCarForCart.length; i++)
+            {
+                if(this.state.listCarForCart[i].id === car.id)
+                    existCar = true;
+            }
+            if(!existCar)
+                this.setState({listCarForCart: cars})
+        }
+    }
+
+    discardCartHandler = (event, car) =>{
+        let elementsFromCart = [...this.state.listCarForCart];
+
+        const index = elementsFromCart.indexOf(car);
+        if(index > -1)
+            elementsFromCart.splice(index, 1);
+
+        this.setState({listCarForCart: elementsFromCart})
+    }
+
+    cartHandler = (event) => {
+        console.log(this.state.listCarForCart);
+    }
+
     render() {
         return (
             <div>
+                {this.state.listCarForCart.length > 0 ? 
+                <div className="positionCart">
+                    <h2 className="h4Cart">Cart</h2>
+                    <hr/>
+                    <br/>
+                    <p className="h4Cart"><b>Start date:</b> {this.state.startDateString}</p>
+                    <p className="h4Cart"><b>End date:</b> {this.state.endDateString}</p>
+                    <br/>
+                    <hr/>
+                    {this.state.listCarForCart.map((car, i) => {
+                        return(
+                            <p key={i}>{car.brand} {car.model} 
+                            <button key={i} className="butCart" onClick={(event)=>{this.discardCartHandler(event, car)}}
+                            >Discard</button> 
+                            <hr/>
+                            </p>
+                        );
+                    })}
+                    <button className="butCart" onClick={(event) => {this.cartHandler(event)}}>Rent all</button>
+                </div>
+                : null}
                 <HamburgerMenu />
                 <header id="showcase">
                     <div className="containerSearch showcase-containerSearch" style={{overflowY:'scroll', maxWidth:'90%'}}>
@@ -427,6 +513,10 @@ class SearchPage extends React.PureComponent {
                                                     <Link to={{pathname:"/singleCarPage/"+car.id}} target="_blank" > More details </Link>
                                                 </div>
                                                 <div>
+                                                    <a href="/" className="btn" style={{width:'250px', textAlign:'center'}}
+                                                    onClick={(event) => {this.addToCartHandler(event, car)}}>
+                                                        Add to cart
+                                                    </a>
                                                     <a href="/" className="btn" style={{width:'150px', textAlign:'center'}}
                                                     onClick={(event) => {this.rentCarHandler(event, car)}}>
                                                         Rent

@@ -9,6 +9,8 @@ import Codebook from './Codebook/Codebook';
 import StateUser from './StateUser/StateUser';
 import RentalRequest from './RentalRequest/RentalRequest';
 import SingleCarPage from './SingleCarPage/SingleCarpage';
+import OccupancyCar from './OccupancyCar/OccupancyCar';
+import RentalRequestsFromMe from './RentalRequest/RentalRequestsFromMe/RentalRequestsFromMe';
 
 class App extends React.PureComponent {
   render() {
@@ -25,6 +27,8 @@ class App extends React.PureComponent {
             <Route path="/setStateUser" component={StateUser} />
             <Route path="/rentalRequest" component={RentalRequest} />
             <Route path="/singleCarPage/:carId" component={SingleCarPage} />
+            <Route path="/listCars" component={OccupancyCar} />
+            <Route path="/rentalRequestsFromMe" component={RentalRequestsFromMe} />
           </Switch>
         </BrowserRouter>
       </div>

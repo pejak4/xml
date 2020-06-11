@@ -9,9 +9,10 @@ import java.sql.Timestamp;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RentalRequestDTO {
-    private Long carId;
+public class RentalRequestIfHaveReservedDTO {
+    private String forUserId;
     private Timestamp startData;
     private Timestamp endData;
     private String userId;
+    private String rentalRequestId;
 }

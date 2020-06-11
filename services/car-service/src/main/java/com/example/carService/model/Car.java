@@ -1,6 +1,6 @@
 package com.example.carService.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -47,7 +47,9 @@ public class Car {
 
     //@JsonIgnore
     @OneToMany(mappedBy = "rentalRequestCar", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonBackReference
     private Set<CarRentalRequest> rentalRequestsList;
 
+    @OneToMany(mappedBy = "occupancyCar", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Occupancy> occupancyList;
 }

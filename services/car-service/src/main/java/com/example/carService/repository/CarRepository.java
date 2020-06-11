@@ -14,6 +14,7 @@ public interface CarRepository extends JpaRepository<Car, Long> {
 
     List<Car> findAll();
     List<Car> findAllByUserId(String user_id);
+    Car findOneById(Long id);
 
     @Query(nativeQuery = true, value = "select c.user_id, c.id, c.doors, c.description, c.image, c.brand, c.model, c.fuel_type, " +
             "c.transmission, c.class_car, c.price, c.mileage, c.planned_mileage, c.cdw, c.capacity_seats, " +

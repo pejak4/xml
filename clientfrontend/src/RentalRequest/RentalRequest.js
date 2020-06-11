@@ -12,7 +12,6 @@ class RentalRequest extends React.Component {
             rentalRequests: [],
             renderDetail: false,
             curretnRentalRequest: [],
-            carsLogedUser: []
         }
     }
 
@@ -29,15 +28,10 @@ class RentalRequest extends React.Component {
         const data01 = {userId}; //Vratice auto koji sadrzi id ulogovanog korisnika.
         //A Car u sebi sadrzi listu zahteva za auto koji je stavio ulogovani korisnik
         //Zbor svih zahteva je su zahtevi ka ulogovanom korisniku
-        const response = await axios.post('/car-service/getCarsLogedUser', data01);
+        const response = await axios.post('/car-service/getAllRentalRequestsForUser', data01);
         if(response) {
             console.log(response.data);
-            if(response.data !== "") {
-                for(let i=0; i<response.data.length; i++) {
-                    allRentalRequestsLogedUser = allRentalRequestsLogedUser.concat(response.data[i].rentalRequestsList);
-                }
-            }
-            this.setState({carsLogedUser: response.data, rentalRequests: allRentalRequestsLogedUser});
+            this.setState({rentalRequests: response.data});
         }       
     }
 
@@ -56,17 +50,31 @@ class RentalRequest extends React.Component {
     }
 
     acceptHandler = async() => {
-        console.log(this.state.curretnRentalRequest);
-
+        let forUserId = this.state.curretnRentalRequest.forUserId;
+        let startData = this.state.curretnRentalRequest.startDate;
+        let endData = this.state.curretnRentalRequest.endDate;
+        let userId = this.state.curretnRentalRequest.userId;
         let rentalRequestId = this.state.curretnRentalRequest.id;
 
-        const data = {rentalRequestId};
-
-        const response = await axios.post('/car-service/acceptRentalRequest', data);
+        let haveReserved = false;
+        const data = {forUserId, startData, endData, userId, rentalRequestId}
+        const response = await axios.post('/car-service/ifHaveReservedRentalRequest', data);
         if(response) {
             console.log(response.data);
+            haveReserved = response.data;
         }
-        window.location.reload();
+
+        const data1 = {rentalRequestId};
+        if(haveReserved) {
+            alert('This car is reserved');
+        }
+        else {
+            const response1 = await axios.post('/car-service/acceptRentalRequest', data1);
+            if(response1) {
+                console.log(response1.data);
+            }
+            window.location.reload();
+        }
     }
 
     declineHandler = async() => {
