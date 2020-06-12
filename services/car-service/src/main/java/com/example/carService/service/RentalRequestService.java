@@ -92,6 +92,7 @@ public class RentalRequestService {
     }
 
     public void declineRentalRequestWhenPaid(RentalRequestDTO rentalRequestDTO) {
+        //Pronadjemo sve oglase ka tom autu koji su u stanju PENDING i odbijemo ih, tj prebacimo ih u stanje CANCELED
         List<CarRentalRequest> crr = this.rentalRequestRepository.findRentalRequestWhenPaid(
                 rentalRequestDTO.getStartData(), rentalRequestDTO.getEndData(), "PENDING",
                 rentalRequestDTO.getUserId(), rentalRequestDTO.getCarId());
@@ -115,12 +116,20 @@ public class RentalRequestService {
         return false;
     }
 
-    public List<CarRentalRequest> rentalRequestsLoggedUser(String userId) {
-        return this.rentalRequestRepository.findAllByUserId(userId);
+    public List<CarRentalRequest> rentalRequestsLoggedUserIdAndRole(String userId, RentalRequestRole role) {
+        return this.rentalRequestRepository.findAllByUserIdAndRole(userId, role);
     }
 
-    public List<CarRentalRequest> rentalRequestsForUser(String forUserId) {
-        return this.rentalRequestRepository.findAllByForUserIdAndRole(forUserId, RentalRequestRole.valueOf("PENDING"));
+    public List<CarRentalRequest> rentalRequestsForUserIdAndRole(String forUserId, RentalRequestRole role) {
+        return this.rentalRequestRepository.findAllByForUserIdAndRole(forUserId, role);
+    }
+
+    public CarRentalRequest setRolePaidRentalRequest(Long id) {
+        CarRentalRequest crr = this.rentalRequestRepository.findOneById(id);
+        crr.setRole(RentalRequestRole.valueOf("PAID"));
+
+        this.rentalRequestRepository.save(crr);
+        return crr;
     }
 
 }
