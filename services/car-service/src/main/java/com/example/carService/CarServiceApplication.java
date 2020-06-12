@@ -4,10 +4,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.scheduling.annotation.Scheduled;
+
 
 @SpringBootApplication
+@EnableScheduling
 public class CarServiceApplication {
 
 	@Bean
@@ -20,6 +24,7 @@ public class CarServiceApplication {
 	public WebClient.Builder getWebClientBuilder() {
 		return WebClient.builder();
 	}
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(CarServiceApplication.class, args);

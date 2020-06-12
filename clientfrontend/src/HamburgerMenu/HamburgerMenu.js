@@ -24,7 +24,9 @@ class HamburgerMenu extends React.PureComponent {
                                 {sessionStorage.getItem('role') === 'USER' ? <li><a href="/addAdvertisement">Add advertisement</a></li> : null}
                                 {sessionStorage.getItem('role') === 'ADMIN' ? <li><a href="/codebook">Codebook</a></li> : null}
                                 {sessionStorage.getItem('role') === 'ADMIN' ? <li><a href="/setStateUser">Active/block users</a></li> : null}
-                                {sessionStorage.getItem('role') === 'USER' ? <li><a href="/rentalRequest">Rental request</a></li> : null}
+                                {sessionStorage.getItem('role') === 'USER' ? <li><a href="/rentalRequest">Rental requests for me</a></li> : null}
+                                {sessionStorage.getItem('role') === 'USER' ? <li><a href="/rentalRequestsFromMe">Rental requests from me</a></li> : null}
+                                {sessionStorage.getItem('role') === 'USER' ? <li><a href="/listCars">List your cars</a></li> : null}
                             </ul>
                         </div>
                     </div>
