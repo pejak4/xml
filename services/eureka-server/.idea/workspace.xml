@@ -2,32 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25e00632-9d8a-4e29-8666-fdd70602ea84" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/model/Occupancy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/HamburgerMenu/HamburgerMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/HamburgerMenu/HamburgerMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/RentalRequest/RentalRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/RentalRequest/RentalRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/SearchPage/SearchPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/SearchPage/SearchPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/SearchPage/SearchPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/SearchPage/SearchPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/CarServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/CarServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/controller/CarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/controller/CarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/dto/RentalRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/dto/RentalRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/model/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/model/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/model/CarRentalRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/model/CarRentalRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/repository/CarRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/repository/CarRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/repository/RentalRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/repository/RentalRequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/service/RentalRequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/service/RentalRequestService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../car-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/resources/data-postgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/resources/data-postgres.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codebook-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../codebook-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/eureka-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/model/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/model/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/resources/data-postgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/resources/data-postgres.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../message-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../message-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/MessageServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/MessageServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/controller/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../message-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../message-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zuul-api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../zuul-api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zuul-api-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../zuul-api-gateway/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +23,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="ProjectId" id="1ciS8aGxUrqrhGNmneP1FqcDf8S" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -50,6 +44,18 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../zuul-api-gateway" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Application.EurekaServerApplication">
     <configuration name="EurekaServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -78,18 +84,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -107,9 +101,22 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
     <state x="185" y="194" key="FileChooserDialogImpl" timestamp="1591726997088">
       <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    &gt;
     <state x="208" y="220" key="FileChooserDialogImpl" timestamp="1591725737262">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -118,6 +125,8 @@
     <state x="208" y="220" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1591441617826" />
     <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1591727456242">
       <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    &gt;
     <state x="208" y="220" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1591725737262" />
     <state width="1493" height="386" key="GridCell.Tab.0.bottom" timestamp="1591739100702">
       <screen x="0" y="0" width="1536" height="824" />
@@ -127,6 +136,8 @@
     <state width="1493" height="387" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591444049174" />
     <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1591727456241">
       <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    &gt;
     <state width="1493" height="386" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591739100702" />
     <state width="1493" height="386" key="GridCell.Tab.0.center" timestamp="1591739100702">
       <screen x="0" y="0" width="1536" height="824" />
@@ -136,6 +147,8 @@
     <state width="1493" height="387" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591444049174" />
     <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1591727456241">
       <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    &gt;
     <state width="1493" height="386" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591739100702" />
     <state width="1493" height="386" key="GridCell.Tab.0.left" timestamp="1591739100702">
       <screen x="0" y="0" width="1536" height="824" />
@@ -145,6 +158,8 @@
     <state width="1493" height="387" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591444049174" />
     <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1591727456241">
       <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    &gt;
     <state width="1493" height="386" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591739100702" />
     <state width="1493" height="386" key="GridCell.Tab.0.right" timestamp="1591739100702">
       <screen x="0" y="0" width="1536" height="824" />

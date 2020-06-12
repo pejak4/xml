@@ -1,0 +1,3 @@
+insert into message (sender_id, receiver_id, message, message_date) values (2,3,'Pokupili smo auto, sve je ok. Pozdrav', '2020-08-02 10:43:12')
+insert into message (sender_id, receiver_id, message, message_date) values (1,3,'Pokupili smo auto, sve je ok. Pozdrav', '2020-09-02 10:43:12')
+insert into message (sender_id, receiver_id, message, message_date) values (1,3,'Pokupili smo auto, sve je ok. Pozdrav', '2020-10-02 10:43:12')
