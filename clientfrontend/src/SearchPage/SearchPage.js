@@ -12,8 +12,7 @@ import Slider from '@material-ui/core/Slider';
 import axios from '../axios-objects';
 import {Link} from 'react-router-dom';
 import Popup from "reactjs-popup";
-import ReactStars from 'react-rating-stars-component'
-
+import ReactStars from 'react-rating-stars-component';
 
 class SearchPage extends React.PureComponent {
     
@@ -233,7 +232,7 @@ class SearchPage extends React.PureComponent {
         const data2 = {startDate, endDate, carId};
         const response2 = await axios.post('/car-service/checkOccupancy', data2);
         if(response2) {
-            if(response2.data.length != 0)
+            if(response2.data.length !== 0)
                 rentalRequestExists = true;       
         }
 
@@ -291,7 +290,7 @@ class SearchPage extends React.PureComponent {
             <div>
                 {this.state.listCarForCart.length > 0 ? 
                 <div className="positionCart">
-                    <h2 className="h4Cart">Cart</h2>
+                    <h2 className="h4Cart">Shopping Cart</h2>
                     <hr/>
                     <br/>
                     <p className="h4Cart"><b>Start date:</b> {this.state.startDateString}</p>
@@ -538,10 +537,10 @@ class SearchPage extends React.PureComponent {
                                                     <Link to={{pathname:"/singleCarPage/"+car.id}} target="_blank" > More details </Link>
                                                 </div>
                                                 <div>
-                                                    <a href="/" className="btn" style={{width:'250px', textAlign:'center'}}
+                                                    <button className="btn" style={{width:'250px', textAlign:'center', marginRight: '20px'}}
                                                     onClick={(event) => {this.addToCartHandler(event, car)}}>
                                                         Add to cart
-                                                    </a>
+                                                    </button>
                                                     {/* <a href="/" className="btn" style={{width:'150px', textAlign:'center'}} */}
                                                     {this.state.valid.rentalRequestExists ? <Popup trigger={<button className="btn" style={{width:'150px', textAlign:'center'}}
                                                     onClick={(event) => {this.rentCarHandler(event, car)}}>

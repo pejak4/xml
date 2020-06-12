@@ -14,15 +14,12 @@ class RentalRequest extends React.PureComponent {
             rentalRequestsPaid: [],
             rentalRequestsCanceled: [],
             rentalRequestsPending: [],
-
-
             renderDetail: false,
             currentRentalRequest: [],
             carsLogedUser: [],
             user: null,
-
             renderType: '1',
-            blockButton: false,
+            blockButton: false
         }
     }
 
