@@ -12,6 +12,8 @@ import Slider from '@material-ui/core/Slider';
 import axios from '../axios-objects';
 import {Link} from 'react-router-dom';
 import Popup from "reactjs-popup";
+import ReactStars from 'react-rating-stars-component'
+
 
 class SearchPage extends React.PureComponent {
     
@@ -280,6 +282,10 @@ class SearchPage extends React.PureComponent {
         console.log(this.state.listCarForCart);
     }
 
+    ratingChangedHandler = (rating) => {
+        console.log(rating)
+    }
+
     render() {
         return (
             <div>
@@ -519,6 +525,12 @@ class SearchPage extends React.PureComponent {
                                                     <img alt="Doors" src={require('../img/doorsIcon.png')} title="Number Of Doors"/>
                                                     <p className="icon-text">{car.doors}</p>
                                                 </div>
+                                                <ReactStars
+                                                    value={3}
+                                                    count={5}
+                                                    onChange={ (event) => {this.ratingChangedHandler(event)}}
+                                                    size={35}
+                                                    color2={'#ffd700'} />
                                             </div>
 
                                             <div className="details-rent">
@@ -530,7 +542,7 @@ class SearchPage extends React.PureComponent {
                                                     onClick={(event) => {this.addToCartHandler(event, car)}}>
                                                         Add to cart
                                                     </a>
-                                                    <a href="/" className="btn" style={{width:'150px', textAlign:'center'}}
+                                                    {/* <a href="/" className="btn" style={{width:'150px', textAlign:'center'}} */}
                                                     {this.state.valid.rentalRequestExists ? <Popup trigger={<button className="btn" style={{width:'150px', textAlign:'center'}}
                                                     onClick={(event) => {this.rentCarHandler(event, car)}}>
                                                         Rent
