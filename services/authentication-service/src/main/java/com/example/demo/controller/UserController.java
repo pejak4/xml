@@ -66,6 +66,12 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getUserById")
+    public ResponseEntity<?> getUserById(@RequestParam Long id) {
+        return new ResponseEntity<>(this.userService.findOneById(id), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping(path = "/incrementAddNumber")
     public ResponseEntity<?> incrementAddNumber(@RequestBody UserEmailDTO email) {
         this.userService.incrementAddNumber(email.getUserEmail());

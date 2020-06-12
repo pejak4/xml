@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import axios from '../axios-objects';
 import {Link} from 'react-router-dom';
+import Popup from "reactjs-popup";
 
 class SearchPage extends React.PureComponent {
     
@@ -47,6 +48,9 @@ class SearchPage extends React.PureComponent {
             endDateString: '',
 
             listCarForCart: [],
+            valid: {
+                rentalRequestExists: false
+            }
         }
     }
 
@@ -205,7 +209,16 @@ class SearchPage extends React.PureComponent {
         if(response1) {
             if(response1.data !== "") {
                 rentalRequestExists = true;
-            }        
+                let valid = updateObject(this.state.valid, {
+                    rentalRequestExists: true
+                });
+                this.setState({valid});
+            } else {
+                let valid = updateObject(this.state.valid, {
+                    rentalRequestExists: false
+                });
+                this.setState({valid});
+            }
         }
 
 
@@ -518,9 +531,15 @@ class SearchPage extends React.PureComponent {
                                                         Add to cart
                                                     </a>
                                                     <a href="/" className="btn" style={{width:'150px', textAlign:'center'}}
+                                                    {this.state.valid.rentalRequestExists ? <Popup trigger={<button className="btn" style={{width:'150px', textAlign:'center'}}
                                                     onClick={(event) => {this.rentCarHandler(event, car)}}>
                                                         Rent
-                                                    </a>
+                                                    </button>} position="right center">
+                                                    <div style={{background:'red', marginLeft:'0px', color:'#fff'}}>You can't request twice for same car!</div>
+                                                    </Popup> : <button className="btn" style={{width:'150px', textAlign:'center'}}
+                                                    onClick={(event) => {this.rentCarHandler(event, car)}}>
+                                                        Rent
+                                                    </button>}  
                                                 </div>
                                             </div>
                                         </div>

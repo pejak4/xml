@@ -543,7 +543,6 @@ class Advertisement extends React.PureComponent {
                             : (this.state.renderNumber === 3 ? <Popup trigger={<button className="button" onClick = {(event) => this.addHandler(event)}>Finish</button>} position="top center">
                                 <div style={{background:'red', marginLeft:'0px'}}>You can't add more then 3 advertisement!</div>
                             </Popup> : null)}
-                        {/* {this.state.renderNumber === 3 ? <button className="button" onClick = {(event) => this.addHandler(event)}>Finish</button> : null} */}
                     </div>
                 </header>
             </div>

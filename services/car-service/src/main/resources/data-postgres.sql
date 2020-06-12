@@ -28,6 +28,5 @@ insert into car (user_id, doors, description, image, brand, model, fuel_type, tr
  insert into car_rental_request (role, create_date, start_date, end_date, rental_request_car_id, user_id, for_user_id) values ('RESERVED', '2020-06-11 10:43:12', '2020-02-02 10:43:12', '2020-03-02', 2, 3, 1);
  insert into car_rental_request (role, create_date, start_date, end_date, rental_request_car_id, user_id, for_user_id) values ('RESERVED', '2020-06-11 10:43:12', '2020-02-02 10:43:12', '2020-03-02', 5, 3, 2);
 
-
 alter sequence car_id_seq restart with 12;
 alter sequence car_rental_date_id_seq restart with 3;

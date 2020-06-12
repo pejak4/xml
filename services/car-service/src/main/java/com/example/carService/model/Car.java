@@ -45,7 +45,6 @@ public class Car {
     @OneToMany(mappedBy = "car", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<CarRentalDate> dateList;
 
-    //@JsonIgnore
     @OneToMany(mappedBy = "rentalRequestCar", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonBackReference
     private Set<CarRentalRequest> rentalRequestsList;
