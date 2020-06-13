@@ -12,6 +12,8 @@ import Slider from '@material-ui/core/Slider';
 import axios from '../axios-objects';
 import {Link} from 'react-router-dom';
 import Popup from "reactjs-popup";
+import ReactStars from 'react-rating-stars-component'
+import SingleCarPage from '../SingleCarPage/SingleCarpage';
 
 class SearchPage extends React.PureComponent {
     
@@ -50,7 +52,10 @@ class SearchPage extends React.PureComponent {
             listCarForCart: [],
             valid: {
                 rentalRequestExists: false
-            }
+            },
+
+            renderNum: 'jedan',
+            currentCar: null,
         }
     }
 
@@ -280,7 +285,42 @@ class SearchPage extends React.PureComponent {
         console.log(this.state.listCarForCart);
     }
 
+<<<<<<< Updated upstream
+=======
+    ratingChangedHandler = async(rating, car) => {
+        let carId = car.id;
+
+        let fromUserId;
+        let userEmail = sessionStorage.getItem('userEmail');
+        const data00 = {userEmail};
+        const response00 = await axios.post('/authentication-service/getLoggedUser', data00);
+        if(response00) {
+            fromUserId = response00.data.id;
+        }
+
+        let data01 = {fromUserId, carId}
+        const response01 = await axios.post('/car-service/checkRentalRating', data01);
+       
+        console.log(response01.data);
+        if(response01.data === false) {
+            alert('Can not rating this car.');
+        } else {
+            let data02 = {fromUserId, carId, rating};
+            const response02 = await axios.post('/car-service/addRatingCarRequest', data02);
+
+            if(response02) {
+                console.log(response02);
+            }
+        }
+    }
+
+    setNumOfRender = (num) => {
+        this.setState({renderNum: num})
+    }
+
+>>>>>>> Stashed changes
     render() {
+        if(this.state.renderNum==='jedan') {
         return (
             <div>
                 {this.state.listCarForCart.length > 0 ? 
@@ -519,18 +559,27 @@ class SearchPage extends React.PureComponent {
                                                     <img alt="Doors" src={require('../img/doorsIcon.png')} title="Number Of Doors"/>
                                                     <p className="icon-text">{car.doors}</p>
                                                 </div>
+<<<<<<< Updated upstream
+=======
+                                                <ReactStars
+                                                    value={car.rating}
+                                                    count={5}
+                                                    onChange={ (event) => {this.ratingChangedHandler(event, car)}}
+                                                    size={35}
+                                                    color2={'#ffd700'} />
+>>>>>>> Stashed changes
                                             </div>
 
                                             <div className="details-rent">
                                                 <div>
-                                                    <Link to={{pathname:"/singleCarPage/"+car.id}} target="_blank" > More details </Link>
+                                                    <button onClick={(event) => {this.setState({renderNum: 'dva', currentCar: car})}}> More details </button>
                                                 </div>
                                                 <div>
                                                     <a href="/" className="btn" style={{width:'250px', textAlign:'center'}}
                                                     onClick={(event) => {this.addToCartHandler(event, car)}}>
                                                         Add to cart
                                                     </a>
-                                                    <a href="/" className="btn" style={{width:'150px', textAlign:'center'}}
+                                                    <a href="/" className="btn" style={{width:'150px', textAlign:'center'}} />
                                                     {this.state.valid.rentalRequestExists ? <Popup trigger={<button className="btn" style={{width:'150px', textAlign:'center'}}
                                                     onClick={(event) => {this.rentCarHandler(event, car)}}>
                                                         Rent
@@ -551,6 +600,12 @@ class SearchPage extends React.PureComponent {
                 </header>
             </div>
         );
+        }
+        else if(this.state.renderNum==='dva') {
+            return(
+                <SingleCarPage carId={this.state.currentCar.id} endDate={this.state.car.endDate} setNumOfRender={this.setNumOfRender}></SingleCarPage>
+            );
+        }
     }
 }
 

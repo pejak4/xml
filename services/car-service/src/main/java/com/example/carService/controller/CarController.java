@@ -27,6 +27,18 @@ public class CarController {
     @Autowired
     private OccupancyService occupancyService;
 
+<<<<<<< Updated upstream
+=======
+    @Autowired
+    private RatingRequestService ratingRequestService;
+
+    @Autowired
+    private CommentRequestService commentRequestService;
+
+    @Autowired
+    private CommentService commentService;
+
+>>>>>>> Stashed changes
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, path = "/searchCars")
     public ResponseEntity<?> searchCars(@RequestBody CarSearchDTO csd) {
@@ -85,7 +97,6 @@ public class CarController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/declineRentalRequest")
     public ResponseEntity<?> declineRentalRequest(@RequestBody RentalRequestAcceptDeclineDTO r) {
-
         this.rentalRequestService.declineRentalRequest(Long.parseLong(r.getRentalRequestId()));
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -136,4 +147,71 @@ public class CarController {
         return new ResponseEntity<>(this.rentalRequestService.rentalRequestsForUser(rentalRequest.getUserId()), HttpStatus.OK);
     }
 
+<<<<<<< Updated upstream
+=======
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/checkRentalRating")
+    public ResponseEntity<?> checkRentalRating(@RequestBody RentalCheckDTO rentalCheckDTO) {
+        return new ResponseEntity<>(this.rentalService.checkRentalRating(rentalCheckDTO), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/addRatingCarRequest")
+    public ResponseEntity<?> addRatingCarRequest(@RequestBody RatingCarRequestDTO ratingCarRequestDTO) {
+        return new ResponseEntity<>(this.ratingRequestService.addRatingCarRequest(ratingCarRequestDTO) ,HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getAllRatingRequest")
+    public ResponseEntity<?> getAllRatingRequest() {
+        return new ResponseEntity<>(this.ratingRequestService.findAll(), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/acceptRatingRequest")
+    public ResponseEntity<?> acceptRatingRequest(@RequestBody RatingRequestAcceptDeclineDTO ratingRequestAcceptDeclineDTO) {
+        this.ratingRequestService.acceptRatingRequest(ratingRequestAcceptDeclineDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/declineRatingRequest")
+    public ResponseEntity<?> declineRatingRequest(@RequestBody RatingRequestAcceptDeclineDTO ratingRequestAcceptDeclineDTO) {
+        this.ratingRequestService.declineRatingRequest(ratingRequestAcceptDeclineDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/addCommentCarRequest")
+    public ResponseEntity<?> addCommentCarRequest(@RequestBody CommentCarRequestDTO commentCarRequestDTO) {
+        return new ResponseEntity<>(this.commentRequestService.addCommentCarRequest(commentCarRequestDTO) ,HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getAllCommentRequest")
+    public ResponseEntity<?> getAllCommentRequest() {
+        return new ResponseEntity<>(this.commentRequestService.findAll(), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/acceptCommentRequest")
+    public ResponseEntity<?> acceptCommentRequest(@RequestBody CommentRequestAcceptDeclineDTO commentRequestAcceptDeclineDTO) {
+        this.commentRequestService.acceptCommentRequest(commentRequestAcceptDeclineDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/declineCommentRequest")
+    public ResponseEntity<?> declineCommentRequest(@RequestBody CommentRequestAcceptDeclineDTO commentRequestAcceptDeclineDTO) {
+        this.commentRequestService.declineCommentRequest(commentRequestAcceptDeclineDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getAllCommentByCarId")
+    public ResponseEntity<?> getAllCommentByCarId(@RequestBody CommentCarIdDTO commentCarIdDTO) {
+        return new ResponseEntity<>(this.commentService.findAllByCarId(commentCarIdDTO.getCarId()), HttpStatus.OK);
+    }
+
+>>>>>>> Stashed changes
 }
