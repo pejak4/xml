@@ -280,6 +280,37 @@ class SearchPage extends React.PureComponent {
         console.log(this.state.listCarForCart);
     }
 
+<<<<<<< Updated upstream
+=======
+    ratingChangedHandler = async(rating, car) => {
+        let endDate = this.state.car.endDate;
+        let carId = car.id;
+
+        let fromUserId;
+        let userEmail = sessionStorage.getItem('userEmail');
+        const data00 = {userEmail};
+        const response00 = await axios.post('/authentication-service/getLoggedUser', data00);
+        if(response00) {
+            fromUserId = response00.data.id;
+        }
+
+        let data01 = {fromUserId, carId}
+        const response01 = await axios.post('/car-service/checkRentalRating', data01);
+       
+        console.log(response01.data);
+        if(response01.data === false) {
+            alert('Can not rating this car.');
+        } else {
+            let data02 = {fromUserId, carId, rating};
+            const response02 = await axios.post('/car-service/addRatingCarRequest', data02);
+
+            if(response02) {
+                console.log(response02);
+            }
+        }
+    }
+
+>>>>>>> Stashed changes
     render() {
         return (
             <div>
@@ -519,6 +550,15 @@ class SearchPage extends React.PureComponent {
                                                     <img alt="Doors" src={require('../img/doorsIcon.png')} title="Number Of Doors"/>
                                                     <p className="icon-text">{car.doors}</p>
                                                 </div>
+<<<<<<< Updated upstream
+=======
+                                                <ReactStars
+                                                    value={car.rating}
+                                                    count={5}
+                                                    onChange={ (event) => {this.ratingChangedHandler(event, car)}}
+                                                    size={35}
+                                                    color2={'#ffd700'} />
+>>>>>>> Stashed changes
                                             </div>
 
                                             <div className="details-rent">

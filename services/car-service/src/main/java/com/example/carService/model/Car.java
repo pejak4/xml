@@ -42,6 +42,9 @@ public class Car {
 
     private String userId;
 
+    private double rating;
+    private int numOfRating;
+
     @OneToMany(mappedBy = "car", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<CarRentalDate> dateList;
 

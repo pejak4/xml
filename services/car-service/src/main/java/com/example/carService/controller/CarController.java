@@ -27,6 +27,9 @@ public class CarController {
     @Autowired
     private OccupancyService occupancyService;
 
+    @Autowired
+    private RatingRequestService ratingRequestService;
+
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, path = "/searchCars")
     public ResponseEntity<?> searchCars(@RequestBody CarSearchDTO csd) {
@@ -136,4 +139,35 @@ public class CarController {
         return new ResponseEntity<>(this.rentalRequestService.rentalRequestsForUser(rentalRequest.getUserId()), HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/checkRentalRating")
+    public ResponseEntity<?> checkRentalRating(@RequestBody RentalCheckDTO rentalCheckDTO) {
+        return new ResponseEntity<>(this.rentalService.checkRentalRating(rentalCheckDTO), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/addRatingCarRequest")
+    public ResponseEntity<?> addRatingCarRequest(@RequestBody RatingCarRequestDTO ratingCarRequestDTO) {
+        return new ResponseEntity<>(this.ratingRequestService.addRatingCarRequest(ratingCarRequestDTO) ,HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getAllRatingRequest")
+    public ResponseEntity<?> getAllRatingRequest() {
+        return new ResponseEntity<>(this.ratingRequestService.findAll(), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/acceptRatingRequest")
+    public ResponseEntity<?> acceptRatingRequest(@RequestBody RatingRequestAcceptDeclineDTO ratingRequestAcceptDeclineDTO) {
+        this.ratingRequestService.acceptRatingRequest(ratingRequestAcceptDeclineDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/declineRatingRequest")
+    public ResponseEntity<?> declineRatingRequest(@RequestBody RatingRequestAcceptDeclineDTO ratingRequestAcceptDeclineDTO) {
+        this.ratingRequestService.declineRatingRequest(ratingRequestAcceptDeclineDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
