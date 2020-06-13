@@ -28,5 +28,17 @@ insert into car (user_id, doors, description, image, brand, model, fuel_type, tr
  insert into car_rental_request (role, create_date, start_date, end_date, rental_request_car_id, user_id, for_user_id) values ('RESERVED', '2020-06-11 10:43:12', '2020-02-02 10:43:12', '2020-03-02', 2, 3, 1);
  insert into car_rental_request (role, create_date, start_date, end_date, rental_request_car_id, user_id, for_user_id) values ('RESERVED', '2020-06-11 10:43:12', '2020-02-02 10:43:12', '2020-03-02', 5, 3, 2);
 
+<<<<<<< Updated upstream
+=======
+insert into rating_car_request (from_user_id, car_id, rating) values (3, 9, 5);
+
+insert into comment_car_request (from_user_id, car_id, description_comment) values (3, 9, 'Dobar auto');
+insert into comment_car_request (from_user_id, car_id, description_comment) values (3, 9, 'Nije lose');
+
+insert into comment (from_user_id, car_id, description_comment) values (3, 1, 'Mnogo je brz');
+insert into comment (from_user_id, car_id, description_comment) values (3, 1, 'Super!');
+
+
+>>>>>>> Stashed changes
 alter sequence car_id_seq restart with 12;
 alter sequence car_rental_date_id_seq restart with 3;
