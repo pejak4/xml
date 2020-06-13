@@ -6,16 +6,20 @@ import img from '../img/user.jpg';
 import blockImg from '../img/blockUser.png';
 import axios from '../axios-objects';
 
-class StateUser extends React.Component {
+class StateUser extends React.PureComponent {
 
-    state = {
-        renderNumber: '',
+    constructor(props) {
+        super(props);
 
-        activeUsers: [],
-        blockUsers: [],
+        this.state = {
+            renderNumber: '',
+            activeUsers: [],
+            blockUsers: []
+        }
     }
 
     componentDidMount = async() => {
+
         let enabled = true;
         const data1 = {enabled};
         const response1= await axios.post('/authentication-service/getAllUsersByEnabled', data1);
@@ -58,8 +62,12 @@ class StateUser extends React.Component {
                         <h4><b>Active user: ID {user.id}</b></h4>
                             <p>{user.firstName} {user.lastName}</p> 
                         </div>
-                        <button className="but" onClick={(event) => {this.clickSetStateUser(user.id)}}>Block this user</button>
-                        <button className="but" onClick={(event) => {this.clickDelete(user.id)}}>Delete this user</button>
+                        {user.email === sessionStorage.getItem('userEmail') ? <button className="but" disabled={true} style={{cursor:'not-allowed'}}
+                            onClick={(event) => {this.clickSetStateUser(user.id)}}>Block this user</button>
+                        : <button className="but" onClick={(event) => {this.clickSetStateUser(user.id)}}>Block this user</button> } 
+                        {user.email === sessionStorage.getItem('userEmail') ? <button className="but" disabled={true} style={{cursor:'not-allowed'}}
+                            onClick={(event) => {this.clickDelete(user.id)}}>Delete this user</button>
+                        : <button className="but" onClick={(event) => {this.clickDelete(user.id)}}>Delete this user</button> }
                     </div> 
                 );
             });
@@ -76,8 +84,12 @@ class StateUser extends React.Component {
                             <h4><b>Blocked user: ID {user.id}</b></h4>
                             <p>{user.firstName} {user.lastName}</p>
                         </div>
-                        <button className="but" onClick={(event) => {this.clickSetStateUser(user.id)}}>Activate this user</button>
-                        <button className="but" onClick={(event) => {this.clickDelete(user.id)}}>Delete this user</button>
+                        {user.email === sessionStorage.getItem('userEmail') ? <button className="but" disabled={true} style={{cursor:'not-allowed'}}
+                            onClick={(event) => {this.clickSetStateUser(user.id)}}>Block this user</button>
+                        : <button className="but" onClick={(event) => {this.clickSetStateUser(user.id)}}>Block this user</button> } 
+                        {user.email === sessionStorage.getItem('userEmail') ? <button className="but" disabled={true} style={{cursor:'not-allowed'}}
+                            onClick={(event) => {this.clickDelete(user.id)}}>Delete this user</button>
+                        : <button className="but" onClick={(event) => {this.clickDelete(user.id)}}>Delete this user</button> }
                     </div>
                 );
             });
