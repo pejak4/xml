@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25e00632-9d8a-4e29-8666-fdd70602ea84" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/HamburgerMenu/HamburgerMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/HamburgerMenu/HamburgerMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../car-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../car-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/repository/MessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/repository/MessageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/service/MessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zuul-api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../zuul-api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zuul-api-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../zuul-api-gateway/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +29,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1ciS8aGxUrqrhGNmneP1FqcDf8S" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -38,7 +42,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../message-service" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../zuul-api-gateway" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">

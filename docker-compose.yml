@@ -1,0 +1,60 @@
+version: "3.7"
+services:
+  database:
+    image: postgres:latest
+    restart: always
+    networks:
+      - demo
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: aco
+  eureka:
+    image: eureka:1.0
+    ports:
+      - "8761:8761"
+    networks:
+      - demo
+    tty: true
+  auth:
+    image: auth:1.0
+    ports:
+      - "8085:8085"
+    networks:
+      - demo
+    tty: true
+    environment:
+      DB_HOST: database
+    depends_on:
+        - eureka
+        - database
+  car:
+    image: car:1.0
+    ports:
+      - "8081:8081"
+    networks:
+      - demo
+    tty: true
+    environment:
+      DB_HOST: database
+    depends_on:
+        - eureka
+        - database      
+  zuul:
+    image: zuul:1.0
+    ports:
+      - "8762:8762"
+    networks:
+      - demo
+    environment:
+      - REGISTRY_HOST=eureka
+    tty: true
+    depends_on:
+        - eureka
+        - auth
+        - car
+networks:
+  demo:
+    name: demo
+    driver: bridge
