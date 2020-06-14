@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 
@@ -21,10 +22,13 @@ public class MessageController {
     @Autowired
     private JmsTemplate jmsTemplate;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/porukeza")
-    public ResponseEntity<?> vratiPoruke(@RequestBody String str){
-        return new ResponseEntity<>(this.messageService.findByReceiverId(Long.parseLong(str)), HttpStatus.OK);
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/porukeza")
+    public ResponseEntity<?> vratiPoruke(@RequestParam String id){
+        return new ResponseEntity<>(this.messageService.findByReceiverId(Long.parseLong(id)), HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
