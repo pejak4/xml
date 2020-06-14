@@ -11,11 +11,8 @@ import RentalRequest from './RentalRequest/RentalRequest';
 import SingleCarPage from './SingleCarPage/SingleCarpage';
 import OccupancyCar from './OccupancyCar/OccupancyCar';
 import RentalRequestsFromMe from './RentalRequest/RentalRequestsFromMe/RentalRequestsFromMe';
-<<<<<<< Updated upstream
-=======
 import RatingRequest from './RatingRequest/RatingRequest';
 import CommentRequest from './CommentRequest/CommentRequest';
->>>>>>> Stashed changes
 
 class App extends React.PureComponent {
   render() {
@@ -34,11 +31,8 @@ class App extends React.PureComponent {
             <Route path="/singleCarPage/:carId" component={SingleCarPage} />
             <Route path="/listCars" component={OccupancyCar} />
             <Route path="/rentalRequestsFromMe" component={RentalRequestsFromMe} />
-<<<<<<< Updated upstream
-=======
             <Route path="/ratingRequest" component={RatingRequest} />
             <Route path="/commentRequest" component={CommentRequest} />
->>>>>>> Stashed changes
           </Switch>
         </BrowserRouter>
       </div>

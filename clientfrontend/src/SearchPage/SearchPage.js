@@ -285,6 +285,7 @@ class SearchPage extends React.PureComponent {
         console.log(this.state.listCarForCart);
     }
 
+
     ratingChangedHandler = async(rating, car) => {
         let carId = car.id;
 
@@ -311,6 +312,7 @@ class SearchPage extends React.PureComponent {
             }
         }
     }
+
 
     setNumOfRender = (num) => {
         this.setState({renderNum: num})

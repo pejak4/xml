@@ -28,8 +28,6 @@ public class CarController {
     @Autowired
     private OccupancyService occupancyService;
 
-<<<<<<< Updated upstream
-=======
     @Autowired
     private RatingRequestService ratingRequestService;
 
@@ -39,7 +37,6 @@ public class CarController {
     @Autowired
     private CommentService commentService;
 
->>>>>>> Stashed changes
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, path = "/searchCars")
     public ResponseEntity<?> searchCars(@RequestBody CarSearchDTO csd) {
@@ -190,8 +187,6 @@ public class CarController {
         return new ResponseEntity<>(this.rentalRequestService.rentalRequestsForUserIdAndRole(rentalRequest.getUserId(), RentalRequestRole.valueOf("CANCELED")), HttpStatus.OK);
     }
 
-<<<<<<< Updated upstream
-=======
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/checkRentalRating")
     public ResponseEntity<?> checkRentalRating(@RequestBody RentalCheckDTO rentalCheckDTO) {
@@ -256,5 +251,4 @@ public class CarController {
         return new ResponseEntity<>(this.commentService.findAllByCarId(commentCarIdDTO.getCarId()), HttpStatus.OK);
     }
 
->>>>>>> Stashed changes
 }

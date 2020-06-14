@@ -1,10 +1,8 @@
 package com.example.carService.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-
 import javax.persistence.*;
-import java.sql.Timestamp;
+
 
 @Getter
 @Setter
@@ -12,18 +10,13 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class CarRentalDate {
-
+public class RatingCarRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Timestamp startDate;
-    private Timestamp endDate;
-
     private Long fromUserId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
-    private Car car;
+    private Long carId;
+    private double rating;
+
 }
