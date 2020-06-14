@@ -2,6 +2,7 @@ package com.example.carService.controller;
 
 import com.example.carService.dto.*;
 import com.example.carService.model.CarRentalRequest;
+import com.example.carService.model.RentalRequestRole;
 import com.example.carService.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,12 @@ public class CarController {
 
     @Autowired
     private RatingRequestService ratingRequestService;
+
+    @Autowired
+    private CommentRequestService commentRequestService;
+
+    @Autowired
+    private CommentService commentService;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, path = "/searchCars")
@@ -88,7 +95,6 @@ public class CarController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/declineRentalRequest")
     public ResponseEntity<?> declineRentalRequest(@RequestBody RentalRequestAcceptDeclineDTO r) {
-
         this.rentalRequestService.declineRentalRequest(Long.parseLong(r.getRentalRequestId()));
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -106,6 +112,12 @@ public class CarController {
         return new ResponseEntity<>(this.occupancyService.findOccupancyAndRequest(o.getStartDate(), o.getStartDate(), o.getCarId()), HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")//Kada se plati, taj placeni oglas prelazi u stanje PAID
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/paidRentalRequest")
+    public ResponseEntity<?> paidRentalRequest(@RequestBody RentalRequestAcceptDeclineDTO rentalRequest) {
+        return new ResponseEntity<>(this.rentalRequestService.setRolePaidRentalRequest(Long.parseLong(rentalRequest.getRentalRequestId())) ,HttpStatus.OK);
+    }
+
     @CrossOrigin(origins = "http://localhost:3000")//Kada se plati, svi zahtevi za isti auto u isto vreme ce biti odbijeni
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/declineRentalRequestWhenPaid")
     public ResponseEntity<?> declineRentalRequestWhenPaid(@RequestBody RentalRequestDTO rentalRequest) {
@@ -113,7 +125,7 @@ public class CarController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000") //Kada se plati, napravicemo novi redu CarRentalDaty
+    @CrossOrigin(origins = "http://localhost:3000") //Kada se plati, napravicemo novi oglas u tabeli CarRentalDate
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/addRental")
     public ResponseEntity<?> addRental(@RequestBody RentalRequestAcceptDeclineDTO r) {
         CarRentalRequest crr = this.rentalRequestService.findOneById(Long.parseLong(r.getRentalRequestId()));
@@ -128,15 +140,51 @@ public class CarController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")//Kada se plati, svi zahtevi za isti auto u isto vreme ce biti odbijeni
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getAllRentalRequestsLoggedUser")
-    public ResponseEntity<?> getAllRentalRequestsLoggedUser(@RequestBody RentalRequestsLoggedUserDTO rentalRequest) {
-        return new ResponseEntity<>(this.rentalRequestService.rentalRequestsLoggedUser(rentalRequest.getUserId()), HttpStatus.OK);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getAllRentalRequestsLoggedUserReserved")
+    public ResponseEntity<?> getAllRentalRequestsLoggedUserReserved(@RequestBody RentalRequestsLoggedUserDTO rentalRequest) {
+        return new ResponseEntity<>(this.rentalRequestService.rentalRequestsLoggedUserIdAndRole(rentalRequest.getUserId(), RentalRequestRole.valueOf("RESERVED")), HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")//Kada se plati, svi zahtevi za isti auto u isto vreme ce biti odbijeni
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getAllRentalRequestsForUser")
-    public ResponseEntity<?> getAllRentalRequestsForUser(@RequestBody RentalRequestsLoggedUserDTO rentalRequest) {
-        return new ResponseEntity<>(this.rentalRequestService.rentalRequestsForUser(rentalRequest.getUserId()), HttpStatus.OK);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getAllRentalRequestsLoggedUserPaid")
+    public ResponseEntity<?> getAllRentalRequestsLoggedUserPaid(@RequestBody RentalRequestsLoggedUserDTO rentalRequest) {
+        return new ResponseEntity<>(this.rentalRequestService.rentalRequestsLoggedUserIdAndRole(rentalRequest.getUserId(), RentalRequestRole.valueOf("PAID")), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")//Kada se plati, svi zahtevi za isti auto u isto vreme ce biti odbijeni
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getAllRentalRequestsLoggedUserPending")
+    public ResponseEntity<?> getAllRentalRequestsLoggedUser(@RequestBody RentalRequestsLoggedUserDTO rentalRequest) {
+        return new ResponseEntity<>(this.rentalRequestService.rentalRequestsLoggedUserIdAndRole(rentalRequest.getUserId(), RentalRequestRole.valueOf("PENDING")), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")//Kada se plati, svi zahtevi za isti auto u isto vreme ce biti odbijeni
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getAllRentalRequestsLoggedUserCanceled")
+    public ResponseEntity<?> getAllRentalRequestsLoggedUserCanceled(@RequestBody RentalRequestsLoggedUserDTO rentalRequest) {
+        return new ResponseEntity<>(this.rentalRequestService.rentalRequestsLoggedUserIdAndRole(rentalRequest.getUserId(), RentalRequestRole.valueOf("CANCELED")), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getAllRentalRequestsForUserReserved")
+    public ResponseEntity<?> getAllRentalRequestsForUserReserved(@RequestBody RentalRequestsLoggedUserDTO rentalRequest) {
+        return new ResponseEntity<>(this.rentalRequestService.rentalRequestsForUserIdAndRole(rentalRequest.getUserId(), RentalRequestRole.valueOf("RESERVED")), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getAllRentalRequestsForUserPending")
+    public ResponseEntity<?> getAllRentalRequestsForUserPending(@RequestBody RentalRequestsLoggedUserDTO rentalRequest) {
+        return new ResponseEntity<>(this.rentalRequestService.rentalRequestsForUserIdAndRole(rentalRequest.getUserId(), RentalRequestRole.valueOf("PENDING")), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getAllRentalRequestsForUserPaid")
+    public ResponseEntity<?> getAllRentalRequestsForUserPaid(@RequestBody RentalRequestsLoggedUserDTO rentalRequest) {
+        return new ResponseEntity<>(this.rentalRequestService.rentalRequestsForUserIdAndRole(rentalRequest.getUserId(), RentalRequestRole.valueOf("PAID")), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getAllRentalRequestsForUserCanceled")
+    public ResponseEntity<?> getAllRentalRequestsForUserCanceled(@RequestBody RentalRequestsLoggedUserDTO rentalRequest) {
+        return new ResponseEntity<>(this.rentalRequestService.rentalRequestsForUserIdAndRole(rentalRequest.getUserId(), RentalRequestRole.valueOf("CANCELED")), HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -170,4 +218,37 @@ public class CarController {
         this.ratingRequestService.declineRatingRequest(ratingRequestAcceptDeclineDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/addCommentCarRequest")
+    public ResponseEntity<?> addCommentCarRequest(@RequestBody CommentCarRequestDTO commentCarRequestDTO) {
+        return new ResponseEntity<>(this.commentRequestService.addCommentCarRequest(commentCarRequestDTO) ,HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getAllCommentRequest")
+    public ResponseEntity<?> getAllCommentRequest() {
+        return new ResponseEntity<>(this.commentRequestService.findAll(), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/acceptCommentRequest")
+    public ResponseEntity<?> acceptCommentRequest(@RequestBody CommentRequestAcceptDeclineDTO commentRequestAcceptDeclineDTO) {
+        this.commentRequestService.acceptCommentRequest(commentRequestAcceptDeclineDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/declineCommentRequest")
+    public ResponseEntity<?> declineCommentRequest(@RequestBody CommentRequestAcceptDeclineDTO commentRequestAcceptDeclineDTO) {
+        this.commentRequestService.declineCommentRequest(commentRequestAcceptDeclineDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getAllCommentByCarId")
+    public ResponseEntity<?> getAllCommentByCarId(@RequestBody CommentCarIdDTO commentCarIdDTO) {
+        return new ResponseEntity<>(this.commentService.findAllByCarId(commentCarIdDTO.getCarId()), HttpStatus.OK);
+    }
+
 }

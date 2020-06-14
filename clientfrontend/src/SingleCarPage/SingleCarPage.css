@@ -26,7 +26,7 @@
 }
 
 .image-wrapper > img {
-    width: 70%;
+    width: 100%;
     border-radius: 20px;
 }
 
@@ -39,4 +39,32 @@
 .description > p {
     width: 60%;
     font-size: 1.1rem !important;
+}
+
+.comment {
+    display: grid;
+    width: 100%;
+    height: 100px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+  }
+
+.label {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    height: 50%;
+    transition-duration: 0.4s;
+}
+.label:hover {
+    background-color: rgb(231, 231, 231);
+}
+
+.test {
+    right: 100%;
+
 }

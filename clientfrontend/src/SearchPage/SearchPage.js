@@ -12,6 +12,8 @@ import Slider from '@material-ui/core/Slider';
 import axios from '../axios-objects';
 import {Link} from 'react-router-dom';
 import Popup from "reactjs-popup";
+import ReactStars from 'react-rating-stars-component'
+import SingleCarPage from '../SingleCarPage/SingleCarpage';
 
 class SearchPage extends React.PureComponent {
     
@@ -50,7 +52,10 @@ class SearchPage extends React.PureComponent {
             listCarForCart: [],
             valid: {
                 rentalRequestExists: false
-            }
+            },
+
+            renderNum: 'jedan',
+            currentCar: null,
         }
     }
 
@@ -231,7 +236,7 @@ class SearchPage extends React.PureComponent {
         const data2 = {startDate, endDate, carId};
         const response2 = await axios.post('/car-service/checkOccupancy', data2);
         if(response2) {
-            if(response2.data.length != 0)
+            if(response2.data.length !== 0)
                 rentalRequestExists = true;       
         }
 
@@ -280,10 +285,8 @@ class SearchPage extends React.PureComponent {
         console.log(this.state.listCarForCart);
     }
 
-<<<<<<< Updated upstream
-=======
+
     ratingChangedHandler = async(rating, car) => {
-        let endDate = this.state.car.endDate;
         let carId = car.id;
 
         let fromUserId;
@@ -310,13 +313,18 @@ class SearchPage extends React.PureComponent {
         }
     }
 
->>>>>>> Stashed changes
+
+    setNumOfRender = (num) => {
+        this.setState({renderNum: num})
+    }
+
     render() {
+        if(this.state.renderNum==='jedan') {
         return (
             <div>
                 {this.state.listCarForCart.length > 0 ? 
                 <div className="positionCart">
-                    <h2 className="h4Cart">Cart</h2>
+                    <h2 className="h4Cart">Shopping Cart</h2>
                     <hr/>
                     <br/>
                     <p className="h4Cart"><b>Start date:</b> {this.state.startDateString}</p>
@@ -550,27 +558,26 @@ class SearchPage extends React.PureComponent {
                                                     <img alt="Doors" src={require('../img/doorsIcon.png')} title="Number Of Doors"/>
                                                     <p className="icon-text">{car.doors}</p>
                                                 </div>
-<<<<<<< Updated upstream
-=======
+
                                                 <ReactStars
-                                                    value={car.rating}
+                                                    value={3}
                                                     count={5}
-                                                    onChange={ (event) => {this.ratingChangedHandler(event, car)}}
+                                                    onChange={ (event) => {this.ratingChangedHandler(event)}}
                                                     size={35}
                                                     color2={'#ffd700'} />
->>>>>>> Stashed changes
                                             </div>
 
                                             <div className="details-rent">
                                                 <div>
-                                                    <Link to={{pathname:"/singleCarPage/"+car.id}} target="_blank" > More details </Link>
+                                                    <button onClick={(event) => {this.setState({renderNum: 'dva', currentCar: car})}}> More details </button>
                                                 </div>
                                                 <div>
-                                                    <a href="/" className="btn" style={{width:'250px', textAlign:'center'}}
+                                                    <button className="btn" style={{width:'250px', textAlign:'center', marginRight: '20px'}}
                                                     onClick={(event) => {this.addToCartHandler(event, car)}}>
                                                         Add to cart
-                                                    </a>
-                                                    <a href="/" className="btn" style={{width:'150px', textAlign:'center'}}
+
+                                                    </button>
+                                                    {/* <a href="/" className="btn" style={{width:'150px', textAlign:'center'}} */}
                                                     {this.state.valid.rentalRequestExists ? <Popup trigger={<button className="btn" style={{width:'150px', textAlign:'center'}}
                                                     onClick={(event) => {this.rentCarHandler(event, car)}}>
                                                         Rent
@@ -591,6 +598,12 @@ class SearchPage extends React.PureComponent {
                 </header>
             </div>
         );
+        }
+        else if(this.state.renderNum==='dva') {
+            return(
+                <SingleCarPage carId={this.state.currentCar.id} endDate={this.state.car.endDate} setNumOfRender={this.setNumOfRender}></SingleCarPage>
+            );
+        }
     }
 }
 

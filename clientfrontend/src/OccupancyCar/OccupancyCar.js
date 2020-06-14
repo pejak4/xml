@@ -3,16 +3,16 @@ import axios from '../axios-objects';
 import DatePicker from 'react-datepicker';
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
 
+class OccupancyCar extends React.PureComponent {
 
+    constructor(props) {
+        super(props);
 
-
-class OccupancyCar extends React.Component {
-
-    state = {
-        allCarsLoggedUser: [],
-        startDate: new Date(new Date().setTime(new Date().getTime() + 2 * 86400000)),
-        endDate: new Date(new Date().setTime(new Date().getTime() + 3 * 86400000))
-
+        this.state = {
+            allCarsLoggedUser: [],
+            startDate: new Date(new Date().setTime(new Date().getTime() + 2 * 86400000)),
+            endDate: new Date(new Date().setTime(new Date().getTime() + 3 * 86400000))
+        }
     }
 
     componentDidMount = async() =>{
@@ -20,13 +20,8 @@ class OccupancyCar extends React.Component {
         const data = {userEmail};
         const response = await axios.post('/authentication-service/getLoggedUser', data);
 
-        console.log(response);
-
-
         const userId = response.data.id;
-        const data1 = {userId}
-        console.log(userId);
-        console.log(data1);
+        const data1 = {userId};
         const response1 = await axios.post('/car-service/getCarsLogedUser', data1);
         if(response1) {
             this.setState({allCarsLoggedUser: response1.data});
@@ -47,10 +42,7 @@ class OccupancyCar extends React.Component {
         let startDate = this.state.startDate;
         let endDate = this.state.endDate;
         const data = {startDate, endDate, car};
-        const response = await axios.post('/car-service/addOccupancy', data);
-        if(response) {
-            console.log(response.data);
-        }
+        await axios.post('/car-service/addOccupancy', data);
     }
 
     renderAllCarsLoggedUser(){
@@ -97,10 +89,10 @@ class OccupancyCar extends React.Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <a href="/" className="btn" style={{width:'150px', textAlign:'center'}}
+                                    <button className="btn" style={{width:'150px', textAlign:'center'}}
                                     onClick={(event) => {this.addOccupancyHandler(event, car)}}>
                                         Add Occupancy
-                                    </a>
+                                    </button>
                                     <DatePicker className="date"
                                         minDate={new Date(new Date().setTime(new Date().getTime() + 2 * 86400000))}
                                         selected={this.state.startDate}
@@ -122,8 +114,6 @@ class OccupancyCar extends React.Component {
                                         dateFormat="MMMM d, yyyy h:mm aa"
                                     />
                                 </div>
-
-                                
                             </div>
                         </div>
                     </div>
@@ -134,12 +124,14 @@ class OccupancyCar extends React.Component {
 
     render() {
         return (
-            <header id="showcase">
-            <HamburgerMenu/>
-            <div className="containerSearch showcase-containerSearch" style={{overflowY:'scroll', maxWidth:'90%'}}>
-                {this.renderAllCarsLoggedUser()}
+            <div>
+                <HamburgerMenu/>
+                <header id="showcase">
+                    <div className="containerSearch showcase-containerSearch" style={{overflowY:'scroll', maxWidth:'90%'}}>
+                        {this.renderAllCarsLoggedUser()}
+                    </div>
+                </header>
             </div>
-            </header>
         );
     }
 }

@@ -7,14 +7,18 @@ import axios from '../axios-objects';
 
 class Codebook extends React.PureComponent {
 
-    state = {
-        renderNumber: 1,
-        type: 'brand',
-        brandId: '',
-        inputData: '',
-        brands: [],
-        transmissions: [],
-        fuelTypes: [],
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            renderNumber: 1,
+            type: 'brand',
+            brandId: '',
+            inputData: '',
+            brands: [],
+            transmissions: [],
+            fuelTypes: []
+        }
     }
 
     componentDidMount = async () => {

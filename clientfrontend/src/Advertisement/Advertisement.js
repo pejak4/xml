@@ -11,7 +11,10 @@ import Popup from "reactjs-popup";
 
 class Advertisement extends React.PureComponent {
 
-    state = {
+    constructor(props) {
+        super(props);
+
+        this.state = {
             renderNumber: 1,
             brandCars: '',
             modelCars: '',
@@ -37,6 +40,7 @@ class Advertisement extends React.PureComponent {
             fuelTypes: [],
             transmissions: [],
             userAddNumber: null
+        }
     }
 
     componentDidMount = async() => {

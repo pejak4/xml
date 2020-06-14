@@ -12,11 +12,6 @@
     border-radius: 5px;
 }
 
-/* .containerSearch > div .select-brand {
-    float: left;
-    margin-left: 20px !important;
-} */
-
 ::-webkit-scrollbar {
     width: 0px;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
@@ -95,7 +90,7 @@
 }
 
 .car-card-inner .right-side > div > div {
-    float: left;
+    float: right;
     width: 50%;
     min-height: 100%;
     display: flex;
@@ -191,6 +186,8 @@
     background-color: rgba(229, 148, 0, 0.9);
     transition-duration: 0.4s;
     color: white;
+    border: none;
+    padding: 1px;
 }
 
 .butCart:hover {
