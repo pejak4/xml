@@ -23,12 +23,15 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserService userService;
 
-    @Autowired
+
     private PasswordEncoder passwordEncoder;
 
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    public void setPasswordEncoder(final PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
     // Funkcija koja na osnovu email-a iz baze vraca objekat User-a
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

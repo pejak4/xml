@@ -4,7 +4,7 @@ services:
     image: postgres:latest
     restart: always
     networks:
-      - demo
+        - demo
     ports:
       - "5432:5432"
     environment:
@@ -15,17 +15,18 @@ services:
     ports:
       - "8761:8761"
     networks:
-      - demo
+        - demo
     tty: true
   auth:
     image: auth:1.0
     ports:
       - "8085:8085"
     networks:
-      - demo
+        - demo
     tty: true
     environment:
       DB_HOST: database
+      REGISTRY_HOST: eureka
     depends_on:
         - eureka
         - database
@@ -34,26 +35,41 @@ services:
     ports:
       - "8081:8081"
     networks:
-      - demo
+        - demo
     tty: true
     environment:
       DB_HOST: database
+      REGISTRY_HOST: eureka
     depends_on:
         - eureka
-        - database      
+        - database
+  code:
+    image: code:1.0
+    ports:
+      - "8086:8086"
+    networks:
+        - demo
+    tty: true
+    environment:
+      DB_HOST: database
+      REGISTRY_HOST: eureka
+    depends_on:
+        - eureka
+        - database         
   zuul:
     image: zuul:1.0
     ports:
       - "8762:8762"
     networks:
-      - demo
+        - demo
     environment:
-      - REGISTRY_HOST=eureka
+      REGISTRY_HOST: eureka
     tty: true
     depends_on:
         - eureka
         - auth
         - car
+        - code
 networks:
   demo:
     name: demo
