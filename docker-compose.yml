@@ -10,6 +10,27 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: aco
+  react:
+    image: react:1.0
+    ports:
+      - "3000:3000"
+    networks:
+        - demo
+    tty: true
+    environment:
+     CHOKIDAR_USEPOLLING: "true"
+    build:
+        context: ./clientfrontend
+        args:
+            REACT_APP_HOST_IP_ADDRESS: zuul
+    volumes:
+        - /app/node_modules
+    depends_on:
+        - eureka
+        - database
+        - auth
+        - car
+        - code
   eureka:
     image: eureka:1.0
     ports:
