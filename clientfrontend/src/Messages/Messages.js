@@ -18,7 +18,8 @@ class Messages extends React.PureComponent{
                 message: [],
                 from: '',
                 meni: '',
-                replyID: null      
+                replyID: null,
+                message2: []      
             };
     }
     
@@ -38,6 +39,12 @@ class Messages extends React.PureComponent{
         if(response2){
             this.setState({message: response2.data});
             console.log(this.state.message);
+        }
+
+        const response3 = await axios.get('/message-service/porukeod', {params:{id:this.state.userId}});
+        if(response3){
+            this.setState({message2: response3.data});
+            console.log(this.state.message2);
         }
 
 
@@ -62,7 +69,7 @@ class Messages extends React.PureComponent{
         if(status==='REPLY'){
             const data = {senderId: this.state.userId, receiverId: this.state.replyID, message: text};
             const resp2 = await axios.post('/message-service/send',data);
-            this.setState({meni: 'INBOX'});
+            window.location.reload();
         }
     }
 
@@ -78,7 +85,11 @@ class Messages extends React.PureComponent{
             return(<div><h3><b>Please choose what messages you want to see</b></h3></div>);
         }
         if(this.state.meni==='SENT'){
-            return(<div><h3><b>Buiding page...</b></h3></div>);
+            return this.state.message2.map((m) =>{
+                return (
+                   <MessageInfo data={m} key={m.id} />
+                );
+            });
         }
         if(this.state.meni==='REPLY'){
             return(<MessageReply reply={this.state.replyID} actionn={this.redirecting}/>);

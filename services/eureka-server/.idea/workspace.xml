@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25e00632-9d8a-4e29-8666-fdd70602ea84" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/service/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/service/CustomUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/repository/MessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/repository/MessageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/service/MessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/model/Message.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

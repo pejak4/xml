@@ -12,6 +12,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @RestController
@@ -40,7 +41,7 @@ public class MessageController {
         message.setSenderId(dto.getSenderId());
         message.setReceiverId(dto.getReceiverId());
         message.setMessage(dto.getMessage());
-        message.setMessageDate(null);
+        message.setMessageDate(new Timestamp(System.currentTimeMillis()));
 
         jmsTemplate.convertAndSend("MessageQueue", message);
     }
@@ -51,6 +52,13 @@ public class MessageController {
         this.messageService.deleteMessage(Long.parseLong(id));
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/porukeod")
+    public ResponseEntity<?> porukee(@RequestParam("id") String id){
+        return new ResponseEntity<>(this.messageService.findBySenderId(Long.parseLong(id)), HttpStatus.OK);
+    }
+
 
 
 

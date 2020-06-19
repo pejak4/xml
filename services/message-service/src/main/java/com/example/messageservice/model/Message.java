@@ -4,6 +4,7 @@ package com.example.messageservice.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Getter
@@ -20,6 +21,6 @@ public class Message {
     private Long senderId;
     private Long receiverId;
     private String message;
-    private LocalDateTime messageDate;
+    private Timestamp messageDate;
 
 }
