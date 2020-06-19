@@ -6,6 +6,7 @@ import axios from '../axios-objects';
 import {Redirect} from 'react-router-dom';
 import NaviBar from './NaviBar/NaviBar';
 import MessageInfo from './MessageInfo';
+import MessageReply from './MessageReply';
 
 
 class Messages extends React.PureComponent{
@@ -16,7 +17,8 @@ class Messages extends React.PureComponent{
                 userId: null, 
                 message: [],
                 from: '',
-                meni: ''      
+                meni: '',
+                replyID: null      
             };
     }
     
@@ -42,13 +44,33 @@ class Messages extends React.PureComponent{
     }
 
    
+    processingMessage = async(idd, str) => {
+        if(str === 'DELETE'){
+            const response3 = await axios.get('/message-service/del', {params: {id: idd}});
+            window.location.reload();
+        }
+    }
 
+    replyMessage = (id) => {
+        this.setState({meni: 'REPLY', replyID: id});
+    }
+
+    redirecting = async(text , status) => {
+        if(status==='BACK'){
+            this.setState({meni: 'INBOX'});
+        }
+        if(status==='REPLY'){
+            const data = {senderId: this.state.userId, receiverId: this.state.replyID, message: text};
+            const resp2 = await axios.post('/message-service/send',data);
+            this.setState({meni: 'INBOX'});
+        }
+    }
 
     renderMeni(){
         if(this.state.meni==='INBOX'){
             return this.state.message.map((m) =>{
                 return (
-                   <MessageInfo data={m} key={m.id}/>
+                   <MessageInfo data={m} key={m.id} ret={this.processingMessage} ret2={this.replyMessage}/>
                 );
             });
         }
@@ -57,6 +79,9 @@ class Messages extends React.PureComponent{
         }
         if(this.state.meni==='SENT'){
             return(<div><h3><b>Buiding page...</b></h3></div>);
+        }
+        if(this.state.meni==='REPLY'){
+            return(<MessageReply reply={this.state.replyID} actionn={this.redirecting}/>);
         }
         
     }

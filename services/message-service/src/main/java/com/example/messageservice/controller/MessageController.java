@@ -1,6 +1,7 @@
 package com.example.messageservice.controller;
 
 
+import com.example.messageservice.dto.MessageDTO;
 import com.example.messageservice.model.Message;
 import com.example.messageservice.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +34,23 @@ public class MessageController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/send")
-    public void send(@RequestBody Message message){
+    public void send(@RequestBody MessageDTO dto){
         System.out.println("Sending message.");
+        Message message = new Message();
+        message.setSenderId(dto.getSenderId());
+        message.setReceiverId(dto.getReceiverId());
+        message.setMessage(dto.getMessage());
+        message.setMessageDate(null);
 
         jmsTemplate.convertAndSend("MessageQueue", message);
     }
 
-
-
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/del")
+    public ResponseEntity<?> deletee(@RequestParam("id")  String id){
+        this.messageService.deleteMessage(Long.parseLong(id));
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 
 

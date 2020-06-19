@@ -117,7 +117,6 @@ class Login extends React.PureComponent {
             <div>
                 <HamburgerMenu />
                 <header id="showcase">
-                    {console.log(process.env.REACT_APP_HOST_IP_ADDRESS)}
                     <div className="container showcase-container">
                         <label>Email</label>
                         {this.state.validation.email ? 
