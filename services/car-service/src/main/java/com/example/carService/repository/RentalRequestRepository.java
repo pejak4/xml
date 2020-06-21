@@ -17,11 +17,11 @@ public interface RentalRequestRepository extends  JpaRepository<CarRentalRequest
 
 
     List<CarRentalRequest> findAll();
-    CarRentalRequest findOneByUserIdAndRentalRequestCarId(String user_id, Long rental_request_car_id);
+    List<CarRentalRequest> findAllByUserIdAndRentalRequestCarId(String user_id, Long rental_request_car_id);
     CarRentalRequest findOneById(Long id);
     List<CarRentalRequest> findAllByRole(RentalRequestRole role);
     List<CarRentalRequest> findAllByUserIdAndRole(String user_id, RentalRequestRole role);
-    List<CarRentalRequest> findAllByForUserIdAndRole(String for_user_id, RentalRequestRole role);
+    List<CarRentalRequest> findAllByForUserIdAndRoleAndAgent(String for_user_id, RentalRequestRole role, Boolean agent);
 
 
     @Modifying
@@ -29,7 +29,7 @@ public interface RentalRequestRepository extends  JpaRepository<CarRentalRequest
     @Query(nativeQuery = true, value = "delete from car_rental_request crr where crr.id=:id")
     void deleteRentalRequest(@Param("id") Long id);
 
-    @Query(nativeQuery = true, value = "select c.id, c.start_date, c.end_date, c.user_id, c.for_user_id, c.create_date, " +
+    @Query(nativeQuery = true, value = "select c.agent, c.id, c.start_date, c.end_date, c.user_id, c.for_user_id, c.create_date, " +
             "c.role, c.rental_request_car_id from car_rental_request c " +
             "where c.role=:role and c.for_user_id=:for_user_id and c.rental_request_car_id=:rental_request_car_id " +
             "and not (c.start_date>:end_date or c.end_date<:start_date)")
@@ -37,4 +37,5 @@ public interface RentalRequestRepository extends  JpaRepository<CarRentalRequest
                                                      @Param("role") String role,
                                                      @Param("for_user_id") String for_user_id,
                                                      @Param("rental_request_car_id") Long rental_request_car_id);
+
 }

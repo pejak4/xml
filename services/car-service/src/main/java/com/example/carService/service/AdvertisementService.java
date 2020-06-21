@@ -16,7 +16,7 @@ public class AdvertisementService {
         Integer seatsForKids = a.getSeatsForKids() == "" ? 0 : Integer.parseInt(a.getSeatsForKids());
         Integer plannedMileage = a.getPlannedMilage() == "" ? 1000000 : Integer.parseInt(a.getPlannedMilage());
 
-        Car car = Car.builder().rating(0).numOfRating(0).brand(a.getBrandCars()).model(a.getModelCars()).capacitySeats(Integer.parseInt(a.getSeats())).
+        Car car = Car.builder().agent(false).rating(0).numOfRating(0).brand(a.getBrandCars()).model(a.getModelCars()).capacitySeats(Integer.parseInt(a.getSeats())).
                 capacitySeatsForKids(seatsForKids).cityLocation(a.getCityLocation()).CDW(Boolean.parseBoolean(a.getCdw())).
                 classCar(a.getClassCarCars()).cubicCapacity(Integer.parseInt(a.getCubicCapacity())).horsePower(Integer.parseInt(a.getHorsePower())).
                 description(a.getDescription()).fuelTankCapacity(Integer.parseInt(a.getFullTankCapacity())).doors(Integer.parseInt(a.getDoors())).

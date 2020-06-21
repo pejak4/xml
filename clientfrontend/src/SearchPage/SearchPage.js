@@ -245,10 +245,21 @@ class SearchPage extends React.PureComponent {
 
         const data = {carId, startData, endData, userId};
 
-        if(rentalRequestExists === true) {
-            alert('Rental request exists or car is busy in this time.');
+        let id = 0;
+        const data00 = {carId, startDate, endDate, userId, id};
+
+
+        if(!car.agent) {
+            if(rentalRequestExists === true) {
+                alert('Rental request exists or car is busy in this time.');
+            } else {
+                await axios.post('/car-service/addRentalRequest', data);
+            }
         } else {
-            await axios.post('/car-service/addRentalRequest', data);
+            const response00 = await axios.post('/car-service/sentSoapRentalRequest', data00);
+            if(response00) {
+                console.log(response00.data);
+            }
         }
     }
 
@@ -287,6 +298,8 @@ class SearchPage extends React.PureComponent {
 
 
     ratingChangedHandler = async(rating, car) => {
+        console.log(rating);
+        console.log(car);
         let carId = car.id;
 
         let fromUserId;
@@ -560,9 +573,9 @@ class SearchPage extends React.PureComponent {
                                                 </div>
 
                                                 <ReactStars
-                                                    value={3}
+                                                    value={car.rating}
                                                     count={5}
-                                                    onChange={ (event) => {this.ratingChangedHandler(event)}}
+                                                    onChange={ (event) => {this.ratingChangedHandler(event, car)}}
                                                     size={35}
                                                     color2={'#ffd700'} />
                                             </div>

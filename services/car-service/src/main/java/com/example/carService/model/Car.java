@@ -45,6 +45,8 @@ public class Car {
     private double rating;
     private int numOfRating;
 
+    private Boolean agent;
+
     @OneToMany(mappedBy = "car", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<CarRentalDate> dateList;
 

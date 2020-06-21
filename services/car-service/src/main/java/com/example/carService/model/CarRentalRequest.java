@@ -26,6 +26,8 @@ public class CarRentalRequest {
 
     private Timestamp createDate;
 
+    private Boolean agent;
+
     @Enumerated(EnumType.STRING)
     private RentalRequestRole role;
 
