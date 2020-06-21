@@ -1,0 +1,110 @@
+version: "3.7"
+services:
+  database:
+    image: postgres:latest
+    restart: always
+    networks:
+        - demo
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: aco
+  react:
+    build: ./clientfrontend
+    ports:
+      - "3000:3000"
+    networks:
+        - demo
+    tty: true
+    environment:
+     CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - '/app/node_modules'
+    depends_on:
+        - eureka
+        - database
+        - auth
+        - car
+        - code
+        - message
+        - zuul
+  eureka:
+    build: ./services/eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+        - demo
+    tty: true
+  auth:
+    build: ./services/authentication-service
+    ports:
+      - "8085:8085"
+    networks:
+        - demo
+    tty: true
+    environment:
+      DB_HOST: database
+      REGISTRY_HOST: eureka
+      CROSS_ORIG: react
+    depends_on:
+        - eureka
+        - database
+  message:
+    build: ./services/message-service
+    ports:
+      - "8083:8083"
+    networks:
+        - demo
+    tty: true
+    environment:
+      DB_HOST: database
+      REGISTRY_HOST: eureka
+    depends_on:
+        - eureka
+        - database      
+  car:
+    build: ./services/car-service
+    ports:
+      - "8081:8081"
+    networks:
+        - demo
+    tty: true
+    environment:
+      DB_HOST: database
+      REGISTRY_HOST: eureka
+    depends_on:
+        - eureka
+        - database
+  code:
+    build: ./services/codebook-service
+    ports:
+      - "8086:8086"
+    networks:
+        - demo
+    tty: true
+    environment:
+      DB_HOST: database
+      REGISTRY_HOST: eureka
+    depends_on:
+        - eureka
+        - database         
+  zuul:
+    build: ./services/zuul-api-gateway
+    ports:
+      - "8762:8762"
+    networks:
+        - demo
+    environment:
+      REGISTRY_HOST: eureka
+    tty: true
+    depends_on:
+        - eureka
+        - auth
+        - car
+        - code
+        - message
+networks:
+  demo:
+    name: demo
+    driver: bridge

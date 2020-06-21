@@ -28,6 +28,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+/*
+    public void setPasswordEncoder(final PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+    */
 
     // Funkcija koja na osnovu email-a iz baze vraca objekat User-a
     @Override

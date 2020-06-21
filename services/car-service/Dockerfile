@@ -1,4 +1,5 @@
-FROM openjdk:8
-ADD target/car-service.jar car-service.jar
+FROM openjdk:8-jdk-alpine
 EXPOSE 8081
-ENTRYPOINT ["java", "-jar", "car-service.jar"]
+ARG JAR_FILE=target/car.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]

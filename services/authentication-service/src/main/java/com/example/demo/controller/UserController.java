@@ -62,6 +62,7 @@ public class UserController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path= "/getLoggedUser")
     public ResponseEntity<?> getLoggedUserId(@RequestBody UserEmailDTO email) {
+        System.out.println("Prosledjeni mejl je "+email.getUserEmail());
         return new ResponseEntity<>(this.userService.findOneByEmail(email.getUserEmail()), HttpStatus.OK);
     }
 

@@ -13,6 +13,8 @@ import OccupancyCar from './OccupancyCar/OccupancyCar';
 import RentalRequestsFromMe from './RentalRequest/RentalRequestsFromMe/RentalRequestsFromMe';
 import RatingRequest from './RatingRequest/RatingRequest';
 import CommentRequest from './CommentRequest/CommentRequest';
+import Messages from './Messages/Messages';
+
 
 class App extends React.PureComponent {
   render() {
@@ -33,6 +35,7 @@ class App extends React.PureComponent {
             <Route path="/rentalRequestsFromMe" component={RentalRequestsFromMe} />
             <Route path="/ratingRequest" component={RatingRequest} />
             <Route path="/commentRequest" component={CommentRequest} />
+            <Route path="/messages" component={Messages}/>
           </Switch>
         </BrowserRouter>
       </div>

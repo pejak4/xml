@@ -111,6 +111,7 @@
 	</dependencyManagement>
 
 	<build>
+		<finalName>car</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

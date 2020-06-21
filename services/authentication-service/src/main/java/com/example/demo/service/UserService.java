@@ -35,6 +35,11 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+/*
+    public void setAuthenticationManager(final AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
+*/
 
     public Users register(UserRegistrationDTO userRegisterDTO) {
         Users u = this.userService.findOneByEmail(userRegisterDTO.getEmail());

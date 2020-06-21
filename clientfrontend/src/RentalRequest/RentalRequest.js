@@ -154,6 +154,8 @@ class RentalRequest extends React.PureComponent {
         }
         else {
             const response1 = await axios.post('/car-service/acceptRentalRequest', data1);
+            const data2 = {senderId: this.state.user.id, receiverId: forUserId, message: 'Zahtev je prihvacen. Mozete slati poruke'};
+            const resp2 = await axios.post('/message-service/send',data2);
             if(response1) {
                 console.log(response1.data);
             }

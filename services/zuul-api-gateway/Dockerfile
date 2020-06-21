@@ -1,4 +1,5 @@
-FROM openjdk:8
-ADD target/zuul-gateway.jar zuul-gateway.jar
+FROM openjdk:8-jdk-alpine
 EXPOSE 8762
-ENTRYPOINT ["java", "-jar", "zuul-gateway.jar"]
+ARG JAR_FILE=target/zuul.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
