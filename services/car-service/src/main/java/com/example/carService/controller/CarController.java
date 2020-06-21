@@ -4,6 +4,7 @@ import com.example.carService.dto.*;
 import com.example.carService.model.CarRentalRequest;
 import com.example.carService.model.RentalRequestRole;
 import com.example.carService.service.*;
+import com.soapserveryt.api.soap.ClientRequestRentalRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -72,9 +73,15 @@ public class CarController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/sentSoapRentalRequest")
+    public ResponseEntity<?> sentSoapRentalRequest(@RequestBody ClientRequestRentalRequest rentalRequest) {
+        return new ResponseEntity<>(this.rentalRequestService.sentSoapRentalRequest(rentalRequest), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getRentalRequestByUserIdAndCar")
     public ResponseEntity<?> getRentalRequestById(@RequestBody RentalRequestIdAndCarDTO data) {
-        return new ResponseEntity<>(this.rentalRequestService.findOneByUserIdAndCar(data), HttpStatus.OK);
+        return new ResponseEntity<>(this.rentalRequestService.findAllByUserIdAndCar(data), HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -86,8 +93,6 @@ public class CarController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/acceptRentalRequest")
     public ResponseEntity<?> acceptRentalRequest(@RequestBody RentalRequestAcceptDeclineDTO r) {
-        CarRentalRequest crr = this.rentalRequestService.findOneById(Long.parseLong(r.getRentalRequestId()));
-        //this.rentalService.addRental(crr);
         this.rentalRequestService.acceptRentalRequest(Long.parseLong(r.getRentalRequestId()));
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -133,7 +138,7 @@ public class CarController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")//Kada se plati, svi zahtevi za isti auto u isto vreme ce biti odbijeni
+    @CrossOrigin(origins = "http://localhost:3000")//ako je taj auto vec rezervisan u tom periodu
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/ifHaveReservedRentalRequest")
     public ResponseEntity<?> ifHaveReservedRentalRequest(@RequestBody RentalRequestIfHaveReservedDTO rentalRequest) {
         return new ResponseEntity<>(this.rentalRequestService.ifHaveReservedRentalRequest(rentalRequest), HttpStatus.OK);

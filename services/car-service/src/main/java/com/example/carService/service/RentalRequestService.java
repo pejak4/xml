@@ -9,11 +9,17 @@ import com.example.carService.model.CarRentalRequest;
 import com.example.carService.repository.CarRepository;
 import com.example.carService.repository.RentalRequestRepository;
 import com.example.carService.model.RentalRequestRole;
+import com.soapserveryt.api.soap.ClientRequestRentalRequest;
+import com.soapserveryt.api.soap.ServerRespond;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.ws.client.core.WebServiceTemplate;
 
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,6 +30,11 @@ public class RentalRequestService {
 
     @Autowired
     private CarRepository carRepository;
+
+    @Autowired
+    private Jaxb2Marshaller marshaller;
+
+    private WebServiceTemplate template;
 
     public List<CarRentalRequest> getAllCarRentalRequest() { return rentalRequestRepository.findAll();}
 
@@ -37,10 +48,36 @@ public class RentalRequestService {
         return this.rentalRequestRepository.save(crr);
     }
 
-    public CarRentalRequest findOneByUserIdAndCar(RentalRequestIdAndCarDTO data) {
+    public CarRentalRequest sentSoapRentalRequest(ClientRequestRentalRequest rentalRequest) {
+        Car c = this.carRepository.findOneById(Long.parseLong(rentalRequest.getCarId()));
+
+        Instant instant1 = Instant.parse(rentalRequest.getStartDate());
+        Instant instant2 = Instant.parse(rentalRequest.getEndDate());
+
+        Date startDate = Date.from(instant1);
+        Date endDate = Date.from(instant2);
+
+        Timestamp tss = new Timestamp(startDate.getTime());
+        Timestamp tse = new Timestamp(endDate.getTime());
+
+        CarRentalRequest crr = CarRentalRequest.builder().rentalRequestCar(c).startDate(tss)
+                .endDate(tse).createDate(new Timestamp(System.currentTimeMillis())).agent(true).
+                        userId(rentalRequest.getUserId()).forUserId("0").role(RentalRequestRole.valueOf("PENDING")).build();
+
+        CarRentalRequest crr1 = this.rentalRequestRepository.save(crr);
+
+        rentalRequest.setId(crr.getId());
+
+        template = new WebServiceTemplate(marshaller);
+        ServerRespond respond = (ServerRespond) template.marshalSendAndReceive("http://localhost:8080/ws", rentalRequest);
+
+        return this.rentalRequestRepository.save(crr);
+    }
+
+    public List<CarRentalRequest> findAllByUserIdAndCar(RentalRequestIdAndCarDTO data) {
         String user_id = data.getUserId();
         Long car_id = Long.parseLong(data.getCarId());
-        return this.rentalRequestRepository.findOneByUserIdAndRentalRequestCarId(user_id, car_id);
+        return this.rentalRequestRepository.findAllByUserIdAndRentalRequestCarId(user_id, car_id);
     }
 
     public CarRentalRequest findOneById(Long id) {return this.rentalRequestRepository.findOneById(id);}
@@ -121,7 +158,7 @@ public class RentalRequestService {
     }
 
     public List<CarRentalRequest> rentalRequestsForUserIdAndRole(String forUserId, RentalRequestRole role) {
-        return this.rentalRequestRepository.findAllByForUserIdAndRole(forUserId, role);
+        return this.rentalRequestRepository.findAllByForUserIdAndRoleAndAgent(forUserId, role, false);
     }
 
     public CarRentalRequest setRolePaidRentalRequest(Long id) {

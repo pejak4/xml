@@ -1,0 +1,70 @@
+.single-car {
+    width:100%;
+    background: #fff;
+    color: #333;
+    height: 100%;
+    padding: 1rem 1rem;
+    margin: 4rem 4rem;
+    margin-left: 0px;
+}
+
+.car-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows:minmax(100px, auto);
+    grid-gap:1em;
+    padding:1em;
+    margin:1em;
+    margin-left: 0px !important;
+}
+
+.image-wrapper {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-auto-columns: minmax(100px, auto);
+    grid-gap:1em;
+}
+
+.image-wrapper > img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.image-wrapper > p {
+    justify-self: start;
+    font-size: 1.1rem !important;
+    padding: 1rem;
+}
+
+.description > p {
+    width: 60%;
+    font-size: 1.1rem !important;
+}
+
+.comment {
+    display: grid;
+    width: 100%;
+    height: 100px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+  }
+
+.label {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    height: 50%;
+    transition-duration: 0.4s;
+}
+.label:hover {
+    background-color: rgb(231, 231, 231);
+}
+
+.test {
+    right: 100%;
+
+}
