@@ -165,6 +165,15 @@ public class RentalRequestService {
         CarRentalRequest crr = this.rentalRequestRepository.findOneById(id);
         crr.setRole(RentalRequestRole.valueOf("PAID"));
 
+        //Pogledati posle zasto ne radi. Cilj je bio promeniti role i na drugoj strani.
+//        ClientRequestRentalRequest c = new ClientRequestRentalRequest();
+//        c.setCarId(crr.getRentalRequestCar().getId().toString());
+//        c.setEndDate(crr.getEndDate().toString());
+//        c.setId(crr.getId()); //Na drugoh strani je ovo secondId
+//        c.setStartDate(crr.getStartDate().toString());
+//        template = new WebServiceTemplate(marshaller);
+//        ServerRespond serverRespond = (ServerRespond) template.marshalSendAndReceive("http://localhost:8080/ws", c);
+
         this.rentalRequestRepository.save(crr);
         return crr;
     }

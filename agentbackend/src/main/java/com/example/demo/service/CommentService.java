@@ -70,9 +70,13 @@ public class CommentService {
 //    public void updateData() {
 //        List<Comment> commentList = this.commentRepository.findAll();
 //        List<ClientRequestComment> comments;
-//        ClientRequestComment comment;
+//        ClientRequestComment comment = new ClientRequestComment();
 //        for(Comment c : commentList) {
 //            comment.setDescriptionComment(c.getDescriptionComment());
+//            comment.setCarId(c.getCarId());
+//            comment.setFromUserId(c.getFromUserId());
+//
+//            comments.add(comment);
 //        }
 //    }
 }

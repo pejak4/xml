@@ -12,8 +12,11 @@ import com.example.carService.repository.CarRepository;
 import com.example.carService.repository.CommentRepository;
 import com.example.carService.repository.CommentRequestRepository;
 import com.example.carService.repository.RatingRequestRepository;
+import com.soapserveryt.api.soap.ClientRequestComment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Service;
+import org.springframework.ws.client.core.WebServiceTemplate;
 
 import java.util.List;
 
@@ -23,10 +26,12 @@ public class CommentRequestService {
     private CommentRequestRepository commentRequestRepository;
 
     @Autowired
-    private CarRepository carRepository;
+    private CommentRepository commentRepository;
 
     @Autowired
-    private CommentRepository commentRepository;
+    private Jaxb2Marshaller marshaller;
+
+    private WebServiceTemplate template;
 
     public CommentCarRequest addCommentCarRequest(CommentCarRequestDTO commentCarRequestDTO) {
         CommentCarRequest ccr = CommentCarRequest.builder().carId(commentCarRequestDTO.getCarId()).fromUserId(commentCarRequestDTO.getFromUserId())
@@ -47,6 +52,14 @@ public class CommentRequestService {
 
         this.commentRepository.save(c);
         this.commentRequestRepository.delete(ccr);
+
+        ClientRequestComment com = new ClientRequestComment();
+        com.setCarId(c.getCarId());
+        com.setDescriptionComment(c.getDescriptionComment());
+        com.setFromUserId(c.getFromUserId());
+
+        template = new WebServiceTemplate(marshaller);
+        template.marshalSendAndReceive("http://localhost:8080/ws", com);
 
         return;
     }
