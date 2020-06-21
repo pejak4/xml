@@ -87,7 +87,7 @@ class Messages extends React.PureComponent{
         if(this.state.meni==='SENT'){
             return this.state.message2.map((m) =>{
                 return (
-                   <MessageInfo data={m} key={m.id} />
+                   <MessageInfo data={m} key={m.id} ret={this.processingMessage} ret2={this.replyMessage}/>
                 );
             });
         }

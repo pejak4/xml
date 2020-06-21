@@ -7,10 +7,6 @@ WORKDIR /app
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
-ARG REACT_APP_HOST_IP_ADDRESS
-
-ENV REACT_APP_HOST_IP_ADDRESS $REACT_APP_HOST_IP_ADDRESS
-
 
 # install app dependencies
 COPY package.json ./

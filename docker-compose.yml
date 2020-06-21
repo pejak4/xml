@@ -11,7 +11,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: aco
   react:
-    image: react:1.0
+    build: ./clientfrontend
     ports:
       - "3000:3000"
     networks:
@@ -19,27 +19,25 @@ services:
     tty: true
     environment:
      CHOKIDAR_USEPOLLING: "true"
-    build:
-        context: ./clientfrontend
-        args:
-            REACT_APP_HOST_IP_ADDRESS: zuul
     volumes:
-        - /app/node_modules
+      - '/app/node_modules'
     depends_on:
         - eureka
         - database
         - auth
         - car
         - code
+        - message
+        - zuul
   eureka:
-    image: eureka:1.0
+    build: ./services/eureka-server
     ports:
       - "8761:8761"
     networks:
         - demo
     tty: true
   auth:
-    image: auth:1.0
+    build: ./services/authentication-service
     ports:
       - "8085:8085"
     networks:
@@ -48,11 +46,25 @@ services:
     environment:
       DB_HOST: database
       REGISTRY_HOST: eureka
+      CROSS_ORIG: react
     depends_on:
         - eureka
         - database
+  message:
+    build: ./services/message-service
+    ports:
+      - "8083:8083"
+    networks:
+        - demo
+    tty: true
+    environment:
+      DB_HOST: database
+      REGISTRY_HOST: eureka
+    depends_on:
+        - eureka
+        - database      
   car:
-    image: car:1.0
+    build: ./services/car-service
     ports:
       - "8081:8081"
     networks:
@@ -65,7 +77,7 @@ services:
         - eureka
         - database
   code:
-    image: code:1.0
+    build: ./services/codebook-service
     ports:
       - "8086:8086"
     networks:
@@ -78,7 +90,7 @@ services:
         - eureka
         - database         
   zuul:
-    image: zuul:1.0
+    build: ./services/zuul-api-gateway
     ports:
       - "8762:8762"
     networks:
@@ -91,6 +103,7 @@ services:
         - auth
         - car
         - code
+        - message
 networks:
   demo:
     name: demo
