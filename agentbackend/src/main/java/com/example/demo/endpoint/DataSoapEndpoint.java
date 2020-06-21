@@ -1,6 +1,7 @@
 package com.example.demo.endpoint;
 
 import com.example.demo.service.DataSoapService;
+import com.soapclient.api.domain.ClientRequestComment;
 import com.soapclient.api.domain.ClientRequestRentalRequest;
 import com.soapclient.api.domain.ServerRespond;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,12 @@ public class DataSoapEndpoint {
     @ResponsePayload
     public ServerRespond addRentalRequestSoap(@RequestPayload ClientRequestRentalRequest request) {
         return dataSoapService.clientRentalRequest(request);
+    }
+
+    @PayloadRoot(namespace = "http://www.soapserveryt.com/api/soap", localPart = "ClientRequestComment")
+    @ResponsePayload
+    public void addComment(@RequestPayload ClientRequestComment request) {
+        dataSoapService.addComment(request);
     }
 
 }
