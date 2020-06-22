@@ -59,10 +59,13 @@ class RentalRequestsFromMe extends React.PureComponent {
             console.log(response00.data);
         }
 
-        const response01 = await axios.post('/car-service/addRental', data00);
-        if(response01) {
-            console.log(response01.data);
-        }
+        //Mislim da mi ovaj deo sa tabelom Rental uopste ne treba
+        //Jer u zahtevima za rentanje imam stanja, auta se rentaju ili su zavrsena sa rentanjem ako je stanje Paid
+        //Po stanjim mogu sve da pratim
+        // const response01 = await axios.post('/car-service/addRental', data00);
+        // if(response01) {
+        //     console.log(response01.data);
+        // }
 
         let carId = rentalRequest.rentalRequestCar.id;
         let startData= rentalRequest.startDate;

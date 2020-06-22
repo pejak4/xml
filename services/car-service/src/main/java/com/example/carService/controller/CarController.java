@@ -130,13 +130,13 @@ public class CarController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000") //Kada se plati, napravicemo novi oglas u tabeli CarRentalDate
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/addRental")
-    public ResponseEntity<?> addRental(@RequestBody RentalRequestAcceptDeclineDTO r) {
-        CarRentalRequest crr = this.rentalRequestService.findOneById(Long.parseLong(r.getRentalRequestId()));
-        this.rentalService.addRental(crr);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+//    @CrossOrigin(origins = "http://localhost:3000") //Kada se plati, napravicemo novi oglas u tabeli CarRentalDate
+//    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/addRental")
+//    public ResponseEntity<?> addRental(@RequestBody RentalRequestAcceptDeclineDTO r) {
+//        CarRentalRequest crr = this.rentalRequestService.findOneById(Long.parseLong(r.getRentalRequestId()));
+//        this.rentalService.addRental(crr);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 
     @CrossOrigin(origins = "http://localhost:3000")//ako je taj auto vec rezervisan u tom periodu
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/ifHaveReservedRentalRequest")
@@ -195,7 +195,7 @@ public class CarController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/checkRentalRating")
     public ResponseEntity<?> checkRentalRating(@RequestBody RentalCheckDTO rentalCheckDTO) {
-        return new ResponseEntity<>(this.rentalService.checkRentalRating(rentalCheckDTO), HttpStatus.OK);
+        return new ResponseEntity<>(this.rentalRequestService.checkRentalRating(rentalCheckDTO), HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
