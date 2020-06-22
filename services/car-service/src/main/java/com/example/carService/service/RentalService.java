@@ -17,25 +17,24 @@ public class RentalService {
     @Autowired
     private RentalRepository rentalRepository;
 
-    public void addRental(CarRentalRequest rr) {
-        CarRentalDate crd = CarRentalDate.builder().car(rr.getRentalRequestCar()).startDate(rr.getStartDate())
-                .endDate(rr.getEndDate()).fromUserId(Long.parseLong(rr.getUserId())).build();
+//    public void addRental(CarRentalRequest rr) {
+//        CarRentalDate crd = CarRentalDate.builder().car(rr.getRentalRequestCar()).startDate(rr.getStartDate())
+//                .endDate(rr.getEndDate()).fromUserId(Long.parseLong(rr.getUserId())).build();
+//
+//        this.rentalRepository.save(crd);
+//    }
 
-        this.rentalRepository.save(crd);
-    }
-
-    public Boolean checkRentalRating(RentalCheckDTO rentalCheckDTO) {
-        Timestamp tm = new Timestamp(System.currentTimeMillis()); //Trenutno vreme
-
-        List<CarRentalDate> crd = this.rentalRepository.findAllRentalFrom(rentalCheckDTO.getFromUserId()
-        ,tm, rentalCheckDTO.getCarId());
-
-        if(crd.size() != 0) {
-            return true;
-        }
-
-        return false;
-    }
+//    public Boolean checkRentalRating(RentalCheckDTO rentalCheckDTO) {
+//        Timestamp tm = new Timestamp(System.currentTimeMillis()); //Trenutno vreme
+//
+//        List<CarRentalDate> crd = this.rentalRepository.findAllRentalFrom(rentalCheckDTO.getFromUserId()
+//        ,tm, rentalCheckDTO.getCarId());
+//
+//        if(crd.size() != 0) {
+//            return true;
+//        }
+//        return false;
+//    }
 
 
 }

@@ -1,10 +1,8 @@
 package com.example.carService.service;
 
-import com.example.carService.dto.CarFilterDTO;
-import com.example.carService.dto.RentalRequestDTO;
-import com.example.carService.dto.RentalRequestIdAndCarDTO;
-import com.example.carService.dto.RentalRequestIfHaveReservedDTO;
+import com.example.carService.dto.*;
 import com.example.carService.model.Car;
+import com.example.carService.model.CarRentalDate;
 import com.example.carService.model.CarRentalRequest;
 import com.example.carService.repository.CarRepository;
 import com.example.carService.repository.RentalRequestRepository;
@@ -166,16 +164,28 @@ public class RentalRequestService {
         crr.setRole(RentalRequestRole.valueOf("PAID"));
 
         //Pogledati posle zasto ne radi. Cilj je bio promeniti role i na drugoj strani.
-//        ClientRequestRentalRequest c = new ClientRequestRentalRequest();
-//        c.setCarId(crr.getRentalRequestCar().getId().toString());
-//        c.setEndDate(crr.getEndDate().toString());
-//        c.setId(crr.getId()); //Na drugoh strani je ovo secondId
-//        c.setStartDate(crr.getStartDate().toString());
-//        template = new WebServiceTemplate(marshaller);
-//        ServerRespond serverRespond = (ServerRespond) template.marshalSendAndReceive("http://localhost:8080/ws", c);
+        ClientRequestRentalRequest c = new ClientRequestRentalRequest();
+        c.setCarId(crr.getRentalRequestCar().getId().toString());
+        c.setEndDate(crr.getEndDate().toString());
+        c.setId(crr.getId()); //Na drugoh strani je ovo secondId
+        c.setStartDate(crr.getStartDate().toString());
+        template = new WebServiceTemplate(marshaller);
+        ServerRespond serverRespond = (ServerRespond) template.marshalSendAndReceive("http://localhost:8080/ws", c);
 
         this.rentalRequestRepository.save(crr);
         return crr;
+    }
+
+    public Boolean checkRentalRating(RentalCheckDTO rentalCheckDTO) {
+        Timestamp tm = new Timestamp(System.currentTimeMillis()); //Trenutno vreme
+
+        List<CarRentalRequest> crd = this.rentalRequestRepository.findAllRentalFrom(rentalCheckDTO.getFromUserId().toString()
+                ,tm, rentalCheckDTO.getCarId());
+
+        if(crd.size() != 0) {
+            return true;
+        }
+        return false;
     }
 
 }

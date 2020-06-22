@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25e00632-9d8a-4e29-8666-fdd70602ea84" name="Default Changelist" comment="">
+<<<<<<< Updated upstream
 
 
       <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/SearchPage/SearchPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/SearchPage/SearchPage.js" afterDir="false" />
@@ -24,7 +25,14 @@
       <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/service/RentalRequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/service/RentalRequestService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/service/CommentRequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/service/CommentRequestService.java" afterDir="false" />
 
+=======
+      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/service/DataSoapService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/service/DataSoapService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/controller/CarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/controller/CarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/repository/RentalRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/repository/RentalRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/repository/RentalRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/repository/RentalRequestRepository.java" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/service/RentalRequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/service/RentalRequestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/service/RentalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/service/RentalService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />

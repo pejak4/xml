@@ -37,10 +37,10 @@ public class DataSoapService {
         //sa druge strane saljem dva zahteva a pozivam ovu istu metodu. Prvi put je pozivam pri pravljenju novog zahteva.
         //A drugi put kada se zahtev plati pa se promeni na stanje Paid, onda saljem ovde i ovde menjam role na Paid.
         //Zbog toga imam dva if-a, u zavisnoti sta radimo.
-//        CarRentalRequest rentalRequest = this.rentalRequestRepository.findOneBySecondId(a.getId());
+        CarRentalRequest rentalRequest = this.rentalRequestRepository.findOneBySecondId(a.getId());
         ServerRespond serverRespond = new ServerRespond();
-//        serverRespond.setId(0);
-//        if(rentalRequest == null) {
+        serverRespond.setId(0);
+        if(rentalRequest == null) {
             Instant instant1 = Instant.parse(a.getStartDate());
             Instant instant2 = Instant.parse(a.getEndDate());
 
@@ -55,15 +55,15 @@ public class DataSoapService {
             Timestamp tm = new Timestamp(System.currentTimeMillis()); //Trenutno vreme
 
             CarRentalRequest crr = CarRentalRequest.builder().role(RentalRequestRole.PENDING).
-                    startDate(tss).endDate(tse).createDate(tm).forUserId(c.getUserId()).
+                    startDate(tss).endDate(tse).createDate(tm).forUserId(c.getUserId()).check_mileage(false).
                     userId(a.getUserId()).rentalRequestCar(c).secondId(a.getId()).build();
 
             this.rentalRequestRepository.save(crr);
             serverRespond.setId(crr.getId());
-//        } else {
-//            rentalRequest.setRole(RentalRequestRole.PAID);
-//            this.rentalRequestRepository.save(rentalRequest);
-//        }
+        } else {
+            rentalRequest.setRole(RentalRequestRole.PAID);
+            this.rentalRequestRepository.save(rentalRequest);
+        }
 
         return serverRespond;
     }
