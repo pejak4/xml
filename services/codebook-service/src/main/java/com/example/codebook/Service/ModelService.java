@@ -8,6 +8,7 @@ import com.example.codebook.model.Model;
 import com.example.codebook.model.Transmission;
 import com.example.codebook.repository.BrandRepository;
 import com.example.codebook.repository.ModelRepository;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,13 @@ public class ModelService {
     @Autowired
     private BrandRepository brandRepository;
 
-    public List<Model> findAll() {return this.modelRepository.findAll();}
+    public List<Model> findAll() {
+        List<Model> models = this.modelRepository.findAll();
+        for(Model m : models) {
+            m.setModel(StringEscapeUtils.escapeHtml4(m.getModel()));
+        }
+        return this.modelRepository.findAll();
+    }
 
     public void deleteModel(Long id) {this.modelRepository.deleteRequest(id);}
 

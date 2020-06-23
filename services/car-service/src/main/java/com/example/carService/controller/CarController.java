@@ -3,12 +3,14 @@ package com.example.carService.controller;
 import com.example.carService.dto.*;
 import com.example.carService.model.CarRentalRequest;
 import com.example.carService.model.RentalRequestRole;
+import com.example.carService.security.Acl;
 import com.example.carService.service.*;
 import com.soapserveryt.api.soap.ClientRequestRentalRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -37,6 +39,9 @@ public class CarController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private Acl acl;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, path = "/searchCars")
@@ -254,6 +259,20 @@ public class CarController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getAllCommentByCarId")
     public ResponseEntity<?> getAllCommentByCarId(@RequestBody CommentCarIdDTO commentCarIdDTO) {
         return new ResponseEntity<>(this.commentService.findAllByCarId(commentCarIdDTO.getCarId()), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/aclSecurity")
+    public ResponseEntity<?> aclSecurity(@RequestBody AclDTO aclDTO) throws Exception {
+        this.acl.addRestorePermissionsAcl(aclDTO.getRole());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/aclSecurityLogout")
+    public ResponseEntity<?> aclSecurityLogout() throws Exception {
+        this.acl.addRestorePermissionsAcl("USER");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

@@ -1,8 +1,10 @@
 package com.example.messageservice.controller;
 
 
+import com.example.messageservice.dto.AclDTO;
 import com.example.messageservice.dto.MessageDTO;
 import com.example.messageservice.model.Message;
+import com.example.messageservice.security.Acl;
 import com.example.messageservice.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,9 @@ public class MessageController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private Acl acl;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/porukeza")
@@ -59,7 +64,19 @@ public class MessageController {
         return new ResponseEntity<>(this.messageService.findBySenderId(Long.parseLong(id)), HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/aclSecurity")
+    public ResponseEntity<?> aclSecurity(@RequestBody AclDTO aclDTO) throws Exception {
+        this.acl.addRestorePermissionsAcl(aclDTO.getRole());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/aclSecurityLogout")
+    public ResponseEntity<?> aclSecurityLogout() throws Exception {
+        this.acl.addRestorePermissionsAcl("USER");
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 
 }

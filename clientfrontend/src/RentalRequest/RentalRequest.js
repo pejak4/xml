@@ -180,8 +180,8 @@ class RentalRequest extends React.PureComponent {
                         <h4><b>Rental request: </b></h4>
                         <br/><hr/>
                         {this.state.user !== null ? <h5><b>User: {this.state.user.firstName} {this.state.user.lastName}</b></h5> : null}
-                        <h5><b>Start date: {this.state.currentRentalRequest.startDate.split("T")[0]} {this.state.currentRentalRequest.startDate.split("T")[1].split(".")[0]}</b></h5>
-                        <h5><b>End date: {this.state.currentRentalRequest.endDate.split("T")[0]} {this.state.currentRentalRequest.endDate.split("T")[1].split(".")[0]}</b></h5>
+                        <h5><b>Start date: {this.state.currentRentalRequest.startDate}</b></h5>
+                        <h5><b>End date: {this.state.currentRentalRequest.endDate}</b></h5>
                     </div>
                     <button className="btn" onClick={(event) => {this.setState({renderDetail: false, blockButton: false})}}>Back</button>
                     {this.state.renderType === '1' ? <button className="btn" style={{margin:'0 1rem'}} onClick={(event) => {this.acceptHandler()}}>Accept</button> : null}

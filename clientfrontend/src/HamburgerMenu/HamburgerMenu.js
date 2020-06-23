@@ -1,10 +1,18 @@
 import React from 'react';
 import './HamburgerMenu.css';
+import axios from '../axios-objects';
 
 class HamburgerMenu extends React.PureComponent {
 
-    logoutHandler = () => {
+    logoutHandler = async(event) => {
+        event.preventDefault();
+        //await axios.get('/car-service/aclSecurityLogout');
+        //await axios.get('/authentication-service/aclSecurityLogout');
+        //await axios.get('/codebook-service/aclSecurityLogout');
+        //await axios.get('/image-service/aclSecurityLogout');
+        // await axios.get('/message-service/aclSecurityLogout'); //NE znam zasto ne radi
         sessionStorage.clear();
+        window.location.href = "/"
     }
 
     render() {
@@ -20,7 +28,7 @@ class HamburgerMenu extends React.PureComponent {
                             <ul>
                                 <li><a href="/">Home</a></li>
                                 {sessionStorage.getItem('token') === null ? <li><a href="/login">Login/Registration</a></li> : null}
-                                {sessionStorage.getItem('token') !== null ? <li><a href="/login" onClick={() => this.logoutHandler()}>Logout</a></li> : null}
+                                {sessionStorage.getItem('token') !== null ? <li><a onClick={(event) => this.logoutHandler(event)}>Logout</a></li> : null}
                                 {sessionStorage.getItem('role') === 'USER' ? <li><a href="/addAdvertisement">Add advertisement</a></li> : null}
                                 {sessionStorage.getItem('role') === 'ADMIN' ? <li><a href="/codebook">Codebook</a></li> : null}
                                 {sessionStorage.getItem('role') === 'ADMIN' ? <li><a href="/setStateUser">Active/block users</a></li> : null}

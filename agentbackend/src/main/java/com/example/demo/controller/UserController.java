@@ -68,12 +68,6 @@ public class UserController {
         return new ResponseEntity<>(this.advertisementService.save(car), HttpStatus.CREATED);
     }
 
-//    @CrossOrigin(origins = "http://localhost:3000")
-//    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/api")
-//    public ResponseEntity<?> respond(@RequestBody ClientRequest request) {
-//        return new ResponseEntity<>(client.respond(request), HttpStatus.OK);
-//    }
-
     @CrossOrigin(origins = "http://localhost:3001")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getCarsLogedUser")
     public ResponseEntity<?> getCarsLogedUser(@RequestBody UserIdDTO id) {
@@ -167,6 +161,21 @@ public class UserController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getCountComments")
     public ResponseEntity<?> getCountComments(@RequestBody UserIdDTO id) {
         return new ResponseEntity<>(this.commentService.getCountComment(id), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3001")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/aclSecurity")
+    public ResponseEntity<?> aclSecurity() throws Exception {
+        Users loggedUser = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        this.userService.addRestorePermissions(loggedUser.getRole().getRole());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3001")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/aclSecurityLogout")
+    public ResponseEntity<?> aclSecurityLogout() throws Exception {
+        this.userService.addRestorePermissions("USER");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

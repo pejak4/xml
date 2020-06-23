@@ -104,8 +104,8 @@ class RentalRequestsFromMe extends React.PureComponent {
                                 {rentalRequest.rentalRequestCar.brand} {rentalRequest.rentalRequestCar.model}
                                 <br/><hr/>
                                 <br/>
-                                <h5><b>Start date: {rentalRequest.startDate.split("T")[0]} {rentalRequest.startDate.split("T")[1].split(".")[0]}</b></h5>
-                                <h5><b>End date: {rentalRequest.endDate.split("T")[0]} {rentalRequest.endDate.split("T")[1].split(".")[0]}</b></h5>
+                                <h5><b>Start date: {rentalRequest.startDate}</b></h5>
+                                <h5><b>End date: {rentalRequest.endDate}</b></h5>
                                 <br/><hr/>
                                 <p><b>{rentalRequest.rentalRequestCar.price}$</b></p>
                             </div>
@@ -128,8 +128,8 @@ class RentalRequestsFromMe extends React.PureComponent {
                                 {rentalRequest.rentalRequestCar.brand} {rentalRequest.rentalRequestCar.model}
                                 <br/><hr/>
                                 <br/>
-                                <h5><b>Start date: {rentalRequest.startDate.split("T")[0]} {rentalRequest.startDate.split("T")[1].split(".")[0]}</b></h5>
-                                <h5><b>End date: {rentalRequest.endDate.split("T")[0]} {rentalRequest.endDate.split("T")[1].split(".")[0]}</b></h5>
+                                <h5><b>Start date: {rentalRequest.startDate}</b></h5>
+                                <h5><b>End date: {rentalRequest.endDate}</b></h5>
                                 <br/><hr/>
                                 <p><b>{rentalRequest.rentalRequestCar.price}$</b></p>
                             </div>
@@ -153,8 +153,8 @@ class RentalRequestsFromMe extends React.PureComponent {
                                 {rentalRequest.rentalRequestCar.brand} {rentalRequest.rentalRequestCar.model}
                                 <br/><hr/>
                                 <br/>
-                                <h5><b>Start date: {rentalRequest.startDate.split("T")[0]} {rentalRequest.startDate.split("T")[1].split(".")[0]}</b></h5>
-                                <h5><b>End date: {rentalRequest.endDate.split("T")[0]} {rentalRequest.endDate.split("T")[1].split(".")[0]}</b></h5>
+                                <h5><b>Start date: {rentalRequest.startDate}</b></h5>
+                                <h5><b>End date: {rentalRequest.endDate}</b></h5>
                                 <br/><hr/>
                                 <p><b>{rentalRequest.rentalRequestCar.price}$</b></p>
                             </div>
@@ -176,8 +176,8 @@ class RentalRequestsFromMe extends React.PureComponent {
                                 {rentalRequest.rentalRequestCar.brand} {rentalRequest.rentalRequestCar.model}
                                 <br/><hr/>
                                 <br/>
-                                <h5><b>Start date: {rentalRequest.startDate.split("T")[0]} {rentalRequest.startDate.split("T")[1].split(".")[0]}</b></h5>
-                                <h5><b>End date: {rentalRequest.endDate.split("T")[0]} {rentalRequest.endDate.split("T")[1].split(".")[0]}</b></h5>
+                                <h5><b>Start date: {rentalRequest.startDate}</b></h5>
+                                <h5><b>End date: {rentalRequest.endDate}</b></h5>
                                 <br/><hr/>
                                 <p><b>{rentalRequest.rentalRequestCar.price}$</b></p>
                             </div>

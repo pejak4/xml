@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dto.RentalEndDTO;
 import com.example.demo.dto.RentalRequestIfHaveReservedDTO;
+import com.example.demo.model.Car;
 import com.example.demo.model.CarRentalDate;
 import com.example.demo.model.CarRentalRequest;
 import com.example.demo.model.RentalRequestRole;
@@ -9,6 +10,7 @@ import com.example.demo.repository.RentalRequestRepository;
 import com.soapclient.api.domain.ClientRequestRentalRequest;
 import com.soapclient.api.domain.ClientRequestRentalRequestId;
 import com.soapclient.api.domain.ServerRespond;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -30,7 +32,18 @@ public class RentalRequestService {
     private WebServiceTemplate template;
 
     public List<CarRentalRequest> rentalRequestsForUserIdAndRole(String forUserId, RentalRequestRole role) {
-        return this.rentalRequestRepository.findAllByForUserIdAndRole(forUserId, role);
+        List<CarRentalRequest> ccc = this.rentalRequestRepository.findAllByForUserIdAndRole(forUserId, role);
+        for(CarRentalRequest cc : ccc) {
+            Car c = cc.getRentalRequestCar();
+            c.setDescription(StringEscapeUtils.escapeHtml4(c.getDescription()));
+            c.setBrand(StringEscapeUtils.escapeHtml4(c.getBrand()));
+            c.setCityLocation(StringEscapeUtils.escapeHtml4(c.getCityLocation()));
+            c.setModel(StringEscapeUtils.escapeHtml4(c.getModel()));
+            c.setClassCar(StringEscapeUtils.escapeHtml4(c.getClassCar()));
+            c.setFuelType(StringEscapeUtils.escapeHtml4(c.getFuelType()));
+            c.setTransmission(StringEscapeUtils.escapeHtml4(c.getTransmission()));
+        }
+        return ccc;
     }
 
     public Boolean ifHaveReservedRentalRequest(RentalRequestIfHaveReservedDTO rentalRequestDTO) {
@@ -75,49 +88,49 @@ public class RentalRequestService {
         this.rentalRequestRepository.save(crc);
     }
 
-//    @Scheduled(fixedRate=2000000) //Oko 30.3 minuta ce se pozicati ova metoda
-//    public void setRoleOfRentalRequest(){
-//        System.out.println("do some taskK 00 1");
-//
-//        ClientRequestRentalRequestId crrri = new ClientRequestRentalRequestId();
-//
-//        Timestamp tm = new Timestamp(System.currentTimeMillis()); //Trenutno vreme
-//
-//        //Svi zahtevi ako nakon 12 od kako su postali rezervisani, ne predju u stanje PAID tj ne budu placeni, odbijaju se
-//        List<CarRentalRequest> allRentalRequestReserved = this.rentalRequestRepository.findAllByRole(RentalRequestRole.valueOf("RESERVED"));
-//        for(CarRentalRequest crr : allRentalRequestReserved) {
-//            Timestamp timeCrr = crr.getCreateDate();
-//            timeCrr.setTime(timeCrr.getTime() + 12*1000*60*60);
-//
-//            if(tm.after(timeCrr)) {
-//                crr.setRole(RentalRequestRole.valueOf("CANCELED"));
-//                this.rentalRequestRepository.save(crr);
-//
-//                crrri.setId(crr.getSecondId());
-//                crrri.setType("CANCELED");
-//
-//                template = new WebServiceTemplate(marshaller);
-//                template.marshalSendAndReceive("http://localhost:8081/ws", crrri);
-//            }
-//        }
-//        //Svi novokreirani su pending. AKo nakon 24 sata ne budu obradjeni postaju CANCELED tj odbijeni.
-//        List<CarRentalRequest> allRentalRequestPending = this.rentalRequestRepository.findAllByRole(RentalRequestRole.valueOf("PENDING"));
-//        for(CarRentalRequest crr : allRentalRequestPending) {
-//            Timestamp timeCrr = crr.getCreateDate();
-//            timeCrr.setTime(timeCrr.getTime() + 24*1000*60*60);
-//
-//            if(tm.after(timeCrr)) {
-//                crr.setRole(RentalRequestRole.valueOf("CANCELED"));
-//                this.rentalRequestRepository.save(crr);
-//
-//                crrri.setId(crr.getSecondId());
-//                crrri.setType("CANCELED");
-//
-//                template = new WebServiceTemplate(marshaller);
-//                template.marshalSendAndReceive("http://localhost:8081/ws", crrri);
-//            }
-//        }
-//    }
+    @Scheduled(fixedRate=2000000) //Oko 30.3 minuta ce se pozicati ova metoda
+    public void setRoleOfRentalRequest(){
+        System.out.println("do some taskK 00 1");
+
+        ClientRequestRentalRequestId crrri = new ClientRequestRentalRequestId();
+
+        Timestamp tm = new Timestamp(System.currentTimeMillis()); //Trenutno vreme
+
+        //Svi zahtevi ako nakon 12 od kako su postali rezervisani, ne predju u stanje PAID tj ne budu placeni, odbijaju se
+        List<CarRentalRequest> allRentalRequestReserved = this.rentalRequestRepository.findAllByRole(RentalRequestRole.valueOf("RESERVED"));
+        for(CarRentalRequest crr : allRentalRequestReserved) {
+            Timestamp timeCrr = crr.getCreateDate();
+            timeCrr.setTime(timeCrr.getTime() + 12*1000*60*60);
+
+            if(tm.after(timeCrr)) {
+                crr.setRole(RentalRequestRole.valueOf("CANCELED"));
+                this.rentalRequestRepository.save(crr);
+
+                crrri.setId(crr.getSecondId());
+                crrri.setType("CANCELED");
+
+                template = new WebServiceTemplate(marshaller);
+                template.marshalSendAndReceive("http://localhost:8081/ws", crrri);
+            }
+        }
+        //Svi novokreirani su pending. AKo nakon 24 sata ne budu obradjeni postaju CANCELED tj odbijeni.
+        List<CarRentalRequest> allRentalRequestPending = this.rentalRequestRepository.findAllByRole(RentalRequestRole.valueOf("PENDING"));
+        for(CarRentalRequest crr : allRentalRequestPending) {
+            Timestamp timeCrr = crr.getCreateDate();
+            timeCrr.setTime(timeCrr.getTime() + 24*1000*60*60);
+
+            if(tm.after(timeCrr)) {
+                crr.setRole(RentalRequestRole.valueOf("CANCELED"));
+                this.rentalRequestRepository.save(crr);
+
+                crrri.setId(crr.getSecondId());
+                crrri.setType("CANCELED");
+
+                template = new WebServiceTemplate(marshaller);
+                template.marshalSendAndReceive("http://localhost:8081/ws", crrri);
+            }
+        }
+    }
 
     public List<CarRentalRequest> findAllCarInRentalEnd(RentalEndDTO rentalEndDTO) {
         Timestamp tm = new Timestamp(System.currentTimeMillis()); //Trenutno vreme
@@ -125,6 +138,17 @@ public class RentalRequestService {
         List<CarRentalRequest> crd = this.rentalRequestRepository.findAllCarInRentalRequestEnd(rentalEndDTO.getFromUserId().toString(), tm,
                 false, "PAID");
 
+        for(CarRentalRequest cc : crd) {
+            Car c = cc.getRentalRequestCar();
+
+            c.setDescription(StringEscapeUtils.escapeHtml4(c.getDescription()));
+            c.setBrand(StringEscapeUtils.escapeHtml4(c.getBrand()));
+            c.setCityLocation(StringEscapeUtils.escapeHtml4(c.getCityLocation()));
+            c.setModel(StringEscapeUtils.escapeHtml4(c.getModel()));
+            c.setClassCar(StringEscapeUtils.escapeHtml4(c.getClassCar()));
+            c.setFuelType(StringEscapeUtils.escapeHtml4(c.getFuelType()));
+            c.setTransmission(StringEscapeUtils.escapeHtml4(c.getTransmission()));
+        }
         return crd;
     }
 
