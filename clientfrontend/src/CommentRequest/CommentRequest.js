@@ -11,7 +11,6 @@ class CommentRequest extends React.PureComponent {
     componentDidMount = async() => {
         const response = await axios.get('/car-service/getAllCommentRequest');
         if(response) {
-            console.log(response.data);
             this.setState({commentRequests: response.data})
         }
     }

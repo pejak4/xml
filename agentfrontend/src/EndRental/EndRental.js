@@ -16,8 +16,6 @@ class EndRental extends React.PureComponent{
     }
 
     componentDidMount = async() => {
-        const userEmail = sessionStorage.getItem('userEmail');
-        // const data = {userEmail};
         const token = sessionStorage.getItem('token');
         const response = await axios.get('/getLoggedUser', {
             headers: {
@@ -125,7 +123,7 @@ class EndRental extends React.PureComponent{
                 <header id="showcase">
                     <br/><br/>
                     <div className="containerSearch showcase-containerSearch" >
-                        <div style={{overflowY:'scroll', overflowY:'hidden', maxWidth:'100%'}}>
+                        <div style={{overflowY:'scroll', maxWidth:'100%'}}>
                             {this.renderCars()}
                         </div>
                     </div>

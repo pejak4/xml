@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Registration from './Registration/Registration';
 import Login from './Login/Login';
 import HomePage from './HomePage/HomePage';
-import PrivateRouteAdmin from './PrivateRoute/PrivateRouteAdmin';
 import Advertisement from './Advertisement/Advertisement';
 import Occupancy from './OccupancyCar/OccupancyCar';
 import RentalRequest from './RentalRequest/RentalRequest';

@@ -9,7 +9,7 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: aco
+      POSTGRES_PASSWORD: retturn.05be
   react:
     build: ./clientfrontend
     ports:

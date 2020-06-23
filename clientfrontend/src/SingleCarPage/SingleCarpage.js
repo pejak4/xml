@@ -18,7 +18,6 @@ class SingleCarPage extends React.PureComponent {
     }
 
     componentDidMount = async () => {
-        console.log(this.props);
         const id = this.props.carId;
         const response = await axios.get('/car-service/getSingleCar', {
             params: {
@@ -53,24 +52,17 @@ class SingleCarPage extends React.PureComponent {
         const response00 = await axios.post('/authentication-service/getLoggedUser', data00);
         if(response00) {
             fromUserId = response00.data.id;
-            console.log(response00.data);
         }
 
         let data01 = {fromUserId, carId}
         const response01 = await axios.post('/car-service/checkRentalRating', data01);
-        if(response01) {
-            console.log(response01.data);
-        }
 
         if(response01.data === false) {
             alert('Can not comment this car.');
         } else {
             let descriptionComment = this.state.descriptionComment;
             let data02 = {fromUserId, carId, descriptionComment};
-            const response02 = await axios.post('/car-service/addCommentCarRequest', data02);
-            if(response02) {
-                console.log(response02);
-            }
+            await axios.post('/car-service/addCommentCarRequest', data02);
         }
     }
 

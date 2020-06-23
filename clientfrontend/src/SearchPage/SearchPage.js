@@ -10,7 +10,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import axios from '../axios-objects';
-import {Link} from 'react-router-dom';
 import Popup from "reactjs-popup";
 import ReactStars from 'react-rating-stars-component'
 import SingleCarPage from '../SingleCarPage/SingleCarpage';
@@ -229,8 +228,6 @@ class SearchPage extends React.PureComponent {
 
         let startDate = this.state.car.startDate;
         let endDate = this.state.car.endDate;
-
-        console.log(carId);
         carId = car.id;
         
         const data2 = {startDate, endDate, carId};
@@ -256,10 +253,7 @@ class SearchPage extends React.PureComponent {
                 await axios.post('/car-service/addRentalRequest', data);
             }
         } else {
-            const response00 = await axios.post('/car-service/sentSoapRentalRequest', data00);
-            if(response00) {
-                console.log(response00.data);
-            }
+            await axios.post('/car-service/sentSoapRentalRequest', data00);
         }
     }
 
@@ -298,8 +292,6 @@ class SearchPage extends React.PureComponent {
 
 
     ratingChangedHandler = async(rating, car) => {
-        console.log(rating);
-        console.log(car);
         let carId = car.id;
 
         let fromUserId;
@@ -312,17 +304,11 @@ class SearchPage extends React.PureComponent {
 
         let data01 = {fromUserId, carId}
         const response01 = await axios.post('/car-service/checkRentalRating', data01);
-       
-        console.log(response01.data);
         if(response01.data === false) {
             alert('Can not rating this car.');
         } else {
             let data02 = {fromUserId, carId, rating};
-            const response02 = await axios.post('/car-service/addRatingCarRequest', data02);
-
-            if(response02) {
-                console.log(response02);
-            }
+            await axios.post('/car-service/addRatingCarRequest', data02);
         }
     }
 

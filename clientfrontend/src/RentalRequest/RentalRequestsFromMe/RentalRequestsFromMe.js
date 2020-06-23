@@ -26,25 +26,21 @@ class RentalRequestsFromMe extends React.PureComponent {
         const data01 = {userId};
         const response01 = await axios.post('/car-service/getAllRentalRequestsLoggedUserReserved', data01);
         if(response01) {
-            console.log(response01.data)
             this.setState({rentalRequestFromMeReserved: response01.data})
         }
 
         const response02 = await axios.post('/car-service/getAllRentalRequestsLoggedUserPaid', data01);
         if(response02) {
-            console.log(response02.data)
             this.setState({rentalRequestFromMePaid: response02.data})
         }
 
         const response03= await axios.post('/car-service/getAllRentalRequestsLoggedUserPending', data01);
         if(response03) {
-            console.log(response03.data)
             this.setState({rentalRequestFromMePending: response03.data})
         }
 
         const response04= await axios.post('/car-service/getAllRentalRequestsLoggedUserCanceled', data01);
         if(response04) {
-            console.log(response04.data)
             this.setState({rentalRequestFromMeCanceled: response04.data})
         }
     }
@@ -54,18 +50,12 @@ class RentalRequestsFromMe extends React.PureComponent {
 
         let rentalRequestId = rentalRequest.id;
         const data00 = {rentalRequestId};
-        const response00 = await axios.post('/car-service/paidRentalRequest', data00);
-        if(response00){
-            console.log(response00.data);
-        }
+        await axios.post('/car-service/paidRentalRequest', data00);
 
         //Mislim da mi ovaj deo sa tabelom Rental uopste ne treba
         //Jer u zahtevima za rentanje imam stanja, auta se rentaju ili su zavrsena sa rentanjem ako je stanje Paid
         //Po stanjim mogu sve da pratim
-        // const response01 = await axios.post('/car-service/addRental', data00);
-        // if(response01) {
-        //     console.log(response01.data);
-        // }
+        //await axios.post('/car-service/addRental', data00);
 
         let carId = rentalRequest.rentalRequestCar.id;
         let startData= rentalRequest.startDate;
@@ -73,23 +63,15 @@ class RentalRequestsFromMe extends React.PureComponent {
         let userId = rentalRequest.forUserId;
 
         const data = {carId, startData, endData, userId};
-        console.log(data);
-        const response = await axios.post('/car-service/declineRentalRequestWhenPaid', data);
-        if(response) {
-            console.log(response.data);
-        }
+        await axios.post('/car-service/declineRentalRequestWhenPaid', data);
 
         window.location.reload();
     }
 
     declineHandler = async(event, rentalRequest) => {
-        console.log(rentalRequest);
         let rentalRequestId = rentalRequest.id;
         const data = {rentalRequestId};
-        const response = await axios.post('/car-service/declineRentalRequest', data);
-        if(response) {
-            console.log(response);
-        }
+        await axios.post('/car-service/declineRentalRequest', data);
         window.location.reload();
     }
 

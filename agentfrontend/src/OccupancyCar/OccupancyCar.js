@@ -23,8 +23,6 @@ class OccupancyCar extends React.PureComponent {
     }
 
     componentDidMount = async() =>{
-        const userEmail = sessionStorage.getItem('userEmail');
-        // const data = {userEmail};
         const token = sessionStorage.getItem('token');
         const response = await axios.get('/getLoggedUser', {
             headers: {
@@ -163,7 +161,7 @@ class OccupancyCar extends React.PureComponent {
                     <Navbar />
                     <header id="showcase">
                         <br/><br/>
-                        <div className="containerSearch showcase-containerSearch" style={{overflowY:'scroll', overflowY:'hidden', maxWidth:'90%'}}>
+                        <div className="containerSearch showcase-containerSearch" style={{overflowY:'scroll', maxWidth:'90%'}}>
                             {this.renderAllCarsLoggedUser()}
                         </div>
                     </header>
