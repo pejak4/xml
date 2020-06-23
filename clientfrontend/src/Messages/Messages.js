@@ -1,13 +1,10 @@
 import React from 'react';
 import './Messages.css';
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
-import {updateObject} from '../utility';
 import axios from '../axios-objects';
-import {Redirect} from 'react-router-dom';
 import NaviBar from './NaviBar/NaviBar';
 import MessageInfo from './MessageInfo';
 import MessageReply from './MessageReply';
-
 
 class Messages extends React.PureComponent{
 
@@ -23,8 +20,6 @@ class Messages extends React.PureComponent{
             };
     }
     
-
-
     componentDidMount = async() => {
         let userEmail = sessionStorage.getItem('userEmail'); 
         const data = {userEmail};
@@ -38,13 +33,11 @@ class Messages extends React.PureComponent{
         const response2 = await axios.get('/message-service/porukeza', {params:{id:this.state.userId}});
         if(response2){
             this.setState({message: response2.data});
-            console.log(this.state.message);
         }
 
         const response3 = await axios.get('/message-service/porukeod', {params:{id:this.state.userId}});
         if(response3){
             this.setState({message2: response3.data});
-            console.log(this.state.message2);
         }
 
 
@@ -53,7 +46,7 @@ class Messages extends React.PureComponent{
    
     processingMessage = async(idd, str) => {
         if(str === 'DELETE'){
-            const response3 = await axios.get('/message-service/del', {params: {id: idd}});
+            await axios.get('/message-service/del', {params: {id: idd}});
             window.location.reload();
         }
     }
@@ -68,7 +61,7 @@ class Messages extends React.PureComponent{
         }
         if(status==='REPLY'){
             const data = {senderId: this.state.userId, receiverId: this.state.replyID, message: text};
-            const resp2 = await axios.post('/message-service/send',data);
+            await axios.post('/message-service/send',data);
             window.location.reload();
         }
     }

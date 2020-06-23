@@ -14,8 +14,6 @@ class Graph extends React.PureComponent {
     }
 
     componentDidMount = async() => {
-        const userEmail = sessionStorage.getItem('userEmail');
-        // const data = {userEmail};
         const token = sessionStorage.getItem('token');
         const response = await axios.get('/getLoggedUser', {
             headers: {

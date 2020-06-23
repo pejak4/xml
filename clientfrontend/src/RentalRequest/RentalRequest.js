@@ -35,25 +35,21 @@ class RentalRequest extends React.PureComponent {
         const data01 = {userId}; 
         const response01 = await axios.post('/car-service/getAllRentalRequestsForUserReserved', data01);
         if(response01) {
-            console.log(response01.data);
             this.setState({rentalRequestsReserved: response01.data});
         }       
 
         const response02 = await axios.post('/car-service/getAllRentalRequestsForUserPaid', data01);
         if(response02) {
-            console.log(response02.data);
             this.setState({rentalRequestsPaid: response02.data});
         }
 
         const response03 = await axios.post('/car-service/getAllRentalRequestsForUserCanceled', data01);
         if(response03) {
-            console.log(response03.data);
             this.setState({rentalRequestsCanceled: response03.data});
         }
 
         const response04 = await axios.post('/car-service/getAllRentalRequestsForUserPending', data01);
         if(response04) {
-            console.log(response04.data);
             this.setState({rentalRequestsPending: response04.data});
         }
     }
@@ -144,7 +140,6 @@ class RentalRequest extends React.PureComponent {
         const data = {forUserId, startData, endData, userId, rentalRequestId}
         const response = await axios.post('/car-service/ifHaveReservedRentalRequest', data);
         if(response) {
-            console.log(response.data);
             haveReserved = response.data;
         }
 
@@ -153,12 +148,9 @@ class RentalRequest extends React.PureComponent {
             alert('This car is reserved');
         }
         else {
-            const response1 = await axios.post('/car-service/acceptRentalRequest', data1);
+            await axios.post('/car-service/acceptRentalRequest', data1);
             const data2 = {senderId: this.state.user.id, receiverId: forUserId, message: 'Zahtev je prihvacen. Mozete slati poruke'};
-            const resp2 = await axios.post('/message-service/send',data2);
-            if(response1) {
-                console.log(response1.data);
-            }
+            await axios.post('/message-service/send',data2);
             window.location.reload();
         }
     }

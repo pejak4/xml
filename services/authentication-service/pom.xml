@@ -131,7 +131,5 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>suthentication-service</finalName>
 	</build>
-
 </project>
