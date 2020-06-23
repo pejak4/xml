@@ -1,9 +1,10 @@
 import React from 'react';
 import './Login.css';
 import {updateObject} from '../utility';
-import {connect} from 'react-redux';
-import * as actions from '../store/actions/index';
 import Navbar from '../Navbar/Navbar';
+import axios from '../axios-objects';
+import jwt_decode from 'jwt-decode';
+
 
 class Login extends React.PureComponent {
     state = {
@@ -36,10 +37,30 @@ class Login extends React.PureComponent {
         }
     }
 
-    loginHandler = (event) => {
+    loginHandler = async(event) => {
         event.preventDefault();
-        if(this.state.validation.email && this.state.validation.password)
-            this.props.onLogin(this.state.auth.email, this.state.auth.password);
+        if(this.state.validation.email && this.state.validation.password) {
+            const email = this.state.auth.email;
+            const password = this.state.auth.password;
+            const data = {email, password};
+            const response = await axios.post('/login', data);
+            if(response) {
+                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+                sessionStorage.setItem('token', response.data.accessToken);
+                const jwtToken = jwt_decode(response.data.accessToken);
+                sessionStorage.setItem('role', jwtToken.role);
+                sessionStorage.setItem('expirationDate', expirationDate);
+                window.location.href = '/';
+            }
+
+            const token = sessionStorage.getItem('token');
+            const response00 = await axios.get('/aclSecurity', {
+                    headers: {
+                        'Authorization' : 'Bearer ' + token
+                    }
+                });
+            
+        }
     }
 
     render() {
@@ -76,17 +97,6 @@ class Login extends React.PureComponent {
     }
 };
 
-const mapStateToProps = state => {
-    return {
-        email: state.auth.email,
-        loginn: state.auth.loginn
-    }
-}
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onLogin: (email, password) => dispatch(actions.login(email, password))
-    }
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

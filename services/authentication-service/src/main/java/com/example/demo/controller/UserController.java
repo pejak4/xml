@@ -2,20 +2,24 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.*;
 import com.example.demo.model.Users;
+import com.example.demo.security.Acl;
 import com.example.demo.service.*;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private Acl acl;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/login")
@@ -78,4 +82,19 @@ public class UserController {
         this.userService.incrementAddNumber(email.getUserEmail());
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/aclSecurity")
+    public ResponseEntity<?> aclSecurity(@RequestBody AclDTO aclDTO) throws Exception {
+        this.acl.addRestorePermissionsAcl(aclDTO.getRole());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/aclSecurityLogout")
+    public ResponseEntity<?> aclSecurityLogout() throws Exception {
+        this.acl.addRestorePermissionsAcl("USER");
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

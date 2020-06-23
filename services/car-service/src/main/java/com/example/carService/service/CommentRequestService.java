@@ -13,6 +13,7 @@ import com.example.carService.repository.CommentRepository;
 import com.example.carService.repository.CommentRequestRepository;
 import com.example.carService.repository.RatingRequestRepository;
 import com.soapserveryt.api.soap.ClientRequestComment;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,11 @@ public class CommentRequestService {
     }
 
     public List<CommentCarRequest> findAll() {
-        return this.commentRequestRepository.findAll();
+        List<CommentCarRequest> comments = this.commentRequestRepository.findAll();
+        for(CommentCarRequest c : comments) {
+            c.setDescriptionComment(StringEscapeUtils.escapeHtml4(c.getDescriptionComment()));
+        }
+        return comments;
     }
 
     public void acceptCommentRequest(CommentRequestAcceptDeclineDTO commentRequestAcceptDeclineDTO) {

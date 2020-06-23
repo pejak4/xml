@@ -9,6 +9,7 @@ import com.example.carService.repository.RentalRequestRepository;
 import com.example.carService.model.RentalRequestRole;
 import com.soapserveryt.api.soap.ClientRequestRentalRequest;
 import com.soapserveryt.api.soap.ServerRespond;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -152,11 +153,35 @@ public class RentalRequestService {
     }
 
     public List<CarRentalRequest> rentalRequestsLoggedUserIdAndRole(String userId, RentalRequestRole role) {
-        return this.rentalRequestRepository.findAllByUserIdAndRole(userId, role);
+        List<CarRentalRequest> cs = this.rentalRequestRepository.findAllByUserIdAndRole(userId, role);
+        for(CarRentalRequest crr : cs) {
+            Car c = crr.getRentalRequestCar();
+            c.setTransmission(StringEscapeUtils.escapeHtml4(c.getTransmission()));
+            c.setFuelType(StringEscapeUtils.escapeHtml4(c.getFuelType()));
+            c.setClassCar(StringEscapeUtils.escapeHtml4(c.getFuelType()));
+            c.setModel(StringEscapeUtils.escapeHtml4(c.getModel()));
+            c.setBrand(StringEscapeUtils.escapeHtml4(c.getBrand()));
+            c.setDescription(StringEscapeUtils.escapeHtml4(c.getDescription()));
+            c.setCityLocation(StringEscapeUtils.escapeHtml4(c.getCityLocation()));
+            crr.setRentalRequestCar(c);
+        }
+        return cs;
     }
 
     public List<CarRentalRequest> rentalRequestsForUserIdAndRole(String forUserId, RentalRequestRole role) {
-        return this.rentalRequestRepository.findAllByForUserIdAndRoleAndAgent(forUserId, role, false);
+        List<CarRentalRequest> cs = this.rentalRequestRepository.findAllByForUserIdAndRoleAndAgent(forUserId, role, false);
+        for(CarRentalRequest crr : cs) {
+            Car c = crr.getRentalRequestCar();
+            c.setTransmission(StringEscapeUtils.escapeHtml4(c.getTransmission()));
+            c.setFuelType(StringEscapeUtils.escapeHtml4(c.getFuelType()));
+            c.setClassCar(StringEscapeUtils.escapeHtml4(c.getFuelType()));
+            c.setModel(StringEscapeUtils.escapeHtml4(c.getModel()));
+            c.setBrand(StringEscapeUtils.escapeHtml4(c.getBrand()));
+            c.setDescription(StringEscapeUtils.escapeHtml4(c.getDescription()));
+            c.setCityLocation(StringEscapeUtils.escapeHtml4(c.getCityLocation()));
+            crr.setRentalRequestCar(c);
+        }
+        return cs;
     }
 
     public CarRentalRequest setRolePaidRentalRequest(Long id) {

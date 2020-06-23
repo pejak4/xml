@@ -4,6 +4,7 @@ import com.example.codebook.dto.CodebookDTO;
 import com.example.codebook.model.FuelType;
 import com.example.codebook.model.Transmission;
 import com.example.codebook.repository.TransmissionRepository;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,13 @@ public class TransmissionService {
     @Autowired
     private TransmissionRepository transmissionRepository;
 
-    public List<Transmission> findAll() {return this.transmissionRepository.findAll();}
+    public List<Transmission> findAll() {
+        List<Transmission> transmissions = this.transmissionRepository.findAll();
+        for(Transmission t : transmissions) {
+            t.setTransmission(StringEscapeUtils.escapeHtml4(t.getTransmission()));
+        }
+        return this.transmissionRepository.findAll();
+    }
 
     public void deleteTransmission(Long id) {this.transmissionRepository.deleteRequest(id);}
 

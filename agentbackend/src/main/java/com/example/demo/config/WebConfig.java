@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
     @Override
-    public void addCorsMappings(CorsRegistry registry) {
+    public void addCorsMappings(CorsRegistry registry) { // Ne znam otkud ovo ovde. Nama front radi na 3001 a ne na 3000
         registry.addMapping("/*").allowedOrigins("http://localhost:3000/");
     }
 }

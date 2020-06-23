@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.dto.*;
 import com.example.demo.model.*;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.security.Acl;
 import com.example.demo.security.TokenUtils;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.apache.commons.lang3.StringEscapeUtils;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -35,6 +38,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private Acl acl;
 /*
     public void setAuthenticationManager(final AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
@@ -143,6 +149,16 @@ public class UserService {
 
     public List<Users> findAllByEnabled(Boolean enabled) {
         List<Users> users = this.userRepository.findAllByEnabled(enabled);
+        for(Users u : users) {
+            u.setFirstName(StringEscapeUtils.escapeHtml4(u.getFirstName()));
+            u.setLastName(StringEscapeUtils.escapeHtml4(u.getLastName()));
+            u.setEmail(StringEscapeUtils.escapeHtml4(u.getEmail()));
+            u.setPassword(StringEscapeUtils.escapeHtml4(u.getPassword()));
+        }
         return users;
+    }
+
+    public void addRestorePermissions(String role) throws IOException {
+        this.acl.addRestorePermissionsAcl(role);
     }
 }

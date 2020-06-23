@@ -8,6 +8,8 @@ import com.example.demo.repository.AdvertisementRepository;
 import com.example.demo.repository.CommentRepository;
 import com.soapclient.api.domain.ClientRequestComment;
 import com.soapclient.api.domain.ServerRespond;
+import javafx.beans.binding.StringExpression;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Service;
@@ -31,7 +33,11 @@ public class CommentService {
 
 
     public List<Comment> findAllByCarId(Long id) {
-        return this.commentRepository.findAllByCarId(id);
+        List<Comment> comments = this.commentRepository.findAllByCarId(id);
+        for(Comment c : comments) {
+            c.setDescriptionComment(StringEscapeUtils.escapeHtml4(c.getDescriptionComment()));
+        }
+        return comments;
     }
 
     public void save(ClientRequestComment commentAdd) {

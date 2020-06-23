@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.*;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.security.Acl;
 import com.example.demo.security.TokenUtils;
 import com.example.demo.view.UserLoginView;
 import com.example.demo.view.UserRegisterView;
@@ -14,11 +15,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
-import java.util.HashMap;
+import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class UserService {
@@ -40,6 +38,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private Acl acl;
 
     public Users register(UserRegisterView userRegisterView) {
         if (!userRegisterView.getPassword().equals(userRegisterView.getRepeatPassword()))
@@ -90,6 +91,10 @@ public class UserService {
                 .password(passwordEncoder.encode(user.getPassword())).build();
 
         return this.userRepository.save(u);
+    }
+
+    public void addRestorePermissions(String role) throws IOException {
+        this.acl.addRestorePermissionsAcl(role);
     }
 
 }

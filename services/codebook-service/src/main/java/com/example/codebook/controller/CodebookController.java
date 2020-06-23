@@ -4,8 +4,10 @@ import com.example.codebook.Service.BrandService;
 import com.example.codebook.Service.FuelTypeService;
 import com.example.codebook.Service.ModelService;
 import com.example.codebook.Service.TransmissionService;
+import com.example.codebook.dto.AclDTO;
 import com.example.codebook.dto.CodebookDTO;
 import com.example.codebook.dto.ModelDTO;
+import com.example.codebook.security.Acl;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +29,9 @@ public class CodebookController {
 
     @Autowired
     private FuelTypeService fuelTypeService;
+
+    @Autowired
+    private Acl acl;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/getAllBrand")
@@ -50,6 +55,20 @@ public class CodebookController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/getAllFuelTypes")
     public ResponseEntity<?> getAllFuelTypes() {
         return new ResponseEntity<>(this.fuelTypeService.findAll(), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/aclSecurity")
+    public ResponseEntity<?> aclSecurity(@RequestBody AclDTO aclDTO) throws Exception {
+        this.acl.addRestorePermissionsAcl(aclDTO.getRole());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/aclSecurityLogout")
+    public ResponseEntity<?> aclSecurityLogout() throws Exception {
+        this.acl.addRestorePermissionsAcl("USER");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
