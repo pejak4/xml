@@ -71,6 +71,16 @@
 			<artifactId>reactor-spring</artifactId>
 			<version>1.0.1.RELEASE</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
@@ -94,6 +104,5 @@
 
 			</plugin>
 		</plugins>
-		<finalName>spring-server</finalName>
 	</build>
 </project>
