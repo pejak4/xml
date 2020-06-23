@@ -9,6 +9,7 @@ import com.example.demo.repository.RentalRequestRepository;
 import com.soapclient.api.domain.ClientRequest;
 import com.soapclient.api.domain.ClientRequestSetMileageAndDescription;
 import com.soapclient.api.domain.ServerRespond;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Service;
@@ -52,10 +53,30 @@ public class AdvertisementService {
     }
 
     public List<Car> findAllByUserId(String userId) {
-        return this.advertisementRepository.findAllByUserId(userId);
+        List<Car> cars = this.advertisementRepository.findAllByUserId(userId);
+        for(Car c : cars) {
+            c.setDescription(StringEscapeUtils.escapeHtml4(c.getDescription()));
+            c.setBrand(StringEscapeUtils.escapeHtml4(c.getBrand()));
+            c.setCityLocation(StringEscapeUtils.escapeHtml4(c.getCityLocation()));
+            c.setModel(StringEscapeUtils.escapeHtml4(c.getModel()));
+            c.setClassCar(StringEscapeUtils.escapeHtml4(c.getClassCar()));
+            c.setFuelType(StringEscapeUtils.escapeHtml4(c.getFuelType()));
+            c.setTransmission(StringEscapeUtils.escapeHtml4(c.getTransmission()));
+        }
+        return cars;
     }
     public Car findOneCar(Long id) {
-        return this.advertisementRepository.findOneById(id);
+        Car c = this.advertisementRepository.findOneById(id);
+
+        c.setDescription(StringEscapeUtils.escapeHtml4(c.getDescription()));
+        c.setBrand(StringEscapeUtils.escapeHtml4(c.getBrand()));
+        c.setCityLocation(StringEscapeUtils.escapeHtml4(c.getCityLocation()));
+        c.setModel(StringEscapeUtils.escapeHtml4(c.getModel()));
+        c.setClassCar(StringEscapeUtils.escapeHtml4(c.getClassCar()));
+        c.setFuelType(StringEscapeUtils.escapeHtml4(c.getFuelType()));
+        c.setTransmission(StringEscapeUtils.escapeHtml4(c.getTransmission()));
+
+        return c;
     }
 
     public void setMileageAndDescription(ClientRequestSetMileageAndDescription request) {

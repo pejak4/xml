@@ -1,10 +1,14 @@
 import React from 'react';
 import './Navbar.css';
+import axios from '../axios-objects';
 
 class Navbar extends React.PureComponent {
 
-    logoutHandler = (event) => {
+    logoutHandler = async(event) => {
         sessionStorage.clear();
+
+        await axios.get('/aclSecurityLogout');
+
         this.props.history.push("/");
     }
 
