@@ -73,7 +73,7 @@ class Login extends React.PureComponent {
                     this.setState({validation});
                 }
             } else if (type === 'password') {
-                if (event.target.value.length >= 6) {
+                if (event.target.value.length >= 10) {
                     let validation = updateObject(this.state.validation, {
                         [type]: true
                     });
@@ -117,8 +117,6 @@ class Login extends React.PureComponent {
             await axios.post('/codebook-service/aclSecurity', data001);
             //await axios.post('/image-service/aclSecurity', data001);
             await axios.post('/message-service/aclSecurity', data001);
-
-            
         }
     }
 
@@ -144,7 +142,7 @@ class Login extends React.PureComponent {
                         <input placeholder="Password" type="password" className="invalidate"
                         onChange={(event) => this.inputChangeHandler(event, 'password')}/>}
                         {this.state.validation.password ? <p className="text-valid">Valid password.</p>
-                        : <p className="text-invalid">Password must be minimum length of 6.</p>}
+                        : <p className="text-invalid">Password must be minimum length of 10, with first capital letter, number and special character.</p>}
                         
                         {this.state.validation.blocked ? <Popup trigger={<button className="btn" style={{cursor:'pointer',height:'50px',width:'85px', fontSize:'15px'}}
                         onClick={(event) => this.loginHandler(event)}>

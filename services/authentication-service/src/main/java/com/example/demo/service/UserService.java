@@ -11,7 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.apache.commons.lang3.StringEscapeUtils;
 
@@ -29,9 +29,6 @@ public class UserService {
 
     @Autowired
     private AuthorityService authorityService;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserService userService;
@@ -77,7 +74,7 @@ public class UserService {
 
     public Users findOneByEmailAndPassword(String email, String password) throws NotFoundException {
         Users user = this.userRepository.findOneByEmail(email);
-        if (!this.passwordEncoder.matches(password, user.getPassword()))
+        if (!BCrypt.checkpw(password, user.getPassword()))
             throw new NotFoundException("Not existing user");
 
         return user;
@@ -94,7 +91,7 @@ public class UserService {
     public Users save(UserRegistrationDTO user) {
         Users u = Users.builder().role(UserRole.valueOf("USER"))
                 .firstName(user.getFirstName()).lastName(user.getLastName()).email(user.getEmail()).enabled(true)
-                .password(passwordEncoder.encode(user.getPassword())).build();
+                .password(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12))).build();
 
         return this.userRepository.save(u);
     }
