@@ -2,6 +2,7 @@ package com.example.demo.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class UserLoginDTO {
@@ -9,8 +10,10 @@ public class UserLoginDTO {
     @NotNull(message = "Email can't be null")
     @Email
     private String email;
+
     @NotNull(message = "Password can't be null")
-    @Size(min=6, message = "Password must be equal or greater then 8 characters")
+    @Size(min=10, message = "Password must be equal or greater then 10 characters, to start with capital letter, with number and to have special character")
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$")
     private String password;
 
     public UserLoginDTO() {

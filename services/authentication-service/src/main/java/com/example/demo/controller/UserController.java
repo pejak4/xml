@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.Valid;
+
 @RestController
 public class UserController {
 
@@ -23,13 +25,13 @@ public class UserController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/login")
-    public ResponseEntity<UserTokenState> login(@RequestBody UserLoginDTO user) throws  NotFoundException {
+    public ResponseEntity<UserTokenState> login(@Valid @RequestBody UserLoginDTO user) throws  NotFoundException {
         return new ResponseEntity<>(this.userService.login(user), HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/registration")
-    public ResponseEntity<?> register(@RequestBody UserRegistrationDTO userRegisterView) {
+    public ResponseEntity<?> register(@Valid @RequestBody UserRegistrationDTO userRegisterView) {
         return new ResponseEntity<>(this.userService.register(userRegisterView), HttpStatus.CREATED);
     }
 

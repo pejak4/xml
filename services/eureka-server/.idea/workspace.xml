@@ -2,27 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25e00632-9d8a-4e29-8666-fdd70602ea84" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../agentbackend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/service/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../authentication-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/CarServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/CarServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/common/TimeProvider.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/config/WebConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/config/WebSecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/exception/ResourceConflictException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/security/TokenUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/security/auth/JwtAuthenticationRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/security/auth/RestAuthenticationEntryPoint.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/security/auth/TokenAuthenticationFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/security/auth/TokenBasedAuthentication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/service/CustomUserDetailsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codebook-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../codebook-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codebook-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../codebook-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/Login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/dto/UserLoginDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/dto/UserLoginDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/dto/UserRegistrationDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/dto/UserRegistrationDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/resources/data-postgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/resources/data-postgres.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../message-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../message-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zuul-api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../zuul-api-gateway/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,34 +144,34 @@
     <state x="185" y="194" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1592405870462" />
     <state x="-1660" y="278" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1592921851615" />
     <state x="208" y="220" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1592824084864" />
-    <state width="1493" height="126" key="GridCell.Tab.0.bottom" timestamp="1593019938317">
+    <state width="1493" height="269" key="GridCell.Tab.0.bottom" timestamp="1593021559838">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="275" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1592769622088" />
     <state width="1877" height="275" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1592905508937" />
     <state width="1493" height="451" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1592928524088" />
-    <state width="1493" height="126" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593019938317" />
-    <state width="1493" height="126" key="GridCell.Tab.0.center" timestamp="1593019938316">
+    <state width="1493" height="269" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593021559838" />
+    <state width="1493" height="269" key="GridCell.Tab.0.center" timestamp="1593021559838">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="275" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1592769622088" />
     <state width="1877" height="275" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1592905508937" />
     <state width="1493" height="451" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1592928524087" />
-    <state width="1493" height="126" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593019938316" />
-    <state width="1493" height="126" key="GridCell.Tab.0.left" timestamp="1593019938316">
+    <state width="1493" height="269" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593021559838" />
+    <state width="1493" height="269" key="GridCell.Tab.0.left" timestamp="1593021559837">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="275" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1592769622087" />
     <state width="1877" height="275" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1592905508937" />
     <state width="1493" height="451" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1592928524087" />
-    <state width="1493" height="126" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593019938316" />
-    <state width="1493" height="126" key="GridCell.Tab.0.right" timestamp="1593019938316">
+    <state width="1493" height="269" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593021559837" />
+    <state width="1493" height="269" key="GridCell.Tab.0.right" timestamp="1593021559838">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1323" height="275" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1592769622088" />
     <state width="1877" height="275" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1592905508937" />
     <state width="1493" height="451" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1592928524088" />
-    <state width="1493" height="126" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593019938316" />
+    <state width="1493" height="269" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593021559838" />
     <state width="1323" height="179" key="GridCell.Tab.1.bottom" timestamp="1592133206917">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

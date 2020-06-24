@@ -70,7 +70,7 @@ class Registration extends React.PureComponent {
                     this.setState({validation});
                 }
             } else if (type === 'password') {
-                if (event.target.value.length >= 6) {
+                if (event.target.value.length >= 10) {
                     let validation = updateObject(this.state.validation, {
                         [type]: true
                     });
