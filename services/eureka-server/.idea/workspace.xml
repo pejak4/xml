@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25e00632-9d8a-4e29-8666-fdd70602ea84" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/CarServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/CarServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/resources/bootstrap.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/resources/bootstrap.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/KtbackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/KtbackendApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/resources/auth.jks" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/resources/auth.jks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codebook-service/src/main/java/com/example/codebook/CodebookApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../codebook-service/src/main/java/com/example/codebook/CodebookApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codebook-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../codebook-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/eu.jks" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eu.jks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/MessageServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../message-service/src/main/java/com/example/messageservice/MessageServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../message-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../message-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
