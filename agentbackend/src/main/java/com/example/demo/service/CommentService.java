@@ -8,7 +8,7 @@ import com.example.demo.repository.AdvertisementRepository;
 import com.example.demo.repository.CommentRepository;
 import com.soapclient.api.domain.ClientRequestComment;
 import com.soapclient.api.domain.ServerRespond;
-import javafx.beans.binding.StringExpression;
+//import javafx.beans.binding.StringExpression;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
