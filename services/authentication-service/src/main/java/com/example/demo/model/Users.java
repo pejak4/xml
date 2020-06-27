@@ -16,16 +16,19 @@ import java.util.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
+@ToString
 public class Users implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ToString.Exclude
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
     private Boolean enabled;
     @JsonIgnore
+    @ToString.Exclude
     private String password;
     @Enumerated(EnumType.STRING)
     private UserRole role;

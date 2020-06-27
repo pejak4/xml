@@ -14,7 +14,8 @@ import RentalRequestsFromMe from './RentalRequest/RentalRequestsFromMe/RentalReq
 import RatingRequest from './RatingRequest/RatingRequest';
 import CommentRequest from './CommentRequest/CommentRequest';
 import Messages from './Messages/Messages';
-
+import PrivateRouteUser from './PrivateRoute/PrivateRouteUser';
+import PrivateRouteAdmin from './PrivateRoute/PrivateRouteAdmin';
 
 class App extends React.PureComponent {
   render() {
@@ -26,16 +27,16 @@ class App extends React.PureComponent {
             <Route path="/login" component={Login} />
             <Route path="/registration" component={Registration} />
             <Route path="/search" component={SearchPage} />
-            <Route path="/addAdvertisement" component={Advertisement} />
-            <Route path="/codebook" component={Codebook} />
-            <Route path="/setStateUser" component={StateUser} />
-            <Route path="/rentalRequest" component={RentalRequest} />
+            <PrivateRouteUser path="/addAdvertisement" component={Advertisement} />
+            <PrivateRouteAdmin path="/codebook" component={Codebook} />
+            <PrivateRouteAdmin path="/setStateUser" component={StateUser} />
+            <PrivateRouteUser path="/rentalRequest" component={RentalRequest} />
             <Route path="/singleCarPage/:carId" component={SingleCarPage} />
-            <Route path="/listCars" component={OccupancyCar} />
-            <Route path="/rentalRequestsFromMe" component={RentalRequestsFromMe} />
-            <Route path="/ratingRequest" component={RatingRequest} />
-            <Route path="/commentRequest" component={CommentRequest} />
-            <Route path="/messages" component={Messages}/>
+            <PrivateRouteUser path="/listCars" component={OccupancyCar} />
+            <PrivateRouteUser path="/rentalRequestsFromMe" component={RentalRequestsFromMe} />
+            <PrivateRouteAdmin path="/ratingRequest" component={RatingRequest} />
+            <PrivateRouteAdmin path="/commentRequest" component={CommentRequest} />
+            <PrivateRouteUser path="/messages" component={Messages}/>
           </Switch>
         </BrowserRouter>
       </div>

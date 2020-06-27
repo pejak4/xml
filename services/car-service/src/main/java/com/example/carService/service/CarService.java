@@ -1,6 +1,7 @@
 package com.example.carService.service;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.text.StringEscapeUtils;
 import com.example.carService.model.Car;
 import com.example.carService.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class CarService {
 
     @Autowired
@@ -27,6 +29,8 @@ public class CarService {
             c.setFuelType(StringEscapeUtils.escapeHtml4(c.getFuelType()));
             c.setTransmission(StringEscapeUtils.escapeHtml4(c.getTransmission()));
         }
+
+        log.info("Client is searching cars in city: " + cityLocation);
         return cars;
     }
 
@@ -54,10 +58,12 @@ public class CarService {
             c.setTransmission(StringEscapeUtils.escapeHtml4(c.getTransmission()));
         }
 
+        log.info("Client is filtering search");
         return cars;
     }
 
     public List<Car> findAll() { return this.carRepository.findAll();}
+
     public List<Car> findAllByUserId(String user_id) {
         List<Car> cars = this.carRepository.findAllByUserId(user_id);
         for(Car c : cars) {
