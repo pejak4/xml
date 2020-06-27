@@ -12,15 +12,17 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString
 public class CarRentalDate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ToString.Exclude
     private Long id;
 
     private Timestamp startDate;
     private Timestamp endDate;
-
+    @ToString.Exclude
     private Long fromUserId;
 
     @ManyToOne(fetch = FetchType.EAGER)

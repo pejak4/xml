@@ -2,14 +2,14 @@ package com.example.carService.service;
 
 import com.example.carService.dto.*;
 import com.example.carService.model.Car;
-import com.example.carService.model.CarRentalDate;
 import com.example.carService.model.CarRentalRequest;
 import com.example.carService.repository.CarRepository;
 import com.example.carService.repository.RentalRequestRepository;
 import com.example.carService.model.RentalRequestRole;
 import com.soapserveryt.api.soap.ClientRequestRentalRequest;
 import com.soapserveryt.api.soap.ServerRespond;
-import org.apache.commons.lang3.StringEscapeUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@Slf4j
 public class RentalRequestService {
 
     @Autowired
@@ -44,6 +45,7 @@ public class RentalRequestService {
         .endDate(rentalRequest.getEndData()).createDate(new Timestamp(System.currentTimeMillis())).
                         userId(rentalRequest.getUserId()).forUserId(c.getUserId()).role(RentalRequestRole.valueOf("PENDING")).build();
 
+        log.info("Rental request is created: " + crr);
         return this.rentalRequestRepository.save(crr);
     }
 
@@ -85,6 +87,7 @@ public class RentalRequestService {
         CarRentalRequest crc = this.rentalRequestRepository.findOneById(id);
         crc.setRole(RentalRequestRole.valueOf("CANCELED"));
 
+        log.info("Rental request: " + crc + " has been declined");
         this.rentalRequestRepository.save(crc);
     }
 
@@ -93,6 +96,7 @@ public class RentalRequestService {
         crc.setRole(RentalRequestRole.valueOf("RESERVED"));
         crc.setCreateDate(new Timestamp(System.currentTimeMillis()));
 
+        log.info("Rental request: " + crc + " has been accepted");
         this.rentalRequestRepository.save(crc);
     }
 

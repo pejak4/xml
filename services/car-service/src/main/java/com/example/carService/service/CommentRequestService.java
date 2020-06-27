@@ -2,18 +2,13 @@ package com.example.carService.service;
 
 import com.example.carService.dto.CommentCarRequestDTO;
 import com.example.carService.dto.CommentRequestAcceptDeclineDTO;
-import com.example.carService.dto.RatingCarRequestDTO;
-import com.example.carService.dto.RatingRequestAcceptDeclineDTO;
-import com.example.carService.model.Car;
 import com.example.carService.model.Comment;
 import com.example.carService.model.CommentCarRequest;
-import com.example.carService.model.RatingCarRequest;
-import com.example.carService.repository.CarRepository;
 import com.example.carService.repository.CommentRepository;
 import com.example.carService.repository.CommentRequestRepository;
-import com.example.carService.repository.RatingRequestRepository;
 import com.soapserveryt.api.soap.ClientRequestComment;
-import org.apache.commons.lang3.StringEscapeUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Service;
@@ -22,6 +17,7 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 import java.util.List;
 
 @Service
+@Slf4j
 public class CommentRequestService {
     @Autowired
     private CommentRequestRepository commentRequestRepository;
@@ -38,6 +34,7 @@ public class CommentRequestService {
         CommentCarRequest ccr = CommentCarRequest.builder().carId(commentCarRequestDTO.getCarId()).fromUserId(commentCarRequestDTO.getFromUserId())
                 .descriptionComment(commentCarRequestDTO.getDescriptionComment()).build();
 
+        log.info("New comment for car has been asked to be added: " + ccr);
         return this.commentRequestRepository.save(ccr);
     }
 
@@ -55,6 +52,7 @@ public class CommentRequestService {
         Comment c = Comment.builder().carId(ccr.getCarId()).fromUserId(ccr.getFromUserId())
                 .descriptionComment(ccr.getDescriptionComment()).build();
 
+        log.info("Comment: " + c + " has been accepted");
         this.commentRepository.save(c);
         this.commentRequestRepository.delete(ccr);
 
@@ -71,7 +69,7 @@ public class CommentRequestService {
 
     public void declineCommentRequest(CommentRequestAcceptDeclineDTO commentRequestAcceptDeclineDTO) {
         CommentCarRequest ccr = this.commentRequestRepository.findOneById(commentRequestAcceptDeclineDTO.getCommentRequestId());
-
+        log.info("Comment: " + ccr + " has been declined");
         this.commentRequestRepository.delete(ccr);
 
         return;

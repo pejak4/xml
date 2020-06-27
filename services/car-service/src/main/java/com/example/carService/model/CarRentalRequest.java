@@ -1,7 +1,5 @@
 package com.example.carService.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -14,14 +12,18 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Entity
 @Builder
+@ToString
 public class CarRentalRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ToString.Exclude
     private Long id;
 
     private Timestamp startDate;
     private Timestamp endDate;
+    @ToString.Exclude
     private String userId;
+    @ToString.Exclude
     private String forUserId;
 
     private Timestamp createDate;

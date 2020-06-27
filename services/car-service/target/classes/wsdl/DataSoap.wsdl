@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.soapserveryt.com/api/soap" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.soapserveryt.com/api/soap" targetNamespace="http://www.soapserveryt.com/api/soap">
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.soapserveryt.com/api/soap">
+            <!--  client request  -->
+            <element name="ClientRequestRentalRequest">
+                <complexType>
+                    <sequence>
+                        <element name="startDate" type="string" />
+                        <element name="endDate" type="string" />
+                        <element name="carId" type="string" />
+                        <element name="userId   " type="string" />
+                        <element name="id" type="long" />
+                    </sequence>
+                </complexType>
+            </element>
+
+            <element name="ServerRespond">
+                <complexType>
+                    <sequence>
+                        <element name="id" type="long" />
+                    </sequence>
+                </complexType>
+            </element>
+
+            <element name="ClientRequestComment">
+                <complexType>
+                    <sequence>
+                        <element name="fromUserId" type="long" />
+                        <element name="carId" type="long" />
+                        <element name="descriptionComment" type="string" />
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ClientRequestSetMileageAndDescription">
+                <complexType>
+                    <sequence>
+                        <element name="carId" type="long" />
+                        <element name="rentalRequestId" type="long"/>
+                        <element name="mileage" type="int" />
+                        <element name="description" type="string" />
+                    </sequence>
+                </complexType>
+            </element>
+
+            <element name="ClientRequestRentalRequestId">
+                <complexType>
+                    <sequence>
+                        <element name="id" type="long" />
+                        <element name="type" type="string" />
+                    </sequence>
+                </complexType>
+            </element>
+            <!--  end server response  -->
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="ClientRequestRentalRequest">
+        <wsdl:part element="tns:ClientRequestRentalRequest" name="ClientRequestRentalRequest"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="DataSoapPort">
+        <wsdl:operation name="Client">
+            <wsdl:input message="tns:ClientRequestRentalRequest" name="ClientRequest"></wsdl:input>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="DataSoapPortSoap11" type="tns:DataSoapPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="Client">
+            <soap:operation soapAction="" />
+            <wsdl:input name="ClientRequestRentalRequest">
+                <soap:body use="literal" />
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="DataSoapPortService">
+        <wsdl:port binding="tns:DataSoapPortSoap11" name="DataSoapPortSoap11">
+            <soap:address location="http://localhost:8080/ws" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -10,12 +10,16 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString
 public class RatingCarRequest {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ToString.Exclude
     private Long id;
+    @ToString.Exclude
     private Long fromUserId;
-
+    @ToString.Exclude
     private Long carId;
     private double rating;
 

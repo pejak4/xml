@@ -5,7 +5,7 @@ import com.example.demo.model.*;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.security.Acl;
 import com.example.demo.security.TokenUtils;
-import javassist.NotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,12 +13,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 
 import java.io.IOException;
 import java.util.List;
 
 @Service
+@Slf4j
 public class UserService {
 
     @Autowired
@@ -46,16 +47,20 @@ public class UserService {
 
     public Users register(UserRegistrationDTO userRegisterDTO) {
         Users u = this.userService.findOneByEmail(userRegisterDTO.getEmail());
-        if (u != null)
+        if (u != null) {
+            log.error("Email: " + userRegisterDTO.getEmail() + " has already been taken by other user.");
             return null;
+        }
 
         return this.userService.save(userRegisterDTO);
     }
 
-    public UserTokenState login(UserLoginDTO user) throws NotFoundException {
+    public UserTokenState login(UserLoginDTO user) {
         Users u = this.findOneByEmailAndPassword(user.getEmail(), user.getPassword());
-        if (u == null)
+        if (u == null) {
+            log.error("Client entered bad credentials.");
             return null;
+        }
 
         List<Authority> auth = this.authorityService.findAllByRoleName(u.getRole().getRole());
         final Authentication authentication = authenticationManager
@@ -68,14 +73,17 @@ public class UserService {
         Users userToken = (Users) authentication.getPrincipal();
         String jwt = tokenUtils.generateToken(userToken.getEmail(), userToken.getRole().getRole());
         int expiresIn = tokenUtils.getExpiredIn();
+        log.info("User: " + u + " has successfully logged.");
 
         return new UserTokenState(jwt, (long) expiresIn, userToken.isFirstTimeLogged());
     }
 
-    public Users findOneByEmailAndPassword(String email, String password) throws NotFoundException {
+    public Users findOneByEmailAndPassword(String email, String password) {
         Users user = this.userRepository.findOneByEmail(email);
-        if (!BCrypt.checkpw(password, user.getPassword()))
-            throw new NotFoundException("Not existing user");
+        if (!BCrypt.checkpw(password, user.getPassword())) {
+            log.warn("Client has entered bad password");
+            return null;
+        }
 
         return user;
     }
@@ -92,6 +100,7 @@ public class UserService {
         Users u = Users.builder().role(UserRole.valueOf("USER"))
                 .firstName(user.getFirstName()).lastName(user.getLastName()).email(user.getEmail()).enabled(true)
                 .password(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12))).build();
+        log.info("New user: " + u + " has been registered");
 
         return this.userRepository.save(u);
     }
@@ -100,6 +109,7 @@ public class UserService {
         Users user = this.userRepository.findOneByEmail(email);
         Integer number = user.getAddNumber() + 1;
         user.setAddNumber(number);
+        log.info("User " + user + " has added " + number + " advertisements until now");
         this.userRepository.save(user);
     }
 
@@ -129,8 +139,10 @@ public class UserService {
 
         if(u.getEnabled() == true) {
             u.setEnabled(false);
+            log.info("User: " + u + " has been blocked from now!");
         } else {
             u.setEnabled(true);
+            log.info("User: " + u + " has been unblocked from now!");
         }
 
         this.userRepository.save(u);
@@ -140,7 +152,7 @@ public class UserService {
 
     public Boolean deleteUser(UserDeleteDTO userId) {
         this.userRepository.deleteRequest(Long.parseLong(userId.getId()));
-
+        log.info("Some user has been deleted");
         return true;
     }
 

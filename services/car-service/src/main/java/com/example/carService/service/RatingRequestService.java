@@ -6,13 +6,16 @@ import com.example.carService.model.Car;
 import com.example.carService.model.RatingCarRequest;
 import com.example.carService.repository.CarRepository;
 import com.example.carService.repository.RatingRequestRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class RatingRequestService {
+
     @Autowired
     private RatingRequestRepository ratingRequestRepository;
 
@@ -23,6 +26,7 @@ public class RatingRequestService {
         RatingCarRequest rcr = RatingCarRequest.builder().carId(ratingCarRequestDTO.getCarId()).fromUserId(ratingCarRequestDTO.getFromUserId())
                 .rating(ratingCarRequestDTO.getRating()).build();
 
+        log.info("Request for rating has been created: " + rcr);
         return this.ratingRequestRepository.save(rcr);
     }
 
@@ -43,7 +47,7 @@ public class RatingRequestService {
         c.setNumOfRating(numRating+1);
 
         this.carRepository.save(c);
-
+        log.info("Rating: " + rcr + " has been accepted and calculated to car: " + c);
         this.ratingRequestRepository.delete(rcr.getId());
 
         return;
@@ -52,6 +56,7 @@ public class RatingRequestService {
     public void declineRatingRequest(RatingRequestAcceptDeclineDTO ratingRequestAcceptDeclineDTO) {
         RatingCarRequest rcr = this.ratingRequestRepository.findOneById(ratingRequestAcceptDeclineDTO.getRatingRequestId());
 
+        log.info("Rating: " + rcr + " has been declined");
         this.ratingRequestRepository.delete(rcr.getId());
 
         return;

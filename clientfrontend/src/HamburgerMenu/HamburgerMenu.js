@@ -1,6 +1,6 @@
 import React from 'react';
 import './HamburgerMenu.css';
-import axios from '../axios-objects';
+// import axios from '../axios-objects';
 
 class HamburgerMenu extends React.PureComponent {
 
@@ -28,7 +28,7 @@ class HamburgerMenu extends React.PureComponent {
                             <ul>
                                 <li><a href="/">Home</a></li>
                                 {sessionStorage.getItem('token') === null ? <li><a href="/login">Login/Registration</a></li> : null}
-                                {sessionStorage.getItem('token') !== null ? <li><a onClick={(event) => this.logoutHandler(event)}>Logout</a></li> : null}
+                                {sessionStorage.getItem('token') !== null ? <li><a href="/" onClick={(event) => this.logoutHandler(event)}>Logout</a></li> : null}
                                 {sessionStorage.getItem('role') === 'USER' ? <li><a href="/addAdvertisement">Add advertisement</a></li> : null}
                                 {sessionStorage.getItem('role') === 'ADMIN' ? <li><a href="/codebook">Codebook</a></li> : null}
                                 {sessionStorage.getItem('role') === 'ADMIN' ? <li><a href="/setStateUser">Active/block users</a></li> : null}

@@ -1,7 +1,6 @@
 package com.example.carService.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,10 +12,12 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ToString.Exclude
     private Long id;
 
     private int doors;
@@ -39,9 +40,7 @@ public class Car {
     private Boolean gps;
     private double fuelTankCapacity;
     private String cityLocation;
-
     private String userId;
-
     private double rating;
     private int numOfRating;
 

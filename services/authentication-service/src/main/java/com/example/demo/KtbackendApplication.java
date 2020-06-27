@@ -24,22 +24,21 @@ public class KtbackendApplication {
 		return WebClient.builder();
 	}
 
-	@Bean
-	public DiscoveryClient.DiscoveryClientOptionalArgs discoveryClientOptionalArgs() throws NoSuchAlgorithmException {
-		DiscoveryClient.DiscoveryClientOptionalArgs args = new DiscoveryClient.DiscoveryClientOptionalArgs();
-		System.setProperty("javax.net.ssl.keyStore", "src/main/resources/auth.jks");
-		System.setProperty("javax.net.ssl.keyStorePassword", "passs123");
-		System.setProperty("javax.net.ssl.trustStore", "src/main/resources/auth.jks");
-		System.setProperty("javax.net.ssl.trustStorePassword", "passs123");
-		EurekaJerseyClientImpl.EurekaJerseyClientBuilder builder = new EurekaJerseyClientImpl.EurekaJerseyClientBuilder();
-		builder.withClientName("account-client");
-		builder.withSystemSSLConfiguration();
-		builder.withMaxTotalConnections(10);
-		builder.withMaxConnectionsPerHost(10);
-		args.setEurekaJerseyClient(builder.build());
-		return args;
-	}
-
+//	@Bean
+//	public DiscoveryClient.DiscoveryClientOptionalArgs discoveryClientOptionalArgs() throws NoSuchAlgorithmException {
+//		DiscoveryClient.DiscoveryClientOptionalArgs args = new DiscoveryClient.DiscoveryClientOptionalArgs();
+//		System.setProperty("javax.net.ssl.keyStore", "src/main/resources/auth.jks");
+//		System.setProperty("javax.net.ssl.keyStorePassword", "passs123");
+//		System.setProperty("javax.net.ssl.trustStore", "src/main/resources/auth.jks");
+//		System.setProperty("javax.net.ssl.trustStorePassword", "passs123");
+//		EurekaJerseyClientImpl.EurekaJerseyClientBuilder builder = new EurekaJerseyClientImpl.EurekaJerseyClientBuilder();
+//		builder.withClientName("account-client");
+//		builder.withSystemSSLConfiguration();
+//		builder.withMaxTotalConnections(10);
+//		builder.withMaxConnectionsPerHost(10);
+//		args.setEurekaJerseyClient(builder.build());
+//		return args;
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(KtbackendApplication.class, args);
