@@ -6,14 +6,15 @@ import com.example.demo.model.Car;
 import com.example.demo.model.CarRentalRequest;
 import com.example.demo.repository.AdvertisementRepository;
 import com.example.demo.repository.RentalRequestRepository;
-import com.soapclient.api.domain.ClientRequest;
-import com.soapclient.api.domain.ClientRequestSetMileageAndDescription;
-import com.soapclient.api.domain.ServerRespond;
+import com.soapclient.api.domain.*;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -97,14 +98,46 @@ public class AdvertisementService {
         template.marshalSendAndReceive("http://localhost:8081/ws", request);
     }
 
-//    public void updateData() {
-//        List<Car> carList = this.advertisementRepository.findAll();
-//        List<ClientRequest> clientRequestsList;
-//        ClientRequest clientRequest;
-//        for(Car c : carList) {
-//            clientRequest.
-//        }
-//    }
+    @Scheduled(fixedRate=2000000)
+    public void updateData() {
+        ClientRequestCars request = new ClientRequestCars();
+        List<Car> cars = this.advertisementRepository.findAll();
+
+        template = new WebServiceTemplate(marshaller);
+        ClientRequestCars clientRequestCars = (ClientRequestCars) template.marshalSendAndReceive("http://localhost:8081/ws", request);
+
+        for(Car c : cars) {
+            for(ClientRequestCar clientCar : clientRequestCars.getNewsItems()) {
+               if(c.getSecondId() == clientCar.getId()) {
+                   c.setBrand(clientCar.getBrand());
+                   c.setCapacitySeats(Integer.parseInt(clientCar.getCapacitySeats()));
+                   c.setCapacitySeatsForKids(Integer.parseInt(clientCar.getCapacitySeatsForKids()));
+                   c.setCDW(Boolean.parseBoolean(clientCar.getCDW()));
+                   c.setCityLocation(clientCar.getCityLocation());
+                   c.setClassCar(clientCar.getClassCar());
+                   c.setCubicCapacity(Integer.parseInt(clientCar.getCubicCapacity()));
+                   c.setDescription(clientCar.getDescripton());
+                   c.setDoors(Integer.parseInt(clientCar.getDoors()));
+                   c.setFuelTankCapacity(Double.parseDouble(clientCar.getFuelTankCapacity()));
+                   c.setFuelType(clientCar.getFuelType());
+                   c.setGps(Boolean.parseBoolean(clientCar.getGps()));
+                   c.setHorsePower(Integer.parseInt(clientCar.getHorsePower()));
+                   c.setId(clientCar.getId());
+                   c.setImage(clientCar.getImage());
+                   c.setMileage(Integer.parseInt(clientCar.getMileage()));
+                   c.setModel(clientCar.getModel());
+                   c.setPlannedMileage(Integer.parseInt(clientCar.getPlannedMileage()));
+                   c.setPrice(Double.parseDouble(clientCar.getPrice()));
+                   c.setTransmission(clientCar.getTransmission());
+                   c.setUsb(Boolean.parseBoolean(clientCar.getUsb()));
+                   c.setUserId(clientCar.getUserId());
+                   c.setRating(clientCar.getRating());
+
+                   this.advertisementRepository.save(c);
+               }
+            }
+        }
+    }
 
 
 

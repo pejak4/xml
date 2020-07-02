@@ -107,6 +107,42 @@ public class DataSoapService {
         return response;
     }
 
+    public ClientRequestCars getAll(ClientRequestCars request) {
+        List<Car> cars = this.carRepository.findAllByAgent(true);
+        ClientRequestCars clientRequestCars = new ClientRequestCars();
+        ClientRequestCar clientRequestCar = new ClientRequestCar();
+
+        for(Car c : cars) {
+            clientRequestCar.setBrand(c.getBrand());
+            clientRequestCar.setCapacitySeats(String.valueOf(c.getCapacitySeats()));
+            clientRequestCar.setCapacitySeatsForKids(String.valueOf(c.getCapacitySeatsForKids()));
+            clientRequestCar.setCDW(String.valueOf(c.getCDW()));
+            clientRequestCar.setCityLocation(c.getCityLocation());
+            clientRequestCar.setClassCar(c.getClassCar());
+            clientRequestCar.setCubicCapacity(String.valueOf(c.getCubicCapacity()));
+            clientRequestCar.setDescripton(c.getDescription());
+            clientRequestCar.setDoors(String.valueOf(c.getDoors()));
+            clientRequestCar.setFuelTankCapacity(String.valueOf(c.getFuelTankCapacity()));
+            clientRequestCar.setFuelType(c.getFuelType());
+            clientRequestCar.setGps(String.valueOf(c.getGps()));
+            clientRequestCar.setHorsePower(String.valueOf(c.getHorsePower()));
+            clientRequestCar.setId(c.getId());
+            clientRequestCar.setImage(c.getImage());
+            clientRequestCar.setMileage(String.valueOf(c.getMileage()));
+            clientRequestCar.setModel(c.getModel());
+            clientRequestCar.setPlannedMileage(String.valueOf(c.getPlannedMileage()));
+            clientRequestCar.setPrice(String.valueOf(c.getPrice()));
+            clientRequestCar.setTransmission(c.getTransmission());
+            clientRequestCar.setUsb(String.valueOf(c.getUsb()));
+            clientRequestCar.setUserId(String.valueOf(c.getUserId()));
+            clientRequestCar.setRating(c.getRating());
+
+            clientRequestCars.getNewsItems().add(clientRequestCar);
+        }
+
+        return clientRequestCars;
+    }
+
     public void setMileageAndDescription(ClientRequestSetMileageAndDescription request) {
         Car c = this.carRepository.findOneById(request.getCarId());
         c.setMileage(request.getMileage());

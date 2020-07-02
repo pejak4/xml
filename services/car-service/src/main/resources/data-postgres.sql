@@ -1,5 +1,5 @@
 insert into car (agent, rating, num_of_rating, user_id, doors, description, image, brand, model, fuel_type, transmission, class_car, price, mileage, planned_mileage, cdw, capacity_seats, capacity_seats_for_kids, cubic_capacity, horse_power, usb, gps, fuel_tank_capacity, city_location)
- values (true, 0, 0, 1, 5, 'Description1', 'bmwX5.jpg', 'BMW', 'X5', 'diesel', 'manuel', 'SUV', 220, 120000, 20000, true, 5, 0, 2200, 150, true, true, 70, 'Novi Sad');
+ values (true, 4, 1, 1, 5, 'Description1', 'bmwX5.jpg', 'BMW', 'X5', 'diesel', 'manuel', 'SUV', 220, 120000, 20000, true, 5, 0, 2200, 150, true, true, 70, 'Novi Sad');
  insert into car (agent, rating, num_of_rating, user_id, doors, description, image, brand, model, fuel_type, transmission, class_car, price, mileage, planned_mileage, cdw, capacity_seats, capacity_seats_for_kids, cubic_capacity, horse_power, usb, gps, fuel_tank_capacity, city_location)
  values (false, 0, 0, 1, 5, 'Description1', 'bmwX6.jpg', 'BMW', 'X6', 'gasoline', 'automatic', 'classic', 290, 90000, 10000, true, 6, 1, 3500, 300, true, true, 80, 'Beograd');
 insert into car (agent, rating, num_of_rating, user_id, doors, description, image, brand, model, fuel_type, transmission, class_car, price, mileage, planned_mileage, cdw, capacity_seats, capacity_seats_for_kids, cubic_capacity, horse_power, usb, gps, fuel_tank_capacity, city_location)

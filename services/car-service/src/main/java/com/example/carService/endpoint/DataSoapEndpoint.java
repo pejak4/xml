@@ -31,6 +31,12 @@ public class DataSoapEndpoint {
         return dataSoapService.addOccupancyReturnId(request);
     }
 
+    @PayloadRoot(namespace = "http://www.soapserveryt.com/api/soap", localPart = "ClientRequestCars")
+    @ResponsePayload
+    public ClientRequestCars getAll(@RequestPayload ClientRequestCars request) {
+        return dataSoapService.getAll(request);
+    }
+
     @PayloadRoot(namespace = "http://www.soapserveryt.com/api/soap", localPart = "ClientRequestRentalRequestId")
     @ResponsePayload
     public void setRoleRentalRequest(@RequestPayload ClientRequestRentalRequestId request) {
