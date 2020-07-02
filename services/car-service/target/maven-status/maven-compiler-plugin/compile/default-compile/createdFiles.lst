@@ -8,6 +8,7 @@ com\example\carService\dto\CommentRequestAcceptDeclineDTO.class
 com\example\carService\repository\CarRepository.class
 com\example\carService\dto\OccupancyDTO.class
 com\example\carService\model\Comment.class
+com\example\carService\security\auth\TokenBasedAuthentication.class
 com\example\carService\model\RatingCarRequest$RatingCarRequestBuilder.class
 com\example\carService\dto\CarSearchDTO$CarSearchDTOBuilder.class
 com\example\carService\dto\CommentCarIdDTO.class
@@ -20,17 +21,21 @@ com\example\carService\model\CarRentalDate$CarRentalDateBuilder.class
 com\example\carService\dto\RentalRequestDTO.class
 com\example\carService\model\Occupancy$OccupancyBuilder.class
 com\example\carService\model\RatingCarRequest.class
+com\example\carService\dto\AclDTO.class
 com\example\carService\dto\CommentCarRequestDTO.class
 com\soapserveryt\api\soap\ObjectFactory.class
+com\example\carService\security\auth\RestAuthenticationEntryPoint.class
 com\example\carService\model\Occupancy.class
 com\example\carService\endpoint\DataSoapEndpoint.class
 com\example\carService\repository\AdvertisementRepository.class
 com\example\carService\security\Acl.class
 com\example\carService\dto\RentalRequestIfHaveReservedDTO.class
 com\example\carService\dto\RatingCarRequestDTO.class
+com\soapserveryt\api\soap\ClientRequestCars.class
 com\example\carService\dto\RentalCheckDTO.class
 com\example\carService\service\CarService.class
 com\example\carService\model\CarRentalRequest$CarRentalRequestBuilder.class
+com\example\carService\security\TokenUtils.class
 com\example\carService\dto\CommentCarIdDTO$CommentCarIdDTOBuilder.class
 com\example\carService\model\CarRentalDate.class
 com\example\carService\dto\CarSearchDTO.class
@@ -43,10 +48,13 @@ com\example\carService\model\Comment$CommentBuilder.class
 com\example\carService\service\OccupancyService.class
 com\soapserveryt\api\soap\ClientRequest.class
 com\example\carService\repository\CommentRequestRepository.class
+com\example\carService\config\WebSecurityConfig.class
 com\example\carService\repository\RentalRepository.class
 com\example\carService\dto\UserIdDTO.class
 com\example\carService\repository\RatingRequestRepository.class
+com\example\carService\common\TimeProvider.class
 com\example\carService\dto\CarFilterDTO$CarFilterDTOBuilder.class
+com\example\carService\service\CustomUserDetailsService.class
 com\example\carService\dto\RentalRequestIdAndCarDTO.class
 com\example\carService\config\WebConfig.class
 com\example\carService\repository\CommentRepository.class
@@ -57,6 +65,7 @@ com\example\carService\dto\AdvertisementDTO.class
 com\example\carService\service\CommentService.class
 com\soapserveryt\api\soap\ClientRequestRentalRequestId.class
 com\example\carService\dto\RentalRequestAcceptDeclineDTO.class
+com\soapserveryt\api\soap\ClientRequestCar.class
 com\example\carService\dto\CarFilterDTO.class
 com\example\carService\dto\RentalRequestsLoggedUserDTO.class
 com\example\carService\model\CarRentalRequest.class
@@ -66,4 +75,5 @@ com\example\carService\service\RentalRequestService.class
 com\example\carService\model\Car.class
 com\example\carService\service\CommentRequestService.class
 com\example\carService\model\Car$CarBuilder.class
+com\example\carService\security\auth\TokenAuthenticationFilter.class
 com\soapserveryt\api\soap\ClientRequestSetMileageAndDescription.class

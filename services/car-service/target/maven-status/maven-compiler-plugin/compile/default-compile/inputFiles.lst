@@ -6,6 +6,7 @@ C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\soapserveryt\api\soap\ObjectFactory.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\dto\RatingCarRequestDTO.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\repository\AdvertisementRepository.java
+C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\soapserveryt\api\soap\ClientRequestCar.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\repository\OccupancyRepository.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\dto\OccupancyDTO.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\security\auth\TokenAuthenticationFilter.java
@@ -16,6 +17,8 @@ C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\dto\RentalRequestIdAndCarDTO.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\soapserveryt\api\soap\ClientRequestRentalRequest.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\model\CarRentalRequest.java
+C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\soapserveryt\api\soap\ClientRequestCars.java
+C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\common\TimeProvider.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\controller\CarController.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\CarServiceApplication.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\soapserveryt\api\soap\ClientRequestComment.java
@@ -36,7 +39,9 @@ C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\endpoint\DataSoapEndpoint.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\dto\RatingRequestAcceptDeclineDTO.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\dto\RentalRequestDTO.java
+C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\service\CustomUserDetailsService.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\soapserveryt\api\soap\ClientRequestSetMileageAndDescription.java
+C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\dto\AclDTO.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\dto\CarSearchDTO.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\security\Acl.java
 C:\Users\jovan\OneDrive\Documents\GitHub\xml\services\car-service\src\main\java\com\example\carService\repository\RentalRequestRepository.java

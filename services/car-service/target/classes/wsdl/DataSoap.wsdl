@@ -15,6 +15,42 @@
                 </complexType>
             </element>
 
+            <element name="ClientRequestCars">
+                <complexType>
+                    <sequence>
+                        <element name="newsItems" type="tns:ClientRequestCar" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
+
+            <complexType name="ClientRequestCar">
+                <sequence>
+                    <element name="rating" type="double" />
+                    <element name="id" type="long" />
+                    <element name="doors" type="string" />
+                    <element name="descripton" type="string" />
+                    <element name="image" type="string" />
+                    <element name="brand" type="string" />
+                    <element name="model" type="string" />
+                    <element name="fuelType" type="string" />
+                    <element name="transmission" type="string" />
+                    <element name="classCar" type="string" />
+                    <element name="price" type="string" />
+                    <element name="mileage" type="string" />
+                    <element name="plannedMileage" type="string" />
+                    <element name="CDW" type="string" />
+                    <element name="capacitySeats" type="string" />
+                    <element name="capacitySeatsForKids" type="string" />
+                    <element name="cubicCapacity" type="string" />
+                    <element name="horsePower" type="string" />
+                    <element name="usb" type="string" />
+                    <element name="gps" type="string" />
+                    <element name="fuelTankCapacity" type="string" />
+                    <element name="cityLocation" type="string" />
+                    <element name="userId" type="string" />
+                </sequence>
+            </complexType>
+
             <element name="ServerRespond">
                 <complexType>
                     <sequence>
