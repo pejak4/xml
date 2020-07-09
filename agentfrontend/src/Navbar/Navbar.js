@@ -28,6 +28,7 @@ class Navbar extends React.PureComponent {
                     {sessionStorage.getItem('token') !== null ? <li><a href="/rentalRequest">Rental request for me</a></li> : null}
                     {sessionStorage.getItem('token') !== null ? <li><a href="/graph">Graph/Statistic</a></li> : null}
                     {sessionStorage.getItem('token') !== null ? <li><a href="/endRental">End rental</a></li> : null}
+                    {sessionStorage.getItem('token') !== null ? <li><a href="/message">Message</a></li> : null}
                 </ul>
             </nav>
         );
