@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.*;
+import com.example.demo.model.Message;
 import com.example.demo.model.RentalRequestRole;
 import com.example.demo.model.Users;
 import com.example.demo.service.*;
@@ -16,9 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 
 @RestController
@@ -42,6 +45,11 @@ public class UserController {
     @Autowired
     private RentalService rentalService;
 
+    @Autowired
+    private MessageService messageService;
+
+    @Autowired
+    private JmsTemplate jmsTemplate;
 
     @CrossOrigin(origins = "http://localhost:3001")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/login")
@@ -60,6 +68,12 @@ public class UserController {
     public ResponseEntity<?> getLoggedUserId() {
         Users u = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return new ResponseEntity<>(u, HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3001")
+    @GetMapping(path = "/getUserById")
+    public ResponseEntity<?> getUserById(@RequestParam Long id) {
+        return new ResponseEntity<>(this.userService.findOneById(id), HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:3001")
@@ -177,6 +191,40 @@ public class UserController {
         this.userService.addRestorePermissions("USER");
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
+    @CrossOrigin(origins = "http://localhost:3001")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/porukeza")
+    public ResponseEntity<?> vratiPoruke(@RequestParam String id){
+        return new ResponseEntity<>(this.messageService.findByReceiverId(Long.parseLong(id)), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3001")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/send")
+    public void send(@RequestBody MessageDTO dto){
+        System.out.println("Sending message.");
+        Message message = new Message();
+        message.setSenderId(dto.getSenderId());
+        message.setReceiverId(dto.getReceiverId());
+        message.setMessage(dto.getMessage());
+        message.setMessageDate(new Timestamp(System.currentTimeMillis()));
+
+        jmsTemplate.convertAndSend("MessageQueue", message);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3001")
+    @GetMapping(path = "/del")
+    public ResponseEntity<?> deletee(@RequestParam("id")  String id){
+        this.messageService.deleteMessage(Long.parseLong(id));
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3001")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/porukeod")
+    public ResponseEntity<?> porukee(@RequestParam("id") String id){
+        return new ResponseEntity<>(this.messageService.findBySenderId(Long.parseLong(id)), HttpStatus.OK);
+    }
+
 
 
     }

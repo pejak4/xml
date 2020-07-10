@@ -6,8 +6,10 @@ class MessageInfo extends React.PureComponent{
 
     state = {from: '', write: false};
 
+   
+
     loadSender = async(id) => {
-        const resp = await axios.get('/authentication-service/getUserById',{params: {id: id}});
+        const resp = await axios.get('/getUserById',{params: {id: id}});
         if(resp){
             this.setState({from: `${resp.data.firstName} ${resp.data.lastName}`});
         }
@@ -32,11 +34,17 @@ class MessageInfo extends React.PureComponent{
         
     }
 
+    getit(temp){
+        var d = new Date(temp);
+        var dd = d.toJSON();
+        return <b>{dd.split("T")[0]} {dd.split("T")[1].split(".")[0]}</b>;
+    }
+
     render(){
         return (
             <div className="card" key={this.props.data.id} id={this.props.data.senderId} onClick={()=>{ this.loadSender(this.props.data.senderId);}}>
                     <div className='containerr' >
-                        <h4><b>{this.props.data.messageDate.split("T")[0]} {this.props.data.messageDate.split("T")[1]}</b></h4>
+                        <h4><b>{this.getit(this.props.data.messageDate)}</b></h4>
                         <h4><b>{this.props.data.message}</b></h4>
                         <h4><b>{this.state.write===true ? this.state.from: ''}</b></h4>
                             {this.buttons(this.props.data.id)}

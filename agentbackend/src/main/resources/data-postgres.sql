@@ -22,4 +22,9 @@ insert into role (role) values ('USER');
 insert into role_authorities (role_name, authority_name) values ('ADMIN', 'MANAGE_CERTIFICATE');
 insert into role_authorities (role_name, authority_name) values ('USER', 'MANAGE_USER');
 
+insert into message (sender_id, receiver_id, message, message_date) values (2,3,'Pokupili smo auto, sve je ok. Pozdrav', '2020-08-02 10:43:12');
+insert into message (sender_id, receiver_id, message, message_date) values (1,3,'Pokupili smo auto, sve je ok. Pozdrav', '2020-09-02 10:43:12');
+insert into message (sender_id, receiver_id, message, message_date) values (1,3,'Pokupili smo auto, sve je ok. Pozdrav', '2020-10-02 10:43:12');
+
+
 alter sequence users_id_seq restart with 4;

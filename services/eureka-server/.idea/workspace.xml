@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25e00632-9d8a-4e29-8666-fdd70602ea84" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentfrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentfrontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentbackend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/KtbackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/KtbackendApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/resources/data-postgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/resources/data-postgres.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentfrontend/src/Message/Message.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentfrontend/src/Message/Message.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentfrontend/src/Message/MessageInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentfrontend/src/Message/MessageInfo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,7 +46,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../message-service" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
