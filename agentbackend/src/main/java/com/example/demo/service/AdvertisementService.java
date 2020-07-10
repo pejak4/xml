@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-
-import com.example.demo.dto.AdvertisementDTO;
 import com.example.demo.model.Car;
 import com.example.demo.model.CarRentalRequest;
 import com.example.demo.repository.AdvertisementRepository;
@@ -14,7 +12,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
-import java.util.ArrayList;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -30,6 +31,9 @@ public class AdvertisementService {
     @Autowired
     private Jaxb2Marshaller marshaller;
 
+    @Autowired
+    private PricelistService pricelistService;
+
     private WebServiceTemplate template;
 
 
@@ -42,7 +46,7 @@ public class AdvertisementService {
                 classCar(a.getClassCar()).cubicCapacity(Integer.parseInt(a.getCubicCapacity())).horsePower(Integer.parseInt(a.getHorsePower())).
                 description(a.getDescription()).fuelTankCapacity(Integer.parseInt(a.getFuelTankCapacity())).doors(Integer.parseInt(a.getDoors())).
                 fuelType(a.getFuelType()).gps(Boolean.parseBoolean(a.getGps())).mileage(Integer.parseInt(a.getMileage())).
-                plannedMileage(plannedMileage).price(Integer.parseInt(a.getPrice())).secondId(Long.parseLong("0")).
+                plannedMileage(plannedMileage).price(Double.parseDouble(a.getPrice())).secondId(Long.parseLong("0")).
                 transmission(a.getTransmission()).usb(Boolean.parseBoolean(a.getUsb())).image("car.jpg").userId(a.getUserId()).build();
 
         template = new WebServiceTemplate(marshaller);
@@ -137,6 +141,52 @@ public class AdvertisementService {
                }
             }
         }
+    }
+
+    @Scheduled(fixedRate=2000000)
+    public void setDayInWeek() {
+        List<Car> cars = this.advertisementRepository.findAll();
+
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        for(Car c : cars) {
+            if(!c.getCDW()) {
+                if (cal.get(Calendar.DAY_OF_WEEK) == 1) {
+                    c.setPrice(c.getPricelist().getSunday());
+                } else if (cal.get(Calendar.DAY_OF_WEEK) == 2) {
+                    c.setPrice(c.getPricelist().getMonday());
+                } else if (cal.get(Calendar.DAY_OF_WEEK) == 3) {
+                    c.setPrice(c.getPricelist().getTuesday());
+                } else if (cal.get(Calendar.DAY_OF_WEEK) == 4) {
+                    c.setPrice(c.getPricelist().getWednesday());
+                } else if (cal.get(Calendar.DAY_OF_WEEK) == 5) {
+                    c.setPrice(c.getPricelist().getThursday());
+                } else if (cal.get(Calendar.DAY_OF_WEEK) == 6) {
+                    c.setPrice(c.getPricelist().getFriday());
+                } else if (cal.get(Calendar.DAY_OF_WEEK) == 7) {
+                    c.setPrice(c.getPricelist().getSaturday());
+                }
+            } else {
+                if (cal.get(Calendar.DAY_OF_WEEK) == 1) {
+                    c.setPrice(c.getPricelist().getSunday());
+                } else if (cal.get(Calendar.DAY_OF_WEEK) == 2) {
+                    c.setPrice(c.getPricelist().getMonday() + c.getPricelist().getCdw());
+                } else if (cal.get(Calendar.DAY_OF_WEEK) == 3) {
+                    c.setPrice(c.getPricelist().getTuesday() + c.getPricelist().getCdw());
+                } else if (cal.get(Calendar.DAY_OF_WEEK) == 4) {
+                    c.setPrice(c.getPricelist().getWednesday() + c.getPricelist().getCdw());
+                } else if (cal.get(Calendar.DAY_OF_WEEK) == 5) {
+                    c.setPrice(c.getPricelist().getThursday() + c.getPricelist().getCdw());
+                } else if (cal.get(Calendar.DAY_OF_WEEK) == 6) {
+                    c.setPrice(c.getPricelist().getFriday() + c.getPricelist().getCdw());
+                } else if (cal.get(Calendar.DAY_OF_WEEK) == 7) {
+                    c.setPrice(c.getPricelist().getSaturday() + c.getPricelist().getCdw());
+                }
+            }
+        }
+        this.updateData();
     }
 
 

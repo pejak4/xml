@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.*;
 import com.example.demo.model.RentalRequestRole;
 import com.example.demo.model.Users;
+import com.example.demo.repository.PricelistRepository;
 import com.example.demo.service.*;
 import com.example.demo.view.UserLoginView;
 import com.example.demo.view.UserRegisterView;
@@ -41,6 +42,9 @@ public class UserController {
 
     @Autowired
     private RentalService rentalService;
+
+    @Autowired
+    private PricelistService pricelistService;
 
 
     @CrossOrigin(origins = "http://localhost:3001")
@@ -178,5 +182,23 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3001")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/getAllPricelist")
+    public ResponseEntity<?> getAllPricelist() throws Exception {
+        return new ResponseEntity<>(this.pricelistService.getAll(), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3001")
+    @GetMapping(path = "/getPricelistById")
+    public ResponseEntity<?> getPricelistById(@RequestParam Long id) {
+        return new ResponseEntity<>(this.pricelistService.getPricelistById(id), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3001")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/addPricelist")
+    public ResponseEntity<?> addPricelist(@RequestBody PricelistDTO pricelistDTO) {
+        this.pricelistService.savePricelist(pricelistDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     }

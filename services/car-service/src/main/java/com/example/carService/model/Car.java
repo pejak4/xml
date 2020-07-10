@@ -55,4 +55,5 @@ public class Car {
 
     @OneToMany(mappedBy = "occupancyCar", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Occupancy> occupancyList;
+
 }
