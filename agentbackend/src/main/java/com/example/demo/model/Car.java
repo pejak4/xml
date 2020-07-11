@@ -41,6 +41,8 @@ public class Car {
     private double fuelTankCapacity;
     private String cityLocation;
 
+    private double discount; // Popust
+
     private String userId;
 
     private double rating;

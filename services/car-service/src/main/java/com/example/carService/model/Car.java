@@ -45,6 +45,8 @@ public class Car {
     private double rating;
     private int numOfRating;
 
+    private double discount;
+
     private Boolean agent;
 
     @OneToMany(mappedBy = "car", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
