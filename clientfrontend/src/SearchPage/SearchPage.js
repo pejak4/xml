@@ -55,6 +55,8 @@ class SearchPage extends React.PureComponent {
 
             renderNum: 'jedan',
             currentCar: null,
+
+            dateForDiscount: false,
         }
     }
 
@@ -66,6 +68,11 @@ class SearchPage extends React.PureComponent {
             endDate: this.props.location.state.endDate
         });
         this.setState({car});
+
+        if(this.props.location.state.endDate - this.props.location.state.startDate > 86400000*10) {
+            this.setState({dateForDiscount: true})
+        }
+
 
         //niz svih auta koje smo dobili pocetnom pretragom
         const carArray = [...this.props.location.state.cars];
@@ -564,6 +571,11 @@ class SearchPage extends React.PureComponent {
                                                     onChange={ (event) => {this.ratingChangedHandler(event, car)}}
                                                     size={35}
                                                     color2={'#ffd700'} />
+                                            </div>
+                                            <div>
+                                                <div>
+                            {car.agent ? <div>{this.state.dateForDiscount ? <p>{car.price - car.price/100*car.discount}$ ({car.discount}%)</p> : <p>{car.price}$</p>}</div> : <p>{car.price}$</p> }
+                                                </div>
                                             </div>
 
                                             <div className="details-rent">

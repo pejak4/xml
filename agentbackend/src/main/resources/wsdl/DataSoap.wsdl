@@ -105,6 +105,7 @@
                         <element name="fuelTankCapacity" type="string" />
                         <element name="cityLocation" type="string" />
                         <element name="userId" type="string" />
+                        <element name="discount" type="double" />
                     </sequence>
                 </complexType>
             </element>

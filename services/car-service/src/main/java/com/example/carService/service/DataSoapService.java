@@ -53,7 +53,7 @@ public class DataSoapService {
                 description(a.getDescripton()).fuelTankCapacity(Integer.parseInt(a.getFuelTankCapacity())).doors(Integer.parseInt(a.getDoors())).
                 fuelType(a.getFuelType()).gps(Boolean.parseBoolean(a.getGps())).mileage(Integer.parseInt(a.getMileage())).
                 plannedMileage(Integer.parseInt(a.getPlannedMileage())).price(Integer.parseInt(a.getPrice())).
-                transmission(a.getTransmission()).usb(Boolean.parseBoolean(a.getUsb())).image("car.jpg").userId(a.getUserId()).build();
+                transmission(a.getTransmission()).usb(Boolean.parseBoolean(a.getUsb())).image("car.jpg").userId(a.getUserId()).discount(a.getDiscount()).build();
 
         this.carRepository.save(car);
 

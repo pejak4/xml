@@ -47,7 +47,8 @@ public class AdvertisementService {
                 description(a.getDescription()).fuelTankCapacity(Integer.parseInt(a.getFuelTankCapacity())).doors(Integer.parseInt(a.getDoors())).
                 fuelType(a.getFuelType()).gps(Boolean.parseBoolean(a.getGps())).mileage(Integer.parseInt(a.getMileage())).
                 plannedMileage(plannedMileage).price(Double.parseDouble(a.getPrice())).secondId(Long.parseLong("0")).
-                transmission(a.getTransmission()).usb(Boolean.parseBoolean(a.getUsb())).image("car.jpg").userId(a.getUserId()).build();
+                transmission(a.getTransmission()).usb(Boolean.parseBoolean(a.getUsb())).image("car.jpg").userId(a.getUserId()).
+                discount(a.getDiscount()).build();
 
         template = new WebServiceTemplate(marshaller);
         ServerRespond respond = (ServerRespond) template.marshalSendAndReceive("http://localhost:8081/ws", a);
