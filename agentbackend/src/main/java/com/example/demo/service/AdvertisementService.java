@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.Car;
 import com.example.demo.model.CarRentalRequest;
+import com.example.demo.model.Users;
 import com.example.demo.repository.AdvertisementRepository;
 import com.example.demo.repository.RentalRequestRepository;
 import com.soapclient.api.domain.*;
@@ -35,6 +36,9 @@ public class AdvertisementService {
     private PricelistService pricelistService;
 
     private WebServiceTemplate template;
+
+    @Autowired
+    private UserService userService;
 
 
     public Car save(ClientRequest a) {
@@ -101,6 +105,19 @@ public class AdvertisementService {
         request.setCarId(c.getSecondId()); // Pre nego sto posaljemo na drugu stranu, menjamo id na Id na drugoj strani
         template = new WebServiceTemplate(marshaller);
         template.marshalSendAndReceive("http://localhost:8081/ws", request);
+
+        OverdraftKilometer overdraftKilometer = new OverdraftKilometer();
+
+        if ((request.getMileage() - c.getPlannedMileage()) > 0) { // Ako je presao vise nego sto je smeo!
+            double pay = (request.getMileage() - c.getPlannedMileage()) * c.getPricelist().getKilometer();
+            overdraftKilometer.setPaid(false);
+            overdraftKilometer.setPrice(pay);
+            overdraftKilometer.setUserId(c.getSecondId()); //Da ne bih menjap sve. ne stoji ovde UserId nego Carid.
+            //Pa cu na drugoj strani da nadjem UserId preko Car-a, i sacuvacu na kojeg se odnosi usera u tabeli
+
+            template = new WebServiceTemplate(marshaller);
+            template.marshalSendAndReceive("http://localhost:8081/ws", overdraftKilometer);
+        }
     }
 
     @Scheduled(fixedRate=2000000)

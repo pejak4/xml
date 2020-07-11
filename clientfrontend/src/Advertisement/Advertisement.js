@@ -313,14 +313,14 @@ class Advertisement extends React.PureComponent {
                     <MenuItem value="">
                         <em>Unlimited</em>
                     </MenuItem>
-                    <MenuItem value="2000">2000km</MenuItem>
-                    <MenuItem value="4000">4000km</MenuItem>
-                    <MenuItem value="6000">6000km</MenuItem>
-                    <MenuItem value="8000">8000km</MenuItem>
-                    <MenuItem value="10000">10000km</MenuItem>
-                    <MenuItem value="15000">15000km</MenuItem>
-                    <MenuItem value="20000">20000km</MenuItem>
-                    <MenuItem value="30000">30000km</MenuItem>
+                    <MenuItem value="2000">200km</MenuItem>
+                    <MenuItem value="4000">400km</MenuItem>
+                    <MenuItem value="6000">600km</MenuItem>
+                    <MenuItem value="8000">800km</MenuItem>
+                    <MenuItem value="10000">1000km</MenuItem>
+                    <MenuItem value="15000">1500km</MenuItem>
+                    <MenuItem value="20000">2000km</MenuItem>
+                    <MenuItem value="30000">3000km</MenuItem>
                     </Select>
                     <FormHelperText>Available distance to travel</FormHelperText>
                 </FormControl>

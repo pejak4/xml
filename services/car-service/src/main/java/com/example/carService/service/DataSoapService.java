@@ -18,10 +18,7 @@ import java.util.TimeZone;
 //import com.soapserveryt.repository.UserRepository;
 
 import com.example.carService.model.*;
-import com.example.carService.repository.CarRepository;
-import com.example.carService.repository.CommentRepository;
-import com.example.carService.repository.OccupancyRepository;
-import com.example.carService.repository.RentalRequestRepository;
+import com.example.carService.repository.*;
 import com.soapserveryt.api.soap.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +40,9 @@ public class DataSoapService {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private OverdraftRepository overdraftRepository;
 
     public ServerRespond checkData(ClientRequest a) {
         ServerRespond serverRespond = new ServerRespond();
@@ -148,5 +148,15 @@ public class DataSoapService {
         c.setMileage(request.getMileage());
         c.setDescription(request.getDescription());
         this.carRepository.save(c);
+    }
+
+    public void addOverdraft(OverdraftKilometer overdraftKilometer) {
+        Car c = this.carRepository.findOneById(overdraftKilometer.getUserId()); //Ovde sam na drugoj strani stavio carId second. Samo me mrzilo da menjam naslov
+        Overdraft overdraft = new Overdraft();
+        overdraft.setPaid(overdraftKilometer.isPaid());
+        overdraft.setPrice(overdraftKilometer.getPrice());
+        overdraft.setUserId(Long.parseLong(c.getUserId()));
+
+        this.overdraftRepository.save(overdraft);
     }
 }

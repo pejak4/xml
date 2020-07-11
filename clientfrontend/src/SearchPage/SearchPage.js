@@ -252,15 +252,25 @@ class SearchPage extends React.PureComponent {
         let id = 0;
         const data00 = {carId, startDate, endDate, userId, id};
 
+        const data001 = {userId};
+        const response001 = await axios.post('/car-service/getAllOverdraft', data001);
+        if(response001) {
+            console.log(response001);
+        }
 
-        if(!car.agent) {
-            if(rentalRequestExists === true) {
-                alert('Rental request exists or car is busy in this time.');
+
+        if(response001.data.length === 0)
+            if(!car.agent) {
+                if(rentalRequestExists === true) {
+                    alert('Rental request exists or car is busy in this time.');
+                } else {
+                    await axios.post('/car-service/addRentalRequest', data);
+                }
             } else {
-                await axios.post('/car-service/addRentalRequest', data);
+                await axios.post('/car-service/sentSoapRentalRequest', data00);
             }
-        } else {
-            await axios.post('/car-service/sentSoapRentalRequest', data00);
+        else {
+            alert("Pay overdraft kilometer!")
         }
     }
 
