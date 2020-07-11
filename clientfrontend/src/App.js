@@ -16,6 +16,7 @@ import CommentRequest from './CommentRequest/CommentRequest';
 import Messages from './Messages/Messages';
 import PrivateRouteUser from './PrivateRoute/PrivateRouteUser';
 import PrivateRouteAdmin from './PrivateRoute/PrivateRouteAdmin';
+import Overdraft from './Overdraft/Overdraft';
 
 class App extends React.PureComponent {
   render() {
@@ -37,6 +38,8 @@ class App extends React.PureComponent {
             <PrivateRouteAdmin path="/ratingRequest" component={RatingRequest} />
             <PrivateRouteAdmin path="/commentRequest" component={CommentRequest} />
             <PrivateRouteUser path="/messages" component={Messages}/>
+            <PrivateRouteAdmin path="/overdraft" component={Overdraft}/>
+
           </Switch>
         </BrowserRouter>
       </div>
