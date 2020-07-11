@@ -568,9 +568,9 @@ class SearchPage extends React.PureComponent {
 
                                             <div className="details-rent">
                                                 <div>
-                                                    <button onClick={(event) => {this.setState({renderNum: 'dva', currentCar: car})}}> More details </button>
+                                                    <button className="btn" onClick={(event) => {this.setState({renderNum: 'dva', currentCar: car})}}> More details </button>
                                                 </div>
-                                                <div>
+                                                <div style={{marginBottom: '10px', marginRight: '10px'}}>
                                                     <button className="btn" style={{width:'250px', textAlign:'center', marginRight: '20px'}}
                                                     onClick={(event) => {this.addToCartHandler(event, car)}}>
                                                         Add to cart

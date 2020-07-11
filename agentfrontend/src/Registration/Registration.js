@@ -122,31 +122,31 @@ class Registration extends React.PureComponent {
 
                             <div className="box">
                                 <label>First Name</label>
-                                <input type="text" placeholder="First Name" 
+                                <input type="text" placeholder="First Name"  className="inputRegAg"
                                 onChange={(event) => this.inputChangeHandler(event, 'firstName')} />
                                 {!this.state.validation.firstName ? <p className="invalid">Please insert your first name.</p> : null}
                             </div>
                             <div className="box">
                                 <label>Last Name</label>
-                                <input type="text" placeholder="Last Name"
+                                <input type="text" placeholder="Last Name" className="inputRegAg"
                                 onChange={(event) => this.inputChangeHandler(event, 'lastName')} />
                                 {!this.state.validation.lastName ? <p className="invalid">Please insert your last name.</p> : null}
                             </div>
                             <div className="box">
                                 <label>Email</label>
-                                <input type="email" placeholder="Email"
+                                <input type="email" placeholder="Email" className="inputRegAg"
                                 onChange={(event) => this.inputChangeHandler(event, 'email')} />
                                 {!this.state.validation.email ? <p className="invalid">Please insert valid email address.</p> : null}
                             </div>
                             <div className="box">
                                 <label>Password</label>
-                                <input type="password" placeholder="Password"
+                                <input type="password" placeholder="Password" className="inputRegAg"
                                 onChange={(event) => this.inputChangeHandler(event, 'password')} />
                                 {!this.state.validation.password ? <p className="invalid">Minimum 6 characters is required.</p> : null}
                             </div>
                             <div className="box">
                                 <label>Repeat Password</label>
-                                <input type="password" placeholder="Repeat Password"
+                                <input type="password" placeholder="Repeat Password" className="inputRegAg"
                                 onChange={(event) => this.inputChangeHandler(event, 'repeatPassword')} />
                                 {!this.state.validation.repeatPassword ? <p className="invalid">Please insert correct password.</p> : null}
                             </div>

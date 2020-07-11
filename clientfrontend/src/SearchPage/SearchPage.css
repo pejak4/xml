@@ -138,7 +138,8 @@
 }
 
 #showcase > div .btn:hover {
-    opacity: 0.7;
+    /* opacity: 0.7; */
+    background-color: var(--third-color);
 }
 
 .filterDiv > p {

@@ -54,12 +54,11 @@ class Login extends React.PureComponent {
             }
 
             const token = sessionStorage.getItem('token');
-            const response00 = await axios.get('/aclSecurity', {
+            await axios.get('/aclSecurity', {
                     headers: {
                         'Authorization' : 'Bearer ' + token
                     }
-                });
-            
+            });
         }
     }
 
@@ -72,13 +71,13 @@ class Login extends React.PureComponent {
                     <div className="login">
                         <div className="box">
                             <label>Email</label>
-                            <input type="email" placeholder="Email" 
+                            <input type="email" placeholder="Email"  className="inputRegAg"
                             onChange={(event) => this.inputChangdeHandler(event, 'email')}
                             />
                         </div>
                         <div className="box">
                             <label>Password</label>
-                            <input type="password" placeholder="Password" 
+                            <input type="password" placeholder="Password" className="inputRegAg"
                             onChange={(event) => this.inputChangdeHandler(event, 'password')}
                             />
                         </div>

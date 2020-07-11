@@ -823,9 +823,11 @@ class Advertisement extends React.PureComponent {
                 <header id="showcase">
                     <div className="containerSearch showcase-containerSearch">
                         <div className="filterDiv">
+
                             {this.state.renderNumber !== 4 ? <p style={{color:'red'}}>Add new advertisement <br/>Step {this.state.renderNumber}</p> : <p style={{color:'red'}}>Add pricelist <br/>Step {this.state.renderNumber}</p> }
                             <hr/>
                                 {this.state.renderNumber === 4 ? <div><button className="button" onClick={(event) => {this.setState({renderNumberPricelist: 1})}}>Add exist</button><button className="button" onClick={(event) => {this.setState({renderNumberPricelist: -1})}}>Add new</button></div> : null }
+
                             <hr/>
                             <div style={{marginLeft: '0px'}}>
                                 {this.render01()}

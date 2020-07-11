@@ -42,8 +42,8 @@ class CommentRequest extends React.PureComponent {
                             <h5><b>Comment:</b> {commentRequest.descriptionComment}</h5>
                             <br/><hr/>
                         </div>
-                        <button onClick={(event) => {this.acceptHandler(event, commentRequest)}}>Accept</button>
-                        <button onClick={(event) => {this.declineHandler(event, commentRequest)}}>Decline</button>
+                        <button className="acceptButton" onClick={(event) => {this.acceptHandler(event, commentRequest)}}>Accept</button>
+                        <button className="acceptButton" onClick={(event) => {this.declineHandler(event, commentRequest)}}>Decline</button>
                     </div>
                 );
             })

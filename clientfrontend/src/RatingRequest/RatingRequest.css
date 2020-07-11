@@ -1,0 +1,7 @@
+.acceptButton {
+    margin: 0.2rem 0.2rem;
+}
+
+.acceptButton:hover {
+    background-color: var(--third-color);
+}

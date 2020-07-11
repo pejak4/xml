@@ -40,32 +40,32 @@ class Graph extends React.PureComponent {
             let novi = {key: this.state.keys[i], data: this.state.values[i]}
             preparedData = [...preparedData, novi];
         }
-        return <BarChart width={550} height={450} data={preparedData} />; 
+        return <BarChart width={550} height={250} data={preparedData} />; 
     }
 
     renderGraphRating() {
         const {allCarsLoggedUser = []} = this.state;
         const preparedData = allCarsLoggedUser.map(({id, rating}) => ({key: id, data: rating}));
-          return <BarChart width={550} height={450} data={preparedData} />; 
+          return <BarChart width={550} height={250} data={preparedData} />; 
     }
 
     renderGraphMileage() {
         const { allCarsLoggedUser = []} = this.state;
         const preparedData = allCarsLoggedUser.map(({id, mileage}) => ({ key: id, data: mileage})); 
-          return <BarChart width={550} height={450} data={preparedData} />; 
+          return <BarChart width={550} height={250} data={preparedData} />; 
     }
 
     renderCars = () => {
         const { allCarsLoggedUser = [] }  = this.state;
         const preparedData = allCarsLoggedUser.map(({ id, capacitySeats }) => ({ key: id, data: capacitySeats }));
-        return <BarChart width={550} height={450} data={preparedData} />; 
+        return <BarChart width={550} height={250} data={preparedData} />; 
     };
 
     render() {
         return(
             <div>
                 <Navbar />
-                <header id="showcase">
+                <header id="showcase" style={{height:'100%'}}>
                     <br/><br/>
                     <div className="containerSearch showcase-containerSearch" >
                         <div style={{ justifyContent: 'center', alignItems: 'center', overflow:'scroll'}}>

@@ -68,3 +68,14 @@
     right: 100%;
 
 }
+
+.back {
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    width: 100px !important;
+    margin-left: 75px !important;
+}
+
+.back:hover {
+    background-color: var(--third-color);
+}

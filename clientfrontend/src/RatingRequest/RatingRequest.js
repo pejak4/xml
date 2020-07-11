@@ -1,8 +1,7 @@
 import React from 'react';
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
 import axios from '../axios-objects';
-
-
+import './RatingRequest.css';
 
 class RatingRequest extends React.PureComponent {
 
@@ -44,8 +43,8 @@ class RatingRequest extends React.PureComponent {
                             <h5><b>Rating: {ratingRequest.rating}</b></h5>
                             <br/><hr/>
                         </div>
-                        <button onClick={(event) => {this.acceptHandler(event, ratingRequest)}}>Accept</button>
-                        <button onClick={(event) => {this.declineHandler(event, ratingRequest)}}>Decline</button>
+                        <button className="acceptButton" onClick={(event) => {this.acceptHandler(event, ratingRequest)}}>Accept</button>
+                        <button className="acceptButton" onClick={(event) => {this.declineHandler(event, ratingRequest)}}>Decline</button>
                     </div>
                 );
             })
