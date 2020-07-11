@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 @Entity
 @Builder
 @ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 public class CarRentalRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +36,6 @@ public class CarRentalRequest {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
+    @ToString.Exclude
     private Car rentalRequestCar;
 }

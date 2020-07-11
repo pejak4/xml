@@ -28,8 +28,6 @@ class Messages extends React.PureComponent{
             this.setState({userId: response.data.id});
         }
 
-       
-       
         const response2 = await axios.get('/message-service/porukeza', {params:{id:this.state.userId}});
         if(response2){
             this.setState({message: response2.data});
@@ -39,8 +37,6 @@ class Messages extends React.PureComponent{
         if(response3){
             this.setState({message2: response3.data});
         }
-
-
     }
 
    

@@ -457,7 +457,7 @@ class Advertisement extends React.PureComponent {
                         <input 
                         value={this.state.price}
                         type="number"
-                        labelId="demo-simple-select-helper-label"
+                        labelid="demo-simple-select-helper-label"
                         id="demo-simple-select-helper"
                         onChange={(event) => this.selectHandler(event, 'price')}
                         ></input>
@@ -468,7 +468,7 @@ class Advertisement extends React.PureComponent {
                         <input
                         value={this.state.cubicCapacity}
                         type="number"
-                        labelId="demo-simple-select-helper-label"
+                        labelid="demo-simple-select-helper-label"
                         id="demo-simple-select-helper"
                         onChange={(event) => this.selectHandler(event, 'cubicCapacity')}></input>
                         <FormHelperText>Cubic capacity of car</FormHelperText>
@@ -478,7 +478,7 @@ class Advertisement extends React.PureComponent {
                         <input
                         value={this.state.horsePower}
                         type="number"
-                        labelId="demo-simple-select-helper-label"
+                        labelid="demo-simple-select-helper-label"
                         id="demo-simple-select-helper"
                         onChange={(event) => this.selectHandler(event, 'horsePower')}></input>
                         <FormHelperText>Horse power of car</FormHelperText>
@@ -538,13 +538,13 @@ class Advertisement extends React.PureComponent {
                             </div>
                         </div>
                         <div>
-                            {this.state.renderNumber > 1 ? <button className="button" onClick={(event) => {this.setState({renderNumber: this.state.renderNumber-1})}}>Back</button> : <button disabled={true} style={{cursor: 'not-allowed', opacity: 0.6}} className="button" onClick={(event) => {this.setState({renderNumber: this.state.renderNumber-1})}}>Back</button>}
-                            {this.state.renderNumber < 3 ? <button className="button" onClick={(event)=>{ this.setState({renderNumber: this.state.renderNumber+1});}}>Next</button> : <button disabled={true} style={{cursor: 'not-allowed', opacity: 0.6}} className="button" onClick={(event)=>{ this.setState({renderNumber: this.state.renderNumber+1});}}>Next</button>}
+                            {this.state.renderNumber > 1 ? <button className="buttonA" onClick={(event) => {this.setState({renderNumber: this.state.renderNumber-1})}}>Back</button> : <button disabled={true} style={{cursor: 'not-allowed', opacity: 0.6}} className="buttonA" onClick={(event) => {this.setState({renderNumber: this.state.renderNumber-1})}}>Back</button>}
+                            {this.state.renderNumber < 3 ? <button className="buttonA" onClick={(event)=>{ this.setState({renderNumber: this.state.renderNumber+1});}}>Next</button> : <button disabled={true} style={{cursor: 'not-allowed', opacity: 0.6}} className="buttonA" onClick={(event)=>{ this.setState({renderNumber: this.state.renderNumber+1});}}>Next</button>}
                         </div>
 
                         {this.state.userAddNumber < 3 ? 
-                            (this.state.renderNumber === 3 ? <button className="button" onClick = {(event) => this.addHandler(event)}>Finish</button> : null) 
-                            : (this.state.renderNumber === 3 ? <Popup trigger={<button className="button" onClick = {(event) => this.addHandler(event)}>Finish</button>} position="top center">
+                            (this.state.renderNumber === 3 ? <button className="buttonA" onClick = {(event) => this.addHandler(event)}>Finish</button> : null) 
+                            : (this.state.renderNumber === 3 ? <Popup trigger={<button className="buttonA" onClick = {(event) => this.addHandler(event)}>Finish</button>} position="top center">
                                 <div style={{background:'red', marginLeft:'0px'}}>You can't add more then 3 advertisement!</div>
                             </Popup> : null)}
                     </div>

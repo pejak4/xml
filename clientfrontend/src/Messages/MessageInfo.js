@@ -36,7 +36,7 @@ class MessageInfo extends React.PureComponent{
         return (
             <div className="card" key={this.props.data.id} id={this.props.data.senderId} onClick={()=>{ this.loadSender(this.props.data.senderId);}}>
                     <div className='containerr' >
-                        <h4><b>{this.props.data.messageDate.split("T")[0]} {this.props.data.messageDate.split("T")[1]}</b></h4>
+                        <h4><b>{this.props.data.messageDate.split("T")[0]} {this.props.data.messageDate.split("T")[1].split(".")[0]}</b></h4>
                         <h4><b>{this.props.data.message}</b></h4>
                         <h4><b>{this.state.write===true ? this.state.from: ''}</b></h4>
                             {this.buttons(this.props.data.id)}

@@ -77,7 +77,7 @@ class SingleCarPage extends React.PureComponent {
                             {this.state.car !== null ? this.state.car.model : null} </h2>
                             <div className="car-wrapper">
                                 <div className="description">
-                                    <p onClick={(event) => {this.props.setNumOfRender('jedan')}}>BACK</p>
+                                    <p className="back" onClick={(event) => {this.props.setNumOfRender('jedan')}}>BACK</p>
                                     <p><strong>Fuel type</strong>: {this.state.car !== null ? this.state.car.fuelType : null}</p>
                                     <p><strong>Transmission</strong>: {this.state.car !== null ? this.state.car.transmission : null}</p>
                                     <p><strong>Class</strong>: {this.state.car !== null ? this.state.car.classCar : null}</p>

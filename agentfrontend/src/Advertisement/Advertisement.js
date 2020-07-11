@@ -539,7 +539,7 @@ class Advertisement extends React.PureComponent {
                 <header id="showcase">
                     <div className="containerSearch showcase-containerSearch">
                         <div className="filterDiv">
-                            <p style={{color:'red'}}>Add new advertisement <br/>Step {this.state.renderNumber}</p>
+                            <p style={{color:'var(--secondary-color)'}}>Add new advertisement <br/>Step {this.state.renderNumber}</p>
                             <hr/>
                             <div style={{marginLeft: '0px'}}>
                                 {this.render01()}
