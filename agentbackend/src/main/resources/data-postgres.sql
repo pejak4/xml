@@ -1,5 +1,8 @@
-insert into car (second_id, rating, num_of_rating, user_id, doors, description, image, brand, model, fuel_type, transmission, class_car, price, mileage, planned_mileage, cdw, capacity_seats, capacity_seats_for_kids, cubic_capacity, horse_power, usb, gps, fuel_tank_capacity, city_location)
- values (1, 0, 0, 1, 5, 'Description1', 'bmwX5.jpg', 'BMW', 'X5', 'diesel', 'manuel', 'SUV', 220, 120000, 20000, true, 5, 0, 2200, 150, true, true, 70, 'Novi Sad');
+insert into pricelist (second_id, monday, tuesday, wednesday, thursday, friday, saturday, sunday, cdw, kilometer) values
+(1, 100, 120, 140, 160, 180, 200, 220, 50, 5);
+
+insert into car (pricelist_id, second_id, rating, num_of_rating, user_id, doors, description, image, brand, model, fuel_type, transmission, class_car, price, mileage, planned_mileage, cdw, capacity_seats, capacity_seats_for_kids, cubic_capacity, horse_power, usb, gps, fuel_tank_capacity, city_location)
+ values (1, 1, 0, 0, 1, 5, 'Description1', 'bmwX5.jpg', 'BMW', 'X5', 'diesel', 'manuel', 'SUV', 220, 120000, 20000, true, 5, 0, 2200, 150, true, true, 70, 'Novi Sad');
 
 insert into users (role, first_name, last_name, email, password, first_time_logged) values ('USER', 'Jovan', 'Jenjic', 'jovan.jenjic@gmail.com', '$2a$10$67WhFHSky5EtaPlkTj1nqOIWRTHGNbWqJxtpJTUZMBQA.2am2yKqe', true);
 insert into users (role, first_name, last_name, email, password, first_time_logged) values ('ADMIN', 'Stefan', 'Pejakovic', 'stefan.pejakovic@gmail.com', '$2a$10$67WhFHSky5EtaPlkTj1nqOIWRTHGNbWqJxtpJTUZMBQA.2am2yKqe', true);

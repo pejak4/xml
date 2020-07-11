@@ -58,4 +58,8 @@ public class Car {
 
     @OneToMany(mappedBy = "occupancyCar", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Occupancy> occupancyList;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Pricelist pricelist;
 }
