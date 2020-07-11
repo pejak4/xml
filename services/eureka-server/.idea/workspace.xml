@@ -35,8 +35,17 @@
       <change beforePath="$PROJECT_DIR$/../car-service/target/classes/com/example/carService/model/CarRentalRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/target/classes/com/example/carService/model/CarRentalRequest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentbackend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/KtbackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/KtbackendApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/resources/data-postgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/resources/data-postgres.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentfrontend/src/Message/Message.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentfrontend/src/Message/Message.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../agentfrontend/src/Message/MessageInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentfrontend/src/Message/MessageInfo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,9 +80,25 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../zuul-api-gateway" />
+
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../message-service" />
+
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Application.EurekaServerApplication">
     <configuration name="EurekaServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -101,18 +126,6 @@
         <item itemvalue="Application.EurekaServerApplication" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />

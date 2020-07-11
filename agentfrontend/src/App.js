@@ -8,6 +8,7 @@ import Occupancy from './OccupancyCar/OccupancyCar';
 import RentalRequest from './RentalRequest/RentalRequest';
 import Graph from './Graph/Graph';
 import EndRental from './EndRental/EndRental';
+import Message from './Message/Message';
 
 class App extends React.PureComponent {
   render() {
@@ -23,6 +24,7 @@ class App extends React.PureComponent {
             <Route path="/rentalRequest" exact component={RentalRequest} />
             <Route path="/graph" exact component={Graph} />
             <Route path="/endRental" exact component={EndRental} />
+            <Route path="/message" exact component={Message} />
          </Switch>
         </BrowserRouter>
       </div>

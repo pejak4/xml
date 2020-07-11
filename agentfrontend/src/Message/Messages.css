@@ -1,0 +1,116 @@
+/* Header */
+.container {
+    max-width: 960px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 3rem;
+}
+
+#showcase {
+    background: var(--primary-color);
+    color: #fff;
+    height: 100vh;
+    position: relative;
+}
+
+#showcase:before {
+    content: '';
+    background: url('../img/homepage.jpg') no-repeat center center/cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#showcase .showcase-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
+
+#showcase h1 {
+    font-size: 4rem;
+}
+
+#showcase p {
+    font-size: 1.3rem;
+}
+
+#showcase > div .btn {
+    display: inline-block;
+    border: none;
+    text-decoration: none;
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 0.75rem 1.2rem;
+    margin-top: 1rem;
+    transition: opacity 1s ease-in-out;
+    align-self: center;
+}
+
+#showcase > div .btn:hover {
+    opacity: 0.7;
+}
+
+.point {
+    align-self: flex-start;
+}
+
+#showcase > div > div > select {
+    margin-left: -120px;
+    height: 40px;
+    outline: none;
+    border-radius: 5px;
+    width: 50%;
+}
+
+#showcase > div > div > div {
+    margin-left: 100px;
+}
+
+.date {
+    height: 30px;
+    border-radius: 5px;
+    padding: 1rem;
+    outline: none;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+  .button1 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #4CAF50;
+  }
+  
+  .button1:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+  .button3 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #f44336;
+  }
+  
+  .button3:hover {
+    background-color: #f44336;
+    color: white;
+  }

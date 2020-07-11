@@ -42,6 +42,10 @@ public class UserService {
     @Autowired
     private Acl acl;
 
+    public Users findOneById(Long id) {
+        return this.userRepository.findOneById(id);
+    }
+
     public Users register(UserRegisterView userRegisterView) {
         if (!userRegisterView.getPassword().equals(userRegisterView.getRepeatPassword()))
             return null;
