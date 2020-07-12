@@ -254,10 +254,13 @@ class SearchPage extends React.PureComponent {
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         if(!car.agent) {
             if(rentalRequestExists === true) {
                 alert('Rental request exists or car is busy in this time.');
 =======
+=======
+>>>>>>> Stashed changes
         if(response001.data.length === 0) // UU slucaj da niz nije prazan, znaci da taj korisnik ima neplacenih prekoracenja kilometara i da ne moze da renta novi auto!
             if(!car.agent) {
                 if(rentalRequestExists === true) {
