@@ -43,6 +43,9 @@ public class CarController {
     @Autowired
     private Acl acl;
 
+    @Autowired
+    private OverdraftService overdraftService;
+
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, path = "/searchCars")
     public ResponseEntity<?> searchCars(@RequestBody CarSearchDTO csd) {
@@ -275,8 +278,6 @@ public class CarController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-<<<<<<< Updated upstream
-=======
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getAllOverdraft")
     public ResponseEntity<?> getAllOverdraft(@RequestBody OverdraftDTO overdraftDTO) {
@@ -296,10 +297,4 @@ public class CarController {
         return new ResponseEntity<>(this.rentalRequestService.getRentalRequestLoggedUser(overdraftDTO), HttpStatus.OK);
     }
 
-
-
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 }

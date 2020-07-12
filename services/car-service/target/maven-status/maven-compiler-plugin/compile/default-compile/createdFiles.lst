@@ -30,6 +30,7 @@ com\example\carService\endpoint\DataSoapEndpoint.class
 com\example\carService\repository\AdvertisementRepository.class
 com\example\carService\security\Acl.class
 com\example\carService\dto\RentalRequestIfHaveReservedDTO.class
+com\soapserveryt\api\soap\OverdraftKilometer.class
 com\example\carService\dto\RatingCarRequestDTO.class
 com\soapserveryt\api\soap\ClientRequestCars.class
 com\example\carService\dto\RentalCheckDTO.class

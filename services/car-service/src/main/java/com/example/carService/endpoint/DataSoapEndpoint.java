@@ -54,4 +54,10 @@ public class DataSoapEndpoint {
     public void addComment(@RequestPayload ClientRequestSetMileageAndDescription request) {
         dataSoapService.setMileageAndDescription(request);
     }
+
+    @PayloadRoot(namespace = "http://www.soapserveryt.com/api/soap", localPart = "OverdraftKilometer")
+    @ResponsePayload
+    public void addOverdraftKilometer(@RequestPayload OverdraftKilometer request) {
+        dataSoapService.addOverdraft(request);
+    }
 }
