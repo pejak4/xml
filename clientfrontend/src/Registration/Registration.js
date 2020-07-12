@@ -96,9 +96,15 @@ class Registration extends React.PureComponent {
 
             try {
                 const response = await axios.post('/authentication-service/registration', data);
+               
                 if (response) {
+                    const data2 = { mailFrom: this.state.registration.email, mailTo: this.state.registration.firstName, dodatak: this.state.registration.lastName};
+                    const response2 = await axios.post('/authentication-service/mail', data2);
+    
                     this.props.history.push('/login');
                 }
+               
+                
             } catch(err) {
                 console.log(err);
             }
