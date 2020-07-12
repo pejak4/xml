@@ -15,6 +15,16 @@
                 </complexType>
             </element>
 
+            <element name="OverdraftKilometer">
+                <complexType>
+                    <sequence>
+                        <element name="userId" type="long" />
+                        <element name="price" type="double" />
+                        <element name="paid" type="boolean" />
+                    </sequence>
+                </complexType>
+            </element>
+
             <element name="ClientRequestCars">
                 <complexType>
                     <sequence>

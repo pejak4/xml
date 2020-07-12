@@ -55,6 +55,8 @@ class SearchPage extends React.PureComponent {
 
             renderNum: 'jedan',
             currentCar: null,
+
+            dateForDiscount: false,
         }
     }
 
@@ -66,6 +68,11 @@ class SearchPage extends React.PureComponent {
             endDate: this.props.location.state.endDate
         });
         this.setState({car});
+
+        if(this.props.location.state.endDate - this.props.location.state.startDate > 86400000*10) {
+            this.setState({dateForDiscount: true})
+        }
+
 
         //niz svih auta koje smo dobili pocetnom pretragom
         const carArray = [...this.props.location.state.cars];
@@ -245,15 +252,25 @@ class SearchPage extends React.PureComponent {
         let id = 0;
         const data00 = {carId, startDate, endDate, userId, id};
 
+        const data001 = {userId};
+        const response001 = await axios.post('/car-service/getAllOverdraft', data001);
+        if(response001) {
+            console.log(response001);
+        }
 
-        if(!car.agent) {
-            if(rentalRequestExists === true) {
-                alert('Rental request exists or car is busy in this time.');
+
+        if(response001.data.length === 0){
+            if(!car.agent) {
+                if(rentalRequestExists === true) {
+                    alert('Rental request exists or car is busy in this time.');
+                } else {
+                    await axios.post('/car-service/addRentalRequest', data);
+                }
             } else {
-                await axios.post('/car-service/addRentalRequest', data);
+                await axios.post('/car-service/sentSoapRentalRequest', data00);
             }
-        } else {
-            await axios.post('/car-service/sentSoapRentalRequest', data00);
+        else {
+            alert("Pay overdraft kilometer!")
         }
     }
 
@@ -564,6 +581,11 @@ class SearchPage extends React.PureComponent {
                                                     onChange={ (event) => {this.ratingChangedHandler(event, car)}}
                                                     size={35}
                                                     color2={'#ffd700'} />
+                                            </div>
+                                            <div>
+                                                <div>
+                            {car.agent ? <div>{this.state.dateForDiscount ? <p>{car.price - car.price/100*car.discount}$ ({car.discount}%)</p> : <p>{car.price}$</p>}</div> : <p>{car.price}$</p> }
+                                                </div>
                                             </div>
 
                                             <div className="details-rent">

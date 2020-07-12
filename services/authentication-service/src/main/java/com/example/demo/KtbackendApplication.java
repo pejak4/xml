@@ -1,10 +1,12 @@
 package com.example.demo;
 
+import com.example.demo.service.MailService;
 import com.netflix.discovery.DiscoveryClient;
 import com.netflix.discovery.shared.transport.jersey.EurekaJerseyClientImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -13,6 +15,9 @@ import java.security.NoSuchAlgorithmException;
 
 @SpringBootApplication
 public class KtbackendApplication {
+
+	private static ApplicationContext ctx;
+
 	@Bean
 	@LoadBalanced
 	public RestTemplate getRestTemplate() {
@@ -41,6 +46,10 @@ public class KtbackendApplication {
 //	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(KtbackendApplication.class, args);
+		ctx = SpringApplication.run(KtbackendApplication.class, args);
+	}
+
+	public static MailService getCtx(){
+		return (MailService) ctx.getBean("mailService");
 	}
 }

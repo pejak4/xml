@@ -72,7 +72,42 @@ class RentalRequestsFromMe extends React.PureComponent {
         let rentalRequestId = rentalRequest.id;
         const data = {rentalRequestId};
         await axios.post('/car-service/declineRentalRequest', data);
-        window.location.reload();
+
+
+        let userEmail = sessionStorage.getItem('userEmail'); 
+        let userId;
+        let user;
+        const data001 = {userEmail};
+        const response = await axios.post('/authentication-service/getLoggedUser', data001);
+        if(response){
+            console.log(response.data);
+            userId = response.data.id;
+            user = response.data;
+        }
+
+        const data01 = {userId};
+        const response01 = await axios.post('/car-service/getRentalRequestLoggedUser', data01)
+        if(response01) {
+            console.log(response01.data);
+        }
+
+        let id = userId;
+        const data02 = {id};
+
+        if(user.numOfDeclineRentalRequest >= 10 && response01.data.length/user.numOfDeclineRentalRequest<1.3) {
+            console.log('Blokiracu korisnika');
+            
+            const response02 = await axios.post('/authentication-service/setStateUser', data02);
+            if(response02) {
+                console.log(response02.data);
+            }
+        } else {
+            console.log('Povecacu broj numOFDeclineRentalRequest kod usera');
+
+            await axios.post('/authentication-service/incrementNumOfDeclineRentalRequest', data02);
+        }
+
+        //window.location.reload();
     }
 
     renderRentalRequestPending() {

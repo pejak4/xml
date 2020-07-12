@@ -23,6 +23,17 @@ class Login extends React.PureComponent {
         }
     }
 
+    componentDidMount = async() => {
+        console.log(this.props.location.pathname.split("/")[2]);
+
+        if(this.props.location.pathname.split("/")[2]===undefined)console.log('LOGUJ OBICNO');
+        else {
+            console.log('SREDI');
+            const dataa = {userEmail: this.props.location.pathname.split("/")[2]};
+            const response = await axios.post('/authentication-service/enable', dataa);
+        }
+    }
+
     validateEmail = (email) => {
         const expression = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
     

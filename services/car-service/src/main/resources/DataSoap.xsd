@@ -24,6 +24,17 @@
                 <element name="fuelTankCapacity" type="string" />
                 <element name="cityLocation" type="string" />
                 <element name="userId" type="string" />
+                <element name="discount" type="double" />
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="OverdraftKilometer">
+        <complexType>
+            <sequence>
+                <element name="userId" type="long" />
+                <element name="price" type="double" />
+                <element name="paid" type="boolean" />
             </sequence>
         </complexType>
     </element>

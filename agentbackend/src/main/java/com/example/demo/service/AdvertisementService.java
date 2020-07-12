@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.Car;
 import com.example.demo.model.CarRentalRequest;
+import com.example.demo.model.Users;
 import com.example.demo.repository.AdvertisementRepository;
 import com.example.demo.repository.RentalRequestRepository;
 import com.soapclient.api.domain.*;
@@ -36,6 +37,9 @@ public class AdvertisementService {
 
     private WebServiceTemplate template;
 
+    @Autowired
+    private UserService userService;
+
 
     public Car save(ClientRequest a) {
         Integer seatsForKids = a.getCapacitySeatsForKids() == "" ? 0 : Integer.parseInt(a.getCapacitySeatsForKids());
@@ -47,7 +51,8 @@ public class AdvertisementService {
                 description(a.getDescription()).fuelTankCapacity(Integer.parseInt(a.getFuelTankCapacity())).doors(Integer.parseInt(a.getDoors())).
                 fuelType(a.getFuelType()).gps(Boolean.parseBoolean(a.getGps())).mileage(Integer.parseInt(a.getMileage())).
                 plannedMileage(plannedMileage).price(Double.parseDouble(a.getPrice())).secondId(Long.parseLong("0")).
-                transmission(a.getTransmission()).usb(Boolean.parseBoolean(a.getUsb())).image("car.jpg").userId(a.getUserId()).build();
+                transmission(a.getTransmission()).usb(Boolean.parseBoolean(a.getUsb())).image("car.jpg").userId(a.getUserId()).
+                discount(a.getDiscount()).build();
 
         template = new WebServiceTemplate(marshaller);
         ServerRespond respond = (ServerRespond) template.marshalSendAndReceive("http://localhost:8081/ws", a);
@@ -100,6 +105,19 @@ public class AdvertisementService {
         request.setCarId(c.getSecondId()); // Pre nego sto posaljemo na drugu stranu, menjamo id na Id na drugoj strani
         template = new WebServiceTemplate(marshaller);
         template.marshalSendAndReceive("http://localhost:8081/ws", request);
+
+        OverdraftKilometer overdraftKilometer = new OverdraftKilometer();
+
+        if ((request.getMileage() - c.getPlannedMileage()) > 0) { // Ako je presao vise nego sto je smeo!
+            double pay = (request.getMileage() - c.getPlannedMileage()) * c.getPricelist().getKilometer();
+            overdraftKilometer.setPaid(false);
+            overdraftKilometer.setPrice(pay);
+            overdraftKilometer.setUserId(c.getSecondId()); //Da ne bih menjap sve. ne stoji ovde UserId nego Carid.
+            //Pa cu na drugoj strani da nadjem UserId preko Car-a, i sacuvacu na kojeg se odnosi usera u tabeli
+
+            template = new WebServiceTemplate(marshaller);
+            template.marshalSendAndReceive("http://localhost:8081/ws", overdraftKilometer);
+        }
     }
 
     @Scheduled(fixedRate=2000000)

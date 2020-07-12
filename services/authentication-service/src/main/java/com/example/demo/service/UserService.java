@@ -98,10 +98,16 @@ public class UserService {
 
     public Users save(UserRegistrationDTO user) {
         Users u = Users.builder().role(UserRole.valueOf("USER"))
-                .firstName(user.getFirstName()).lastName(user.getLastName()).email(user.getEmail()).enabled(true)
+                .firstName(user.getFirstName()).lastName(user.getLastName()).email(user.getEmail()).enabled(false)
                 .password(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12))).build();
         log.info("New user: " + u + " has been registered");
 
+        return this.userRepository.save(u);
+    }
+
+    public Users update(String mail){
+        Users u = this.findOneByEmail(mail);
+        u.setEnabled(true);
         return this.userRepository.save(u);
     }
 
@@ -156,6 +162,16 @@ public class UserService {
         return true;
     }
 
+    public void setRole(UserDeleteDTO userId) {
+        Users u = this.userRepository.findOneById(Long.parseLong(userId.getId()));
+        if(u.getRole().getRole().equals("ADMIN")) {
+            u.setRole(UserRole.USER);
+        } else {
+            u.setRole(UserRole.ADMIN);
+        }
+        this.userRepository.save(u);
+    }
+
     public List<Users> findAllByEnabled(Boolean enabled) {
         List<Users> users = this.userRepository.findAllByEnabled(enabled);
         for(Users u : users) {
@@ -169,5 +185,12 @@ public class UserService {
 
     public void addRestorePermissions(String role) throws IOException {
         this.acl.addRestorePermissionsAcl(role);
+    }
+
+    public void incrementNumOfDeclineRentalRequest(UserSetStateDTO userSetStateDTO) {
+        Users u = this.findOneById(Long.parseLong(userSetStateDTO.getId()));
+        u.setNumOfDeclineRentalRequest(u.getNumOfDeclineRentalRequest() + 1);
+
+        this.userRepository.save(u);
     }
 }

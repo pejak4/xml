@@ -50,6 +50,16 @@ class StateUser extends React.PureComponent {
         window.location.reload();
     }
 
+    clickSetRole = async (userId) => {
+        var id = userId;
+        const data = {id};
+
+        console.log(userId);
+        
+        await axios.post('/authentication-service/setRole', data);
+        window.location.reload();
+    }
+
     renderActiveUsers() {
         if(this.state.renderNumber === 1) {
             return this.state.activeUsers.map((user, i) => {
@@ -66,6 +76,7 @@ class StateUser extends React.PureComponent {
                         {user.email === sessionStorage.getItem('userEmail') ? <button className="but" disabled={true} style={{cursor:'not-allowed'}}
                             onClick={(event) => {this.clickDelete(user.id)}}>Delete this user</button>
                         : <button className="but" onClick={(event) => {this.clickDelete(user.id)}}>Delete this user</button> }
+                        <button className="but" onClick={(event) => {this.clickSetRole(user.id)}}>Set role</button>
                     </div> 
                 );
             });
@@ -88,6 +99,7 @@ class StateUser extends React.PureComponent {
                         {user.email === sessionStorage.getItem('userEmail') ? <button className="but" disabled={true} style={{cursor:'not-allowed'}}
                             onClick={(event) => {this.clickDelete(user.id)}}>Delete this user</button>
                         : <button className="but" onClick={(event) => {this.clickDelete(user.id)}}>Delete this user</button> }
+                        <button className="but" onClick={(event) => {this.clickSetRole(user.id)}}>Set role</button>
                     </div>
                 );
             });
