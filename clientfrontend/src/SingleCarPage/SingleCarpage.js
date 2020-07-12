@@ -11,7 +11,7 @@ class SingleCarPage extends React.PureComponent {
 
         this.state = {
             car: null,
-            descriptionComment: 'Comment',
+            descriptionComment: '',
 
             comments: [],
         }
@@ -94,7 +94,7 @@ class SingleCarPage extends React.PureComponent {
                                         <hr/>
                                         {this.state.comments.map((comment, i) => {
                                             return(
-                                                <div>
+                                                <div key={i}>
                                                     <p className="test">{comment.descriptionComment}</p>
                                                     <hr/>
                                                 </div>
@@ -104,11 +104,13 @@ class SingleCarPage extends React.PureComponent {
                                     </div>
                                 </div>
                                 <div className="image-wrapper">
-                                    {this.state.car !== null ? <img alt="Car" src={require('../img/' + this.state.car.image)} /> : null}
+                                    {this.state.car !== null ? <img alt="Car" src={this.state.car.image} /> : null}
 
                                     <p><strong>Description</strong>: {this.state.car !== null ? this.state.car.description : null} </p>
                                     <label>Write comment:</label>
-                                    <textarea value={this.state.descriptionComment} onChange={(event) => {this.commentChange(event.target.value)}} className="comment" name="message" rows="10" cols="30"></textarea>
+                                    <textarea value={this.state.descriptionComment} placeholder="New Comment"
+                                    onChange={(event) => {this.commentChange(event.target.value)}} className="comment" name="message" 
+                                    rows="10" cols="30"></textarea>
                                     
                                     <button className='btn' onClick={(event) => {this.commentHandler(event)}}>Add comment</button>
                                 </div>

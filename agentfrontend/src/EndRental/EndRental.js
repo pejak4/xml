@@ -122,7 +122,7 @@ class EndRental extends React.PureComponent{
                 <Navbar />
                 <header id="showcase">
                     <br/><br/>
-                    <div className="containerSearch showcase-containerSearch" >
+                    <div className="containerSearch showcase-containerSearch" style={{height:'87%'}}>
                         <div style={{overflowY:'scroll', maxWidth:'100%'}}>
                             {this.renderCars()}
                         </div>

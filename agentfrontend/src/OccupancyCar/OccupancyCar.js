@@ -161,7 +161,7 @@ class OccupancyCar extends React.PureComponent {
                     <Navbar />
                     <header id="showcase">
                         <br/><br/>
-                        <div className="containerSearch showcase-containerSearch" style={{overflowY:'scroll', maxWidth:'90%'}}>
+                        <div className="containerSearch showcase-containerSearch" style={{overflowY:'scroll', maxWidth:'90%', height:'87%'}}>
                             {this.renderAllCarsLoggedUser()}
                         </div>
                     </header>

@@ -2,7 +2,6 @@ import React from 'react';
 import Navbar from './Navbar/Navbar';
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
 import './Codebook.css';
-import carImg from '../img/car.jpg';
 import axios from '../axios-objects';
 
 class Codebook extends React.PureComponent {
@@ -81,7 +80,7 @@ class Codebook extends React.PureComponent {
             return this.state.brands.map((brand, i) => {
                 return(
                     <div className="card" key={i}>
-                        <img src={carImg} alt='Car' style={{width:"100%"}} onClick={(event) => {this.clickBrandHandler(brand)}}/>
+                        <img src={'http://res.cloudinary.com/pejak/image/upload/v1594557051/file_qytxts.jpg'} alt='Car' style={{width:"100%"}} onClick={(event) => {this.clickBrandHandler(brand)}}/>
                         <div className="containerr" onClick={(event) => {this.clickBrandHandler(brand)}}>
                             <h4><b>Brand</b></h4> 
                             <p>{brand.brand}</p> 
@@ -98,7 +97,7 @@ class Codebook extends React.PureComponent {
             return this.state.models.map((model, i) => {
                 return(
                     <div className="card" key={i}>
-                        <img src={carImg} alt='Car' style={{width:"100%"}}/>
+                        <img src={'http://res.cloudinary.com/pejak/image/upload/v1594557051/file_qytxts.jpg'} alt='Car' style={{width:"100%"}}/>
                         <div className="containerr">
                             <h4><b>Model</b></h4> 
                             <p>{model.model}</p> 
@@ -115,7 +114,7 @@ class Codebook extends React.PureComponent {
             return this.state.transmissions.map((transmission, i) => {
                 return(
                     <div className="card" key={i}>
-                        <img src={carImg} alt='Car' style={{width:"100%"}}/>
+                        <img src={'http://res.cloudinary.com/pejak/image/upload/v1594557051/file_qytxts.jpg'} alt='Car' style={{width:"100%"}}/>
                         <div className="containerr">
                             <h4><b>Transmision</b></h4> 
                             <p>{transmission.transmission}</p> 
@@ -132,7 +131,7 @@ class Codebook extends React.PureComponent {
             return this.state.fuelTypes.map((fuelType, i) => {
                 return(
                     <div className="card" key={i}>
-                        <img src={carImg} alt='Car' style={{width:"100%"}}/>
+                        <img src={'http://res.cloudinary.com/pejak/image/upload/v1594557051/file_qytxts.jpg'} alt='Car' style={{width:"100%"}}/>
                         <div className="containerr">
                             <h4><b>Fuel type</b></h4> 
                             <p>{fuelType.fuelType}</p> 

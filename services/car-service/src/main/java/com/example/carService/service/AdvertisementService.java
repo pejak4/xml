@@ -29,4 +29,10 @@ public class AdvertisementService {
         log.info("New car: " + car + " has been added");
         return this.advertisementRepository.save(car);
     }
+
+    public Car updateImage(String image, Long carId) {
+        Car car = this.advertisementRepository.findOneById(carId);
+        car.setImage(image);
+        return this.advertisementRepository.save(car);
+    }
 }

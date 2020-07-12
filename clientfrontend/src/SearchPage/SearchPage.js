@@ -523,38 +523,38 @@ class SearchPage extends React.PureComponent {
                                     <h3>{car.brand} {car.model}</h3>
                                     <div className="car-card-inner">
                                         <div className="left-side">
-                                            <img alt="Car" src={require('../img/' + car.image)} />
+                                            <img alt="Car" src={car.image} />
                                         </div>
                                         <div className="right-side">
                                             <div>
                                                 <div>
-                                                    <img alt="Fuel" src={require('../img/fuelTypeIcon.png')} title="Fuel Type"/>
+                                                    <img alt="Fuel" src={'http://res.cloudinary.com/pejak/image/upload/v1594557188/file_a4kpuh.png'} title="Fuel Type"/>
                                                     <p className="icon-text">{car.fuelType}</p>
                                                 </div>
                                                 <div>
-                                                    <img alt="Seats" src={require('../img/numberOfSeatsIcon.png')} title="Number Of Seats"/>
+                                                    <img alt="Seats" src={'http://res.cloudinary.com/pejak/image/upload/v1594557196/file_k2mnyc.png'} title="Number Of Seats"/>
                                                     <p className="icon-text">{car.capacitySeats}</p>
                                                 </div>
                                             </div>
                                             
                                             <div>
                                                 <div>
-                                                    <img alt="Transmission" src={require('../img/transmissionIcon.png')} title="Transmission Type"/>
+                                                    <img alt="Transmission" src={'http://res.cloudinary.com/pejak/image/upload/v1594557200/file_a2mgmi.png'} title="Transmission Type"/>
                                                     <p className="icon-text">{car.transmission}</p>
                                                 </div>
                                                 <div>
-                                                    <img alt="GPS" src={require('../img/gpsIcon.png')} title="GPS"/>
+                                                    <img alt="GPS" src={'http://res.cloudinary.com/pejak/image/upload/v1594557192/file_lswchq.png'} title="GPS"/>
                                                     <p className="icon-text">{car.gps ? 'own' : '-'}</p>
                                                 </div>
                                             </div>
                                             
                                             <div>
                                                 <div>
-                                                    <img alt="USB" src={require('../img/usbIcon.png')} title="USB"/>
+                                                    <img alt="USB" src={'http://res.cloudinary.com/pejak/image/upload/v1594557204/file_zfueu1.png'} title="USB"/>
                                                     <p className="icon-text">{car.usb ? 'own' : '-'}</p>
                                                 </div>
                                                 <div>
-                                                    <img alt="Doors" src={require('../img/doorsIcon.png')} title="Number Of Doors"/>
+                                                    <img alt="Doors" src={'http://res.cloudinary.com/pejak/image/upload/v1594557182/file_yjjva2.png'} title="Number Of Doors"/>
                                                     <p className="icon-text">{car.doors}</p>
                                                 </div>
 

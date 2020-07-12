@@ -822,11 +822,11 @@ class Advertisement extends React.PureComponent {
                 <br/>
                 <header id="showcase">
                     <div className="containerSearch showcase-containerSearch">
-                        <div className="filterDiv">
+                        <div className="filterDiv" style={{height: '510px'}}>
 
-                            {this.state.renderNumber !== 4 ? <p style={{color:'red'}}>Add new advertisement <br/>Step {this.state.renderNumber}</p> : <p style={{color:'red'}}>Add pricelist <br/>Step {this.state.renderNumber}</p> }
+                            {this.state.renderNumber !== 4 ? <p style={{color:'var(--secondary-color)'}}>Add new advertisement <br/>Step {this.state.renderNumber}</p> : <p style={{color:'var(--secondary-color)'}}>Add pricelist <br/>Step {this.state.renderNumber}</p> }
                             <hr/>
-                                {this.state.renderNumber === 4 ? <div><button className="button" onClick={(event) => {this.setState({renderNumberPricelist: 1})}}>Add exist</button><button className="button" onClick={(event) => {this.setState({renderNumberPricelist: -1})}}>Add new</button></div> : null }
+                                {this.state.renderNumber === 4 ? <div style={{marginLeft: '0px'}}><button className="button" onClick={(event) => {this.setState({renderNumberPricelist: 1})}}>Add exist</button><button className="button" onClick={(event) => {this.setState({renderNumberPricelist: -1})}}>Add new</button></div> : null }
 
                             <hr/>
                             <div style={{marginLeft: '0px'}}>

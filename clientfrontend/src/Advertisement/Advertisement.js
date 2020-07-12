@@ -39,7 +39,8 @@ class Advertisement extends React.PureComponent {
             models: [],
             fuelTypes: [],
             transmissions: [],
-            userAddNumber: null
+            userAddNumber: null,
+            image: null
         }
     }
 
@@ -164,10 +165,23 @@ class Advertisement extends React.PureComponent {
             });
 
             const dataUserUpdate = {userEmail};
+            let image = this.state.image;
             if(response){
-                const responseUserUpdate = await axios.put('/authentication-service/incrementAddNumber', dataUserUpdate);
-                if (responseUserUpdate) {
-                    window.location.reload();
+                const data = new FormData();
+                data.append("image", image);
+                const responseImage = await axios.post('/image-service/uploadImage', data);
+                if (responseImage.status === 200) {
+                    const data = {
+                        image: responseImage.data, 
+                        carId: response.data.id
+                    };
+                    const responseCarImage = await axios.post('/car-service/updateCarImage', data);
+                    if (responseCarImage) {
+                        const responseUserUpdate = await axios.put('/authentication-service/incrementAddNumber', dataUserUpdate);
+                        if (responseUserUpdate) {
+                            window.location.reload();
+                        }
+                    }
                 }
             }
         }
@@ -517,9 +531,19 @@ class Advertisement extends React.PureComponent {
                             onChange={(event) => this.selectHandler(event, 'usb')} 
                             checked={this.state.usb}/>
                     </FormControl>
+                    <div className="upload">
+                        <div style={{alignItems:'center', justifyContent:'center'}}>
+                            <input type="file" title="Upload image" style={{width:'90px'}} onChange={(event) => this.uploadImage(event)} />
+                        </div>
+                    </div>
                 </div>
             );
         }
+    }
+
+    uploadImage = async (event) => {
+        event.preventDefault();
+        this.setState({image: event.target.files[0]});
     }
 
     render() {
@@ -545,7 +569,7 @@ class Advertisement extends React.PureComponent {
                         {this.state.userAddNumber < 3 ? 
                             (this.state.renderNumber === 3 ? <button className="buttonA" onClick = {(event) => this.addHandler(event)}>Finish</button> : null) 
                             : (this.state.renderNumber === 3 ? <Popup trigger={<button className="buttonA" onClick = {(event) => this.addHandler(event)}>Finish</button>} position="top center">
-                                <div style={{background:'red', marginLeft:'0px'}}>You can't add more then 3 advertisement!</div>
+                                <div style={{background:'red', marginLeft:'0px'}}>You can't add more than 3 advertisement!</div>
                             </Popup> : null)}
                     </div>
                 </header>
