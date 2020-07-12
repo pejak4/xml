@@ -99,4 +99,18 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path= "/incrementNumOfDeclineRentalRequest")
+    public ResponseEntity<?> incrementNumOfDeclineRentalRequest(@RequestBody UserSetStateDTO userId) {
+        this.userService.incrementNumOfDeclineRentalRequest(userId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path= "/setRole")
+    public ResponseEntity<?> setRole(@RequestBody UserDeleteDTO userId) {
+        this.userService.setRole(userId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

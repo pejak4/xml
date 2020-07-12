@@ -259,7 +259,7 @@ class SearchPage extends React.PureComponent {
         }
 
 
-        if(response001.data.length === 0)
+        if(response001.data.length === 0){
             if(!car.agent) {
                 if(rentalRequestExists === true) {
                     alert('Rental request exists or car is busy in this time.');

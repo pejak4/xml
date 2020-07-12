@@ -217,4 +217,7 @@ public class RentalRequestService {
         return false;
     }
 
+    public List<CarRentalRequest> getRentalRequestLoggedUser(OverdraftDTO overdraftDTO) {
+        return this.rentalRequestRepository.findAllByUserId(overdraftDTO.getUserId().toString());
+    }
 }

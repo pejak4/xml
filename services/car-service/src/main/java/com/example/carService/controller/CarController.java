@@ -291,4 +291,10 @@ public class CarController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getRentalRequestLoggedUser")
+    public ResponseEntity<?> getRentalRequestLoggedUser(@RequestBody OverdraftDTO overdraftDTO) {
+        return new ResponseEntity<>(this.rentalRequestService.getRentalRequestLoggedUser(overdraftDTO), HttpStatus.OK);
+    }
+
 }

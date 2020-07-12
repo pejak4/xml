@@ -35,6 +35,9 @@ public class Users implements UserDetails {
     private Date lastPasswordResetDate;
     private int addNumber = 0;
     private boolean firstTimeLogged = true;
+
+    private int numOfDeclineRentalRequest = 0;
+
     @Transient
     private List<GrantedAuthority> authorities;
 
