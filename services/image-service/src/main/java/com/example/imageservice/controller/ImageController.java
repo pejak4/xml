@@ -9,9 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 public class ImageController {
@@ -21,12 +22,15 @@ public class ImageController {
 
     @Autowired
     private Acl acl;
-
+//    consumes = { "multipart/form-data", MediaType.APPLICATION_JSON_VALUE }
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path = "/uploadImage")
-    public ResponseEntity<?> uploadImage() throws IOException {
-        return new ResponseEntity<>(cloudinary.uploader().upload(new File("C:/Users/Stefan/Desktop/logo.png"),
-                                    ObjectUtils.emptyMap()), HttpStatus.OK);
+    public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) throws IOException {
+        Map upload = cloudinary.uploader().upload(file.getBytes(),
+                ObjectUtils.asMap(
+                        "use_filename", "true",
+                        "unique_filename", "true"));
+        return new ResponseEntity<>(upload.get("url"), HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")

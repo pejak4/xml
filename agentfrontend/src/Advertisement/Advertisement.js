@@ -56,9 +56,7 @@ class Advertisement extends React.PureComponent {
             models: [],
             fuelTypes: [],
             transmissions: [],
-            userAddNumber: null,
-
-            discount: '',
+            userAddNumber: null
         }
     }
 
@@ -166,8 +164,6 @@ class Advertisement extends React.PureComponent {
             this.setState({kilometer: event.target.value})
         } else if(type === 'pricelist') {
             this.setState({pricelistId: event.target.value})
-        } else if(type === 'discount') {
-            this.setState({discount: event.target.value})
         }
     }
 
@@ -193,8 +189,6 @@ class Advertisement extends React.PureComponent {
             let cityLocation = this.state.cityLocation;
             let plannedMileage = this.state.plannedMilage;
             let userId;
-            
-            let discount = this.state.discount;
 
 
             let d = new Date();
@@ -302,7 +296,7 @@ class Advertisement extends React.PureComponent {
             }
 
             const data = {brand, model, fuelType, transmission, classCar, mileage, doors, capacitySeats, capacitySeatsForKids, price, 
-                cubicCapacity, horsePower, fuelTankCapacity, cdw, gps, usb, description, cityLocation, plannedMileage, userId, discount};
+                cubicCapacity, horsePower, fuelTankCapacity, cdw, gps, usb, description, cityLocation, plannedMileage, userId};
 
             const response = await axios.post('/addAdvertisement', data, {
                 headers: {
@@ -481,14 +475,14 @@ class Advertisement extends React.PureComponent {
                     <MenuItem value="">
                         <em>Unlimited</em>
                     </MenuItem>
-                    <MenuItem value="2000">200km</MenuItem>
-                    <MenuItem value="4000">400km</MenuItem>
-                    <MenuItem value="6000">600km</MenuItem>
-                    <MenuItem value="8000">800km</MenuItem>
-                    <MenuItem value="10000">1000km</MenuItem>
-                    <MenuItem value="15000">1500km</MenuItem>
-                    <MenuItem value="20000">2000km</MenuItem>
-                    <MenuItem value="30000">3000km</MenuItem>
+                    <MenuItem value="2000">2000km</MenuItem>
+                    <MenuItem value="4000">4000km</MenuItem>
+                    <MenuItem value="6000">6000km</MenuItem>
+                    <MenuItem value="8000">8000km</MenuItem>
+                    <MenuItem value="10000">10000km</MenuItem>
+                    <MenuItem value="15000">15000km</MenuItem>
+                    <MenuItem value="20000">20000km</MenuItem>
+                    <MenuItem value="30000">30000km</MenuItem>
                     </Select>
                     <FormHelperText>Available distance to travel</FormHelperText>
                 </FormControl>
@@ -623,13 +617,13 @@ class Advertisement extends React.PureComponent {
 
                     <FormControl className="select-brand">
                         <input 
-                        value={this.state.discount}
+                        value={this.state.price}
                         type="number"
                         labelId="demo-simple-select-helper-label"
                         id="demo-simple-select-helper"
-                        onChange={(event) => this.selectHandler(event, 'discount')}
+                        onChange={(event) => this.selectHandler(event, 'price')}
                         ></input>
-                        <FormHelperText>Discount of car</FormHelperText>
+                        <FormHelperText>Car price</FormHelperText>
                     </FormControl>
 
                     <FormControl className="select-brand">
@@ -828,10 +822,12 @@ class Advertisement extends React.PureComponent {
                 <br/>
                 <header id="showcase">
                     <div className="containerSearch showcase-containerSearch">
-                        <div className="filterDiv">
-                            {this.state.renderNumber !== 4 ? <p style={{color:'red'}}>Add new advertisement <br/>Step {this.state.renderNumber}</p> : <p style={{color:'red'}}>Add pricelist <br/>Step {this.state.renderNumber}</p> }
+                        <div className="filterDiv" style={{height: '510px'}}>
+
+                            {this.state.renderNumber !== 4 ? <p style={{color:'var(--secondary-color)'}}>Add new advertisement <br/>Step {this.state.renderNumber}</p> : <p style={{color:'var(--secondary-color)'}}>Add pricelist <br/>Step {this.state.renderNumber}</p> }
                             <hr/>
-                                {this.state.renderNumber === 4 ? <div><button className="button" onClick={(event) => {this.setState({renderNumberPricelist: 1})}}>Add exist</button><button className="button" onClick={(event) => {this.setState({renderNumberPricelist: -1})}}>Add new</button></div> : null }
+                                {this.state.renderNumber === 4 ? <div style={{marginLeft: '0px'}}><button className="button" onClick={(event) => {this.setState({renderNumberPricelist: 1})}}>Add exist</button><button className="button" onClick={(event) => {this.setState({renderNumberPricelist: -1})}}>Add new</button></div> : null }
+
                             <hr/>
                             <div style={{marginLeft: '0px'}}>
                                 {this.render01()}

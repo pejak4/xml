@@ -2,8 +2,6 @@ import React from 'react';
 import Navbar01 from './Navbar01/NavBar01';
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
 import './StateUser.css';
-import img from '../img/user.jpg';
-import blockImg from '../img/blockUser.png';
 import axios from '../axios-objects';
 
 class StateUser extends React.PureComponent {
@@ -67,7 +65,7 @@ class StateUser extends React.PureComponent {
             return this.state.activeUsers.map((user, i) => {
                 return(
                     <div className="card" key={i}>
-                        <img src={img} alt='Car' style={{width:"100%"}}/>
+                        <img src={'http://res.cloudinary.com/pejak/image/upload/v1594556662/file_qrqiiv.jpg'} alt='Car' style={{width:"100%"}}/>
                         <div className="containerr">
                         <h4><b>Active user: ID {user.id}</b></h4>
                             <p>{user.firstName} {user.lastName}</p> 
@@ -90,14 +88,14 @@ class StateUser extends React.PureComponent {
             return this.state.blockUsers.map((user, i) => {
                 return(
                     <div className="card" key={i}>
-                        <img src={blockImg} alt='User' style={{width:"100%"}} />
+                        <img src={'http://res.cloudinary.com/pejak/image/upload/v1594556701/file_qvyrtx.png'} alt='User' style={{width:"100%"}} />
                         <div className='containerr'>
                             <h4><b>Blocked user: ID {user.id}</b></h4>
                             <p>{user.firstName} {user.lastName}</p>
                         </div>
                         {user.email === sessionStorage.getItem('userEmail') ? <button className="but" disabled={true} style={{cursor:'not-allowed'}}
-                            onClick={(event) => {this.clickSetStateUser(user.id)}}>Block this user</button>
-                        : <button className="but" onClick={(event) => {this.clickSetStateUser(user.id)}}>Block this user</button> } 
+                            onClick={(event) => {this.clickSetStateUser(user.id)}}>Unblock this user</button>
+                        : <button className="but" onClick={(event) => {this.clickSetStateUser(user.id)}}>Unblock this user</button> } 
                         {user.email === sessionStorage.getItem('userEmail') ? <button className="but" disabled={true} style={{cursor:'not-allowed'}}
                             onClick={(event) => {this.clickDelete(user.id)}}>Delete this user</button>
                         : <button className="but" onClick={(event) => {this.clickDelete(user.id)}}>Delete this user</button> }

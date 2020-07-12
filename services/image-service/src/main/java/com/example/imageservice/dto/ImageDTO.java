@@ -1,6 +1,7 @@
 package com.example.imageservice.dto;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -9,5 +10,5 @@ import lombok.*;
 @Builder
 public class ImageDTO {
 
-    private String path;
+    private MultipartFile file;
 }

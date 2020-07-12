@@ -121,13 +121,13 @@ class Login extends React.PureComponent {
                 console.log(err);
             }
         
-            let role = sessionStorage.getItem('role');
-            const data001 = {role};
-            await axios.post('/authentication-service/aclSecurity', data001);
-            await axios.post('/car-service/aclSecurity', data001);
-            await axios.post('/codebook-service/aclSecurity', data001);
-            //await axios.post('/image-service/aclSecurity', data001);
-            await axios.post('/message-service/aclSecurity', data001);
+            // let role = sessionStorage.getItem('role');
+            // const data001 = {role};
+            // await axios.post('/authentication-service/aclSecurity', data001);
+            // await axios.post('/car-service/aclSecurity', data001);
+            // await axios.post('/codebook-service/aclSecurity', data001);
+            // //await axios.post('/image-service/aclSecurity', data001);
+            // await axios.post('/message-service/aclSecurity', data001);
         }
     }
 
