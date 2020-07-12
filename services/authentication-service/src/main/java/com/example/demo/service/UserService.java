@@ -98,10 +98,16 @@ public class UserService {
 
     public Users save(UserRegistrationDTO user) {
         Users u = Users.builder().role(UserRole.valueOf("USER"))
-                .firstName(user.getFirstName()).lastName(user.getLastName()).email(user.getEmail()).enabled(true)
+                .firstName(user.getFirstName()).lastName(user.getLastName()).email(user.getEmail()).enabled(false)
                 .password(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12))).build();
         log.info("New user: " + u + " has been registered");
 
+        return this.userRepository.save(u);
+    }
+
+    public Users update(String mail){
+        Users u = this.findOneByEmail(mail);
+        u.setEnabled(true);
         return this.userRepository.save(u);
     }
 

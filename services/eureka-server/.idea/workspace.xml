@@ -2,49 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25e00632-9d8a-4e29-8666-fdd70602ea84" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../agentbackend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/KtbackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/KtbackendApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/java/com/example/demo/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentbackend/src/main/resources/data-postgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentbackend/src/main/resources/data-postgres.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentfrontend/src/Advertisement/Advertisement.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentfrontend/src/Advertisement/Advertisement.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentfrontend/src/Advertisement/Advertisement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentfrontend/src/Advertisement/Advertisement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentfrontend/src/Graph/Graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentfrontend/src/Graph/Graph.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentfrontend/src/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentfrontend/src/Login/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentfrontend/src/Message/Message.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentfrontend/src/Message/Message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentfrontend/src/Message/MessageInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentfrontend/src/Message/MessageInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentfrontend/src/Registration/Registration.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentfrontend/src/Registration/Registration.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../agentfrontend/src/Registration/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../agentfrontend/src/Registration/Registration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/Advertisement/Advertisement.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/Advertisement/Advertisement.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/Advertisement/Advertisement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/Advertisement/Advertisement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/CommentRequest/CommentRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/CommentRequest/CommentRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/HomePage/HomePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/HomePage/HomePage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/Login/Login.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/Login/Login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/Messages/MessageInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/Messages/MessageInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/Messages/Messages.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/Messages/Messages.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/Messages/Messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/Messages/Messages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/RatingRequest/RatingRequest.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/RatingRequest/RatingRequest.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/RatingRequest/RatingRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/RatingRequest/RatingRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/Registration/Registration.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/Registration/Registration.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/RentalRequest/RentalRequestsFromMe/RentalRequestsFromMe.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/RentalRequest/RentalRequestsFromMe/RentalRequestsFromMe.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/SearchPage/SearchPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/SearchPage/SearchPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/SearchPage/SearchPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/SearchPage/SearchPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/SingleCarPage/SingleCarPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/SingleCarPage/SingleCarPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../clientfrontend/src/SingleCarPage/SingleCarpage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../clientfrontend/src/SingleCarPage/SingleCarpage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/model/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/model/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/model/CarRentalRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/java/com/example/carService/model/CarRentalRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/target/classes/com/example/carService/model/Car.class" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/target/classes/com/example/carService/model/Car.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../car-service/target/classes/com/example/carService/model/CarRentalRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../car-service/target/classes/com/example/carService/model/CarRentalRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/KtbackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/KtbackendApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/java/com/example/demo/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../authentication-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../authentication-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,10 +46,22 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../message-service" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../zuul-api-gateway" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Application.EurekaServerApplication">
     <configuration name="EurekaServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">

@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.KtbackendApplication;
 import com.example.demo.dto.*;
+import com.example.demo.model.Mail;
 import com.example.demo.model.Users;
 import com.example.demo.security.Acl;
 import com.example.demo.service.*;
@@ -27,6 +29,32 @@ public class UserController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/login")
     public ResponseEntity<UserTokenState> login(@Valid @RequestBody UserLoginDTO user) throws  NotFoundException {
         return new ResponseEntity<>(this.userService.login(user), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/mail")
+    public ResponseEntity<?> mailSestre(@RequestBody MailView mailView){
+
+        //mailView.setMailFrom("jovan.jenjic@gmail.com");
+       // mailView.setDodatak("Poslaoo");
+       // mailView.setMailTo("Od kuma");
+        System.out.println("USO JE");
+        Mail mail = new Mail();
+        mail.setMailFrom(mailView.getMailFrom());
+        mail.setMailTo("koske.koske035@gmail.com");
+        mail.setMailSubject("Zahtev za registraciju od "+mailView.getMailFrom());
+        mail.setMailContent("Prihvacen je zahtev za registraciju od "+mailView.getMailTo()+" "+mailView.getDodatak()+"<html><body><a href='http://localhost:3000/login/"+mailView.getMailFrom()+"'>Link za prihvtanje</a></body></html>");
+        MailService mailService = KtbackendApplication.getCtx();
+        mailService.sendMail(mail);
+
+
+        return  new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/enable")
+    public ResponseEntity<?> enablee(@Valid @RequestBody UserEmailDTO mail) throws  NotFoundException {
+        return new ResponseEntity<>(this.userService.update(mail.getUserEmail()), HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
