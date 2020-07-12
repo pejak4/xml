@@ -275,4 +275,28 @@ public class CarController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+<<<<<<< Updated upstream
+=======
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getAllOverdraft")
+    public ResponseEntity<?> getAllOverdraft(@RequestBody OverdraftDTO overdraftDTO) {
+        return new ResponseEntity<>(this.overdraftService.getAllByUserId(overdraftDTO), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/acceptOverdraft")
+    public ResponseEntity<?> acceptOverdraft(@RequestBody OverdraftIdDTO overdraftIdDTO) {
+        this.overdraftService.acceptOverdraft(overdraftIdDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/getRentalRequestLoggedUser")
+    public ResponseEntity<?> getRentalRequestLoggedUser(@RequestBody OverdraftDTO overdraftDTO) {
+        return new ResponseEntity<>(this.rentalRequestService.getRentalRequestLoggedUser(overdraftDTO), HttpStatus.OK);
+    }
+
+
+
+>>>>>>> Stashed changes
 }

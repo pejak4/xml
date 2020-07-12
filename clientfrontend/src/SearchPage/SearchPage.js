@@ -253,9 +253,19 @@ class SearchPage extends React.PureComponent {
         const data00 = {carId, startDate, endDate, userId, id};
 
 
+<<<<<<< Updated upstream
         if(!car.agent) {
             if(rentalRequestExists === true) {
                 alert('Rental request exists or car is busy in this time.');
+=======
+        if(response001.data.length === 0) // UU slucaj da niz nije prazan, znaci da taj korisnik ima neplacenih prekoracenja kilometara i da ne moze da renta novi auto!
+            if(!car.agent) {
+                if(rentalRequestExists === true) {
+                    alert('Rental request exists or car is busy in this time.');
+                } else {
+                    await axios.post('/car-service/addRentalRequest', data);
+                }
+>>>>>>> Stashed changes
             } else {
                 await axios.post('/car-service/addRentalRequest', data);
             }

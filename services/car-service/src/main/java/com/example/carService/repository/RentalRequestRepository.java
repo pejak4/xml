@@ -19,6 +19,7 @@ public interface RentalRequestRepository extends  JpaRepository<CarRentalRequest
     List<CarRentalRequest> findAllByRole(RentalRequestRole role);
     List<CarRentalRequest> findAllByUserIdAndRole(String user_id, RentalRequestRole role);
     List<CarRentalRequest> findAllByForUserIdAndRoleAndAgent(String for_user_id, RentalRequestRole role, Boolean agent);
+    List<CarRentalRequest> findAllByUserId(String userId);
 
 
     @Modifying
